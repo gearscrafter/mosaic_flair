@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:atomic_design_system/atomic_design_system.dart';
+import 'package:mosaic_flair/mosaic_flair.dart';
+
+import 'organism/cart_summary_showcase.dart';
+import 'organism/login_form_showcase.dart';
+import 'organism/product_detail_showcase.dart';
+import 'organism/product_list_showcase.dart';
+import 'organism/synchronous_tab_bar_showcase.dart';
 
 class OrganismShowcase extends StatelessWidget {
   const OrganismShowcase({super.key});
@@ -9,68 +15,62 @@ class OrganismShowcase extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Organisms Showcase'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Cart Summary'),
-            const SizedBox(height: 8.0),
-            CartSummary(
-              items: [
-                CartItem(
-                  name: 'Product 1',
-                  image: 'https://via.placeholder.com/150',
-                  price: 29.99,
-                  quantity: 2,
-                ),
-                CartItem(
-                  name: 'Product 2',
-                  image: 'https://via.placeholder.com/150',
-                  price: 49.99,
-                  quantity: 1,
-                ),
-              ],
-              onCheckout: null,
+            ListTile(
+              title: const AppText(text: 'Resumen de carrito de compras'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CartSummaryShowcase()),
+                );
+              },
             ),
-            const SizedBox(height: 16.0),
-            const AppText('Login Form'),
-            const SizedBox(height: 8.0),
-            LoginForm(
-                emailController: TextEditingController(),
-                passwordController: TextEditingController(),
-                onLogin: null),
-            const SizedBox(height: 16.0),
-            const AppText('Product Detail'),
-            const SizedBox(height: 8.0),
-            const ProductDetail(
-              title: 'Product',
-              description: 'Product Description',
-              image: 'https://via.placeholder.com/300x200',
-              price: 29.99,
+            ListTile(
+              title: const AppText(text: 'Formulario de Login'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const LoginFormShowcase()),
+                );
+              },
             ),
-            const SizedBox(height: 16.0),
-            const Text('Product List'),
-            const SizedBox(height: 8.0),
-            const ProductList(
-              products: [
-                ProductCard(
-                  title: 'Product 1',
-                  image: 'https://via.placeholder.com/150',
-                  price: 29.99,
-                ),
-                ProductCard(
-                  title: 'Product 2',
-                  image: 'https://via.placeholder.com/150',
-                  price: 49.99,
-                ),
-                ProductCard(
-                  title: 'Product 3',
-                  image: 'https://via.placeholder.com/150',
-                  price: 49.99,
-                ),
-              ],
+            ListTile(
+              title: const AppText(text: 'Detalle del producto'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ProductDetailShowcase()),
+                );
+              },
+            ),
+            ListTile(
+              title: const AppText(text: 'Listado de productos'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ProductListShowcase()),
+                );
+              },
+            ),
+            ListTile(
+              title: const AppText(text: 'TabBar productos'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SynchronousTabBarShowcase()),
+                );
+              },
             ),
           ],
         ),

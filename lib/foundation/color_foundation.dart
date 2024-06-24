@@ -1,12 +1,15 @@
 import '../tokens/colors.dart';
 
 const primaryColor = primary;
-const secondaryColor = secondary;
 const backgroundColor = background;
-const surfaceColor = surface;
+const secondaryBackgroundColor = secondaryBackground;
+const neutralColor = neutral;
+
+const accentColor1 = accent1;
+const accentColor2 = accent2;
+
+const successColor = success;
+const warningColor = warning;
 const errorColor = error;
-const onPrimaryColor = onPrimary;
-const onSecondaryColor = onSecondary;
-const onBackgroundColor = onBackground;
-const onSurfaceColor = onSurface;
-const onErrorColor = onError;
+
+const textColorPrimary = textPrimary;

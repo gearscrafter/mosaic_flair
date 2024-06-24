@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../foundation/color_foundation.dart';
+import '../foundation/dimension_foundation.dart';
+
 class AppCarousel extends StatefulWidget {
   final List<Widget> items;
   final double height;
@@ -31,7 +34,10 @@ class _AppCarouselState extends State<AppCarousel> {
               });
             },
             itemBuilder: (context, index) {
-              return widget.items[index];
+              return Padding(
+                padding: const EdgeInsets.all(paddingMediumDimension),
+                child: widget.items[index],
+              );
             },
           ),
         ),
@@ -48,12 +54,12 @@ class _AppCarouselState extends State<AppCarousel> {
 
   Widget _buildDot(int index) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+      margin: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
       width: 8.0,
       height: 8.0,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: _currentIndex == index ? Colors.blue : Colors.grey,
+        color: _currentIndex == index ? primaryColor : secondaryBackgroundColor,
       ),
     );
   }

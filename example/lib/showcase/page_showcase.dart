@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:atomic_design_system/atomic_design_system.dart';
+import 'package:mosaic_flair/mosaic_flair.dart';
 
 class PageShowcase extends StatelessWidget {
   const PageShowcase({super.key});

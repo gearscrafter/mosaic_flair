@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../data/cart_data.dart';
 import '../organisms/cart_summary.dart';
 
 class CartTemplate extends StatelessWidget {
@@ -16,7 +17,10 @@ class CartTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cart'),
+        title: const Text(
+          'Carrito de compras',
+        ),
+        centerTitle: true,
       ),
       body: CartSummary(
         items: cartItems,

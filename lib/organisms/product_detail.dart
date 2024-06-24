@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../atoms/button.dart';
+import 'package:mosaic_flair/mosaic_flair.dart';
 
 class ProductDetail extends StatelessWidget {
   final String title;
@@ -20,13 +19,53 @@ class ProductDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        const SizedBox(
+          height: 80,
+        ),
         image != null
-            ? Image.network(image!,
-                fit: BoxFit.cover, height: 200, width: double.infinity)
+            ? Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(borderRadiusDimensions),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.4),
+                      spreadRadius: 0.7,
+                      blurRadius: 1,
+                      offset: const Offset(0, 1),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(borderRadiusDimensions),
+                  child: Image.network(image!,
+                      fit: BoxFit.cover, height: 200, width: double.infinity),
+                ),
+              )
             : const SizedBox.shrink(),
+        const SizedBox(
+          height: 40,
+        ),
+        Container(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              '\$ ${price.toStringAsFixed(2)}',
+              overflow: TextOverflow.fade,
+              style: const TextStyle(
+                  fontSize: fontSizeLargeDimension,
+                  color: primaryColor,
+                  fontWeight: FontWeight.w600),
+            ),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
@@ -37,26 +76,10 @@ class ProductDetail extends StatelessWidget {
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Text(
-            '\$${price.toStringAsFixed(2)}',
-            style: TextStyle(
-              fontSize: 20.0,
-              color: Colors.grey[600],
-            ),
-          ),
-        ),
-        Padding(
+        Container(
+          constraints: BoxConstraints(maxWidth: size.width * 0.85),
           padding: const EdgeInsets.all(16.0),
           child: Text(description),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: AppButton(
-            label: 'Add to Cart',
-            onPressed: onAddToCart,
-          ),
         ),
       ],
     );

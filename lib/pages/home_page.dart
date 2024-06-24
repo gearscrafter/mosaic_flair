@@ -1,33 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../molecules/carousel.dart';
+import '../molecules/product_card.dart';
+import '../molecules/promotion_card.dart';
+import '../templates/home_template.dart';
 
 class HomePage extends StatelessWidget {
-  final List<Widget>? featuredProducts;
-  final List<Widget>? carouselImages;
-  const HomePage({this.featuredProducts, this.carouselImages, super.key});
+  final List<PromotionCard>? promotionCards;
+  final List<ProductCard>? products;
+  const HomePage({this.promotionCards, this.products, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            AppCarousel(
-              items: carouselImages ?? [],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: featuredProducts ?? []),
-            ),
-          ],
-        ),
-      ),
+    return HomeTemplate(
+      userName: "Juan",
+      promotionCards: promotionCards,
+      products: products,
     );
   }
 }

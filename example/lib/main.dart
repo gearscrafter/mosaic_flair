@@ -4,6 +4,7 @@ import 'showcase/atom_showcase.dart';
 import 'showcase/molecule_showcase.dart';
 import 'showcase/organism_showcase.dart';
 import 'showcase/page_showcase.dart';
+import 'showcase/template_showcase.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Atomic Design System Showcase',
+      debugShowCheckedModeBanner: false,
+      title: 'Mosaic Flair Showcase',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -31,7 +33,7 @@ class ShowcaseHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Atomic Design System Showcase'),
+        title: const Text('Mosaic Flair Showcase'),
       ),
       body: ListView(
         children: [
@@ -39,7 +41,7 @@ class ShowcaseHomePage extends StatelessWidget {
             title: const Text('Atoms Showcase'),
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AtomShowcase()),
+              MaterialPageRoute(builder: (context) => const AtomsShowcase()),
             ),
           ),
           ListTile(
@@ -54,6 +56,13 @@ class ShowcaseHomePage extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const OrganismShowcase()),
+            ),
+          ),
+          ListTile(
+            title: const Text('Templates Showcase'),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const TemplateShowcase()),
             ),
           ),
           ListTile(

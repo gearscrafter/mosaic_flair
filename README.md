@@ -1,8 +1,8 @@
-[![pub package](https://img.shields.io/pub/v/atomic_design_system.svg)](https://pub.dev/packages/atomic_design_system)
-[![GitHub license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/gearscrafter/atomic_design_system/blob/main/LICENSE)
+[![pub package](https://img.shields.io/pub/v/mosaic_flair.svg)](https://pub.dev/packages/mosaic_flair)
+[![GitHub license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/gearscrafter/mosaic_flair/blob/main/LICENSE)
 
-# Atomic Design System for Flutter
-Este paquete proporciona un sistema de diseño modular basado en los principios de Atomic Design. Incluye componentes reusables, tokens de diseño, y plantillas para construir aplicaciones Flutter consistentes y escalables.
+# Mosaic Flair
+Este paquete proporciona un sistema de diseño modular basado en los principios de Atomic Design. Incluye componentes reusables, y plantillas para construir aplicaciones Flutter consistentes y escalables.
 
 ## 📖 Índice
 1. [Descripción](#descripcion)
@@ -16,7 +16,7 @@ Este paquete proporciona un sistema de diseño modular basado en los principios 
 <a name="descripcion"></a>
 ## Descripción
 
-El `Atomic Design System for Flutter `facilita la construcción de interfaces de usuario con componentes reutilizables organizados en átomos, moléculas, organismos, y plantillas. Este sistema de diseño ayuda a mantener la consistencia visual y la escalabilidad de tu aplicación Flutter.
+El `Mosaic Flair` facilita la construcción de interfaces de usuario con componentes reutilizables organizados en átomos, moléculas, organismos, y plantillas. Este sistema de diseño ayuda a mantener la consistencia visual y la escalabilidad de tu aplicación Flutter.
 
 
 ### Atomic Design
@@ -36,7 +36,7 @@ Para añadir este paquete a tu proyecto Flutter, agrega el siguiente código a t
 
 ```
 dependencies:
-  atomic_design_system: ^0.0.1
+  mosaic_flair: ^0.0.1
 ```
 Luego, ejecuta:
 
@@ -50,7 +50,7 @@ Aquí tienes un ejemplo básico de cómo utilizar el paquete:
 ### Ejemplo de componente Atómico
 ```
 import 'package:flutter/material.dart';
-import 'package:atomic_design_system/atomic_design_system.dart';
+import 'package:mosaic_flair/mosaic_flair.dart';
 
 class AtomShowcase extends StatelessWidget {
   const AtomShowcase({super.key});
@@ -103,7 +103,7 @@ class AtomShowcase extends StatelessWidget {
 ### Ejemplo de componente Molécula
 ```
 import 'package:flutter/material.dart';
-import 'package:atomic_design_system/atomic_design_system.dart';
+import 'package:mosaic_flair/mosaic_flair.dart';
 
 class MoleculeShowcase extends StatelessWidget {
   const MoleculeShowcase({super.key});
@@ -169,7 +169,7 @@ class MoleculeShowcase extends StatelessWidget {
 ### Ejemplo de componente Organismo
 ```
 import 'package:flutter/material.dart';
-import 'package:atomic_design_system/atomic_design_system.dart';
+import 'package:mosaic_flair/mosaic_flair.dart';
 
 class OrganismShowcase extends StatelessWidget {
   const OrganismShowcase({super.key});
@@ -246,9 +246,9 @@ class OrganismShowcase extends StatelessWidget {
 ```
 ### Ejemplo de componente Página
 ```
-import 'package:atomic_design_system/pages/cart_page.dart';
+import 'package:mosaic_flair/pages/cart_page.dart';
 import 'package:flutter/material.dart';
-import 'package:atomic_design_system/atomic_design_system.dart';
+import 'package:mosaic_flair/mosaic_flair.dart';
 
 class PageShowcase extends StatelessWidget {
   const PageShowcase({super.key});
@@ -315,7 +315,7 @@ class PageShowcase extends StatelessWidget {
 El paquete está organizado según los principios de Atomic Design:
 ```
 lib/
-├── atomic_design_system.dart  # Archivo de biblioteca principal
+├── mosaic_flair.dart  # Archivo de biblioteca principal
 ├── atoms/                     # Componentes básicos
 │   ├── button.dart
 │   ├── icon.dart

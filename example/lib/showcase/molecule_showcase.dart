@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:atomic_design_system/atomic_design_system.dart';
+
+import 'molecules/carousel_showcase.dart';
+import 'molecules/menu_showcase.dart';
+import 'molecules/product_card_showcase.dart';
+import 'molecules/search_bar_showcase.dart';
+import 'molecules/tile_card_showcase.dart';
 
 class MoleculeShowcase extends StatelessWidget {
   const MoleculeShowcase({super.key});
@@ -8,56 +13,64 @@ class MoleculeShowcase extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Molecules Showcase'),
+        title: const Text('Moleculas'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize:
-                MainAxisSize.min, // Establecer mainAxisSize a MainAxisSize.min
+            mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('Navigation Bar'),
-              const SizedBox(height: 8.0),
-              SizedBox(
-                height: 200,
-                child: AppNavigationBar(
-                  currentIndex: 0,
-                  onTap: (index) {},
-                  items: const [
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.home), label: 'home'),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.call), label: 'call'),
-                  ],
-                ),
+              ListTile(
+                title: const Text('Menu'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MenuShowcase()),
+                  );
+                },
               ),
-              const SizedBox(height: 16.0),
-              const Text('Product Card'),
-              const SizedBox(height: 8.0),
-              ProductCard(
-                title: 'Product',
-                image: 'https://via.placeholder.com/150',
-                price: 29.99,
-                onTap: () {},
+              ListTile(
+                title: const Text('Barra buscadora'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SearchBarShowcase()),
+                  );
+                },
               ),
-              const SizedBox(height: 16.0),
-              const Text('Search Bar'),
-              const SizedBox(height: 8.0),
-              SearchBarM(
-                controller: TextEditingController(text: 'buscando...'),
-                hintText: 'buscador',
+              ListTile(
+                title: const Text('Tarjeta de producto'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProductCardShowcase()),
+                  );
+                },
               ),
-              const SizedBox(height: 16.0),
-              const Text('Carousel'),
-              const SizedBox(height: 8.0),
-              AppCarousel(
-                height: 200,
-                items: [
-                  Image.network('https://via.placeholder.com/300x200'),
-                  Image.network('https://via.placeholder.com/300x200'),
-                ],
+              ListTile(
+                title: const Text('Carousel'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const CarouselShowcase()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('Tarjeta'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const TileCardShowcase()),
+                  );
+                },
               ),
             ],
           ),

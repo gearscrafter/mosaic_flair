@@ -1,7 +1,7 @@
-import 'package:atomic_design_system/foundation/color_foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../foundation/dimension_foundation.dart';
+import '../foundation/color_foundation.dart';
 import '../foundation/icon_foundation.dart';
 
 class SearchBarM extends StatelessWidget {
@@ -23,13 +23,16 @@ class SearchBarM extends StatelessWidget {
       onChanged: onSearch,
       decoration: InputDecoration(
         hintText: hintText,
-        prefixIcon: const Icon(searchIcon),
+        prefixIcon: const Icon(
+          searchIcon,
+          size: 35,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadiusDimensions),
           borderSide: BorderSide.none,
         ),
         filled: true,
-        fillColor: onPrimaryColor,
+        fillColor: backgroundColor,
         contentPadding: const EdgeInsets.symmetric(
             horizontal: paddingMediumDimension,
             vertical: paddingMediumDimension),

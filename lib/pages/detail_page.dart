@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../templates/product_template.dart';
+import '../data/product_dart.dart';
+import '../templates/detail_template.dart';
 
 class DetailPage extends StatelessWidget {
   final Product? product;
-  final VoidCallback? onAddToCart;
+  final Function(Product? product, int quantity)? onAddToCart;
 
   const DetailPage({this.product, this.onAddToCart, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ProductTemplate(product: product, onAddToCart: onAddToCart);
+    return DetailsTemplate(product: product, onAddToCart: onAddToCart);
   }
 }

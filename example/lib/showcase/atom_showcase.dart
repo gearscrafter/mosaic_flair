@@ -1,49 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:atomic_design_system/atomic_design_system.dart';
 
-class AtomShowcase extends StatelessWidget {
-  const AtomShowcase({super.key});
+import 'atoms/buttons_showcase.dart';
+import 'atoms/icons_showcase.dart';
+import 'atoms/input_field_showcase.dart';
+import 'atoms/texts_showcase.dart';
+
+class AtomsShowcase extends StatelessWidget {
+  const AtomsShowcase({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Atoms Showcase'),
+        title: const Text('Átomos'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Buttons'),
-            const SizedBox(height: 8.0),
-            const AppButton(
-              onPressed: null,
-              label: 'Disabled Button',
-            ),
-            const SizedBox(height: 8.0),
-            AppButton(
-              onPressed: () {},
-              label: 'Enabled Button',
-            ),
-            const SizedBox(height: 16.0),
-            const AppText('Icons'),
-            const SizedBox(height: 8.0),
-            const AppIcon(
-              iconData: Icons.star,
-            ),
-            const SizedBox(height: 8.0),
-            const AppText('Input Fields'),
-            const SizedBox(height: 8.0),
-            AppInput(
-                controller: TextEditingController(text: ''),
-                hintText: 'Enter text'),
-            const SizedBox(height: 16.0),
-            const AppText('Texts'),
-            const SizedBox(height: 8.0),
-            const AppText('Sample Text'),
-          ],
-        ),
+      body: ListView(
+        children: [
+          ListTile(
+            title: const Text('Botones'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ButtonsShowcase()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Iconos'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const IconsShowcase()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Campos de entrada'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const InputFieldShowcase()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Tipos de texto'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const TextsShowcase()),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
