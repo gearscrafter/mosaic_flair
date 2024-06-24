@@ -10,8 +10,9 @@ Este paquete proporciona un sistema de diseño modular basado en los principios 
 3. [Uso Básico](#uso)
 3. [Estructura del Paquete](#estructura)
 4. [Ejemplo de Showcase](#ejemplo)
-4. [Contribuir](#contribuir)
-5. [Licencia](#licencia)
+5. [Demo](#demo)
+6. [Contribuir](#contribuir)
+7. [Licencia](#licencia)
 
 <a name="descripcion"></a>
 ## Descripción
@@ -45,263 +46,82 @@ flutter pub get
 ```
 <a name="uso"></a>
 ## Uso Básico
-Aquí tienes un ejemplo básico de cómo utilizar el paquete:
+Aquí tienes la pantalla principal del paquete:
 
-### Ejemplo de componente Atómico
+### Ejemplo 
 ```
 import 'package:flutter/material.dart';
-import 'package:mosaic_flair/mosaic_flair.dart';
 
-class AtomShowcase extends StatelessWidget {
-  const AtomShowcase({super.key});
+import 'showcase/atom_showcase.dart';
+import 'showcase/molecule_showcase.dart';
+import 'showcase/organism_showcase.dart';
+import 'showcase/page_showcase.dart';
+import 'showcase/template_showcase.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Atoms Showcase'),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Mosaic Flair Showcase',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Buttons'),
-            const SizedBox(height: 8.0),
-            const AppButton(
-              onPressed: null,
-              label: 'Disabled Button',
-            ),
-            const SizedBox(height: 8.0),
-            AppButton(
-              onPressed: () {},
-              label: 'Enabled Button',
-            ),
-            const SizedBox(height: 16.0),
-            const AppText('Icons'),
-            const SizedBox(height: 8.0),
-            const AppIcon(
-              iconData: Icons.star,
-            ),
-            const SizedBox(height: 8.0),
-            const AppText('Input Fields'),
-            const SizedBox(height: 8.0),
-            AppInput(
-                controller: TextEditingController(text: ''),
-                hintText: 'Enter text'),
-            const SizedBox(height: 16.0),
-            const AppText('Texts'),
-            const SizedBox(height: 8.0),
-            const AppText('Sample Text'),
-          ],
-        ),
-      ),
+      home: const ShowcaseHomePage(),
     );
   }
 }
-```
-### Ejemplo de componente Molécula
-```
-import 'package:flutter/material.dart';
-import 'package:mosaic_flair/mosaic_flair.dart';
 
-class MoleculeShowcase extends StatelessWidget {
-  const MoleculeShowcase({super.key});
+class ShowcaseHomePage extends StatelessWidget {
+  const ShowcaseHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Molecules Showcase'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Navigation Bar'),
-            const SizedBox(height: 8.0),
-            AppNavigationBar(
-              currentIndex: 0,
-              onTap: (index) {
-                print(index);
-              },
-              items: const [
-                BottomNavigationBarItem(icon: Icon(Icons.home)),
-                BottomNavigationBarItem(icon: Icon(Icons.call)),
-              ],
-            ),
-            const SizedBox(height: 16.0),
-            const Text('Product Card'),
-            const SizedBox(height: 8.0),
-            ProductCard(
-              title: 'Product',
-              image: 'https://via.placeholder.com/150',
-              price: 29.99,
-              onTap: () {
-                print("presionaste el producto");
-              },
-            ),
-            const SizedBox(height: 16.0),
-            const Text('Search Bar'),
-            const SizedBox(height: 8.0),
-            SearchBarM(
-              controller: TextEditingController(text: 'buscando...'),
-              hintText: 'buscador',
-            ),
-            const SizedBox(height: 16.0),
-            const Text('Carousel'),
-            const SizedBox(height: 8.0),
-            AppCarousel(
-              height: 200,
-              items: [
-                Image.network('https://via.placeholder.com/300x200'),
-                Image.network('https://via.placeholder.com/300x200'),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-```
-### Ejemplo de componente Organismo
-```
-import 'package:flutter/material.dart';
-import 'package:mosaic_flair/mosaic_flair.dart';
-
-class OrganismShowcase extends StatelessWidget {
-  const OrganismShowcase({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Organisms Showcase'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Cart Summary'),
-            const SizedBox(height: 8.0),
-            CartSummary(
-              items: [
-                CartItem(
-                  name: 'Product 1',
-                  image: 'https://via.placeholder.com/150',
-                  price: 29.99,
-                  quantity: 2,
-                ),
-                CartItem(
-                  name: 'Product 2',
-                  image: 'https://via.placeholder.com/150',
-                  price: 49.99,
-                  quantity: 1,
-                ),
-              ],
-              onCheckout: null,
-            ),
-            const SizedBox(height: 16.0),
-            const AppText('Login Form'),
-            const SizedBox(height: 8.0),
-            LoginForm(
-                emailController: TextEditingController(),
-                passwordController: TextEditingController(),
-                onLogin: null),
-            const SizedBox(height: 16.0),
-            const AppText('Product Detail'),
-            const SizedBox(height: 8.0),
-            const ProductDetail(
-              title: 'Product',
-              description: 'Product Description',
-              image: 'https://via.placeholder.com/300x200',
-              price: 29.99,
-            ),
-            const SizedBox(height: 16.0),
-            const Text('Product List'),
-            const SizedBox(height: 8.0),
-            const ProductList(
-              products: [
-                ProductCard(
-                  title: 'Product 1',
-                  image: 'https://via.placeholder.com/150',
-                  price: 29.99,
-                ),
-                ProductCard(
-                  title: 'Product 2',
-                  image: 'https://via.placeholder.com/150',
-                  price: 49.99,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-```
-### Ejemplo de componente Página
-```
-import 'package:mosaic_flair/pages/cart_page.dart';
-import 'package:flutter/material.dart';
-import 'package:mosaic_flair/mosaic_flair.dart';
-
-class PageShowcase extends StatelessWidget {
-  const PageShowcase({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pages Showcase'),
+        title: const Text('Mosaic Flair Showcase'),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16.0),
         children: [
           ListTile(
-            title: const Text('Cart Page'),
+            title: const Text('Atoms Showcase'),
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const CartPage()),
+              MaterialPageRoute(builder: (context) => const AtomsShowcase()),
             ),
           ),
           ListTile(
-            title: const Text('Catalog Page'),
+            title: const Text('Molecules Showcase'),
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const CatalogPage()),
+              MaterialPageRoute(builder: (context) => const MoleculeShowcase()),
             ),
           ),
           ListTile(
-            title: const Text('Detail Page'),
+            title: const Text('Organisms Showcase'),
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const DetailPage()),
+              MaterialPageRoute(builder: (context) => const OrganismShowcase()),
             ),
           ),
           ListTile(
-            title: const Text('Home Page'),
+            title: const Text('Templates Showcase'),
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const HomePage()),
+              MaterialPageRoute(builder: (context) => const TemplateShowcase()),
             ),
           ),
           ListTile(
-            title: const Text('Login Page'),
+            title: const Text('Pages Showcase'),
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const LoginPage()),
-            ),
-          ),
-          ListTile(
-            title: const Text('Support Page'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SupportPage()),
+              MaterialPageRoute(builder: (context) => const PageShowcase()),
             ),
           ),
         ],
@@ -310,6 +130,24 @@ class PageShowcase extends StatelessWidget {
   }
 }
 ```
+<a name="demo"></a>
+## Demo
+
+### Atomos
+![Imagen](/assets/clips/atoms_clip.gif)
+
+### Moleculas
+![Imagen](/assets/clips/molecules_clip.gif)
+
+### Organismos
+![Imagen](/assets/clips/organism_clip.gif)
+
+### Templates
+![Imagen](/assets/clips/template_clip.gif)
+
+### Paginas
+![Imagen](/assets/clips/page_clip.gif)
+
 <a name="estructura"></a>
 ## Estructura del Paquete
 El paquete está organizado según los principios de Atomic Design:
@@ -319,7 +157,10 @@ lib/
 ├── atoms/                     # Componentes básicos
 │   ├── button.dart
 │   ├── icon.dart
+│   ├── dropdownbutton.dart
 │   ├── input.dart
+│   ├── process_button.dart
+│   ├── support.dart
 │   └── text.dart
 ├── foundation/                # Fundaciones de diseño
 │   ├── color_foundation.dart
@@ -331,18 +172,29 @@ lib/
 │   ├── theme_foundation.dart
 │   └── typography_foundation.dart
 ├── molecules/                 # Combinaciones de átomos
+│   ├── appbar.dart
 │   ├── carousel.dart
-│   ├── navigation.dart
+│   ├── menu.dart
 │   ├── product_card.dart
+│   ├── promotion_card.dart
+│   ├── tile_card.dart
 │   └── search_bar.dart
 ├── organisms/                 # Combinaciones de moléculas
 │   ├── cart_summary.dart
 │   ├── login_form.dart
 │   ├── product_detail.dart
+│   ├── register_form.dart
+│   ├── synchronous_tab_bar.dart
 │   └── product_list.dart
 ├── templates/                 # Estructuras de página
 │   ├── cart_template.dart
 │   ├── product_template.dart
+│   ├── catalog_template.dart
+│   ├── contact_template.dart
+│   ├── detail_template.dart
+│   ├── home_template.dart
+│   ├── login_template.dart
+│   ├── register_template.dart
 │   ├── search_template.dart
 │   └── support_template.dart
 └── tokens/                    # Tokens de diseño
