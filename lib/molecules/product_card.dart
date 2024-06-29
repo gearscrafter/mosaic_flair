@@ -5,7 +5,7 @@ import '../foundation/dimension_foundation.dart';
 class ProductCard extends StatelessWidget {
   final int id;
   final String title;
-  final String image;
+  final String? image;
   final String category;
   final double price;
   final double topBoxHeight;
@@ -17,7 +17,7 @@ class ProductCard extends StatelessWidget {
     required this.id,
     required this.title,
     required this.category,
-    required this.image,
+    this.image,
     required this.price,
     this.topBoxHeight = 80.0,
     this.bottomBoxHeight = 10.0,
@@ -98,12 +98,14 @@ class ProductCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(borderRadiusDimensions),
-                child: Image.network(
-                  image,
-                  fit: BoxFit.cover,
-                  width: size.width / 3,
-                  height: 120,
-                ),
+                child: image != null
+                    ? Image.network(
+                        image!,
+                        fit: BoxFit.cover,
+                        width: size.width / 3,
+                        height: 120,
+                      )
+                    : const SizedBox.shrink(),
               ),
             ),
           ),

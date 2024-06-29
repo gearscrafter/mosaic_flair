@@ -10,15 +10,18 @@ class AppButton extends StatefulWidget {
   final Color? backColor;
   final bool hasIconAnimation;
   final double? width;
+  final AnimationController? iconAnimationController;
 
-  const AppButton(
-      {this.labelColor = textColorPrimary,
-      this.backColor,
-      super.key,
-      this.width,
-      this.hasIconAnimation = false,
-      required this.label,
-      this.onPressed});
+  const AppButton({
+    this.labelColor = textColorPrimary,
+    this.backColor,
+    super.key,
+    this.width,
+    this.hasIconAnimation = false,
+    required this.label,
+    this.onPressed,
+    this.iconAnimationController,
+  });
 
   @override
   State<AppButton> createState() => _AppButtonState();
@@ -26,18 +29,13 @@ class AppButton extends StatefulWidget {
 
 class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
   late AnimationController _controller;
-  late AnimationController _iconController;
   late Animation<double> _animation;
-  late Animation _iconAnimation;
+  late Animation<double> _iconAnimation;
   bool _isAnimating = false;
 
   @override
   void initState() {
     super.initState();
-    _iconController = AnimationController(
-      duration: const Duration(milliseconds: 600),
-      vsync: this,
-    );
     _controller = AnimationController(
       duration: const Duration(milliseconds: 200),
       vsync: this,
@@ -50,7 +48,7 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
           });
         } else if (status == AnimationStatus.dismissed) {
           setState(() {
-            _isAnimating = false; // Permite la animación nuevamente
+            _isAnimating = false;
           });
         }
       });
@@ -64,17 +62,22 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
 
     _iconAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
-        parent: _iconController,
+        parent: widget.iconAnimationController ??
+            AnimationController(
+              duration: const Duration(milliseconds: 600),
+              vsync: this,
+            ),
         curve: Curves.easeInOut,
       ),
     );
-    _iconController.repeat(reverse: true);
+
+    widget.iconAnimationController?.repeat(reverse: true);
   }
 
   @override
   void dispose() {
     _controller.dispose();
-    _iconController.dispose();
+    widget.iconAnimationController?.dispose();
     super.dispose();
   }
 
@@ -112,15 +115,17 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
                     ? MainAxisAlignment.spaceAround
                     : MainAxisAlignment.center,
                 children: [
-                  Text(
-                    widget.label,
-                    style: const TextStyle(
-                        fontSize: fontSizeMediumDimension,
-                        fontWeight: FontWeight.w600),
+                  Flexible(
+                    child: Text(
+                      widget.label,
+                      style: const TextStyle(
+                          fontSize: fontSizeMediumDimension,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
                   widget.hasIconAnimation
                       ? AnimatedBuilder(
-                          animation: _iconController,
+                          animation: _iconAnimation,
                           builder: (context, child) {
                             return Transform.translate(
                               offset: Offset(_iconAnimation.value * -8, 0),

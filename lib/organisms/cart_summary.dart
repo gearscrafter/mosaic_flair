@@ -72,7 +72,7 @@ class _CartSummaryState extends State<CartSummary> {
                     }
                   },
                   child: ListTile(
-                    leading: item.image.isNotEmpty
+                    leading: (item.image ?? '').isNotEmpty
                         ? Container(
                             height: 50,
                             width: 50,
@@ -92,10 +92,12 @@ class _CartSummaryState extends State<CartSummary> {
                             child: ClipRRect(
                               borderRadius:
                                   BorderRadius.circular(borderRadiusDimensions),
-                              child: Image.network(
-                                item.image,
-                                fit: BoxFit.cover,
-                              ),
+                              child: item.image != null
+                                  ? Image.network(
+                                      item.image!,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : const SizedBox.shrink(),
                             ),
                           )
                         : const SizedBox.shrink(),

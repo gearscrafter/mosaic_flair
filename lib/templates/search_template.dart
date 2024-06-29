@@ -53,12 +53,11 @@ class _SearchTemplateState extends State<SearchTemplate> {
       if (_searchController.text.isEmpty) {
         filteredList = widget.productCards ?? tileList;
       } else {
-        filteredList = widget.productCards ??
-            tileList.where((tile) {
-              return tile.title
-                  .toLowerCase()
-                  .contains(_searchController.text.toLowerCase());
-            }).toList();
+        filteredList = (widget.productCards ?? tileList).where((tile) {
+          return tile.title
+              .toLowerCase()
+              .contains(_searchController.text.toLowerCase());
+        }).toList();
       }
     });
   }
@@ -117,7 +116,7 @@ class _SearchTemplateState extends State<SearchTemplate> {
                                 widget.getProduct!(Product(
                                     name: item.title,
                                     description: "",
-                                    image: item.image,
+                                    image: item.image ?? '',
                                     price: item.price));
                                 widget.onPressItem;
                               },

@@ -43,7 +43,7 @@ class _DetailsTemplateState extends State<DetailsTemplate> {
               title: widget.product?.name ?? 'Producto 1',
               description: widget.product?.description ??
                   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-              image: widget.product?.image ?? 'https://prd.place/400/600',
+              image: widget.product?.image,
               price: widget.product?.price ?? 20.0,
             ),
             SizedBox(

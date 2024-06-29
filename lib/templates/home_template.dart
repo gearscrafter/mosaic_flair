@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mosaic_flair/molecules/appbar.dart';
-import 'package:mosaic_flair/molecules/menu.dart';
 import 'package:mosaic_flair/mosaic_flair.dart';
 
 class HomeTemplate extends StatefulWidget {
@@ -87,11 +85,11 @@ class _HomeTemplateState extends State<HomeTemplate> {
                         [
                           const PromotionCard(
                               description: 'Descuento al',
-                              image: 'https://prd.place/1800',
+                              image: null,
                               percentage: 50),
                           const PromotionCard(
                               description: 'Descuento al',
-                              image: 'https://prd.place/400/600',
+                              image: null,
                               percentage: 30)
                         ]),
                 const SizedBox(
@@ -132,63 +130,63 @@ class _HomeTemplateState extends State<HomeTemplate> {
                             id: 1,
                             title: 'Product 1',
                             category: 'category',
-                            image: 'https://prd.place/400/600',
+                            image: null,
                             price: 29.99,
                           ),
                           ProductCard(
                             id: 2,
                             title: 'Product 2',
                             category: 'category',
-                            image: 'https://prd.place/400/600',
+                            image: null,
                             price: 49.99,
                           ),
                           ProductCard(
                             id: 3,
                             title: 'Product 3',
                             category: 'category',
-                            image: 'https://prd.place/400/600',
+                            image: null,
                             price: 49.99,
                           ),
                           ProductCard(
                             id: 4,
                             title: 'Product 4',
                             category: 'category',
-                            image: 'https://prd.place/400/600',
+                            image: null,
                             price: 49.99,
                           ),
                           ProductCard(
                             id: 5,
                             title: 'Product 5',
                             category: 'category',
-                            image: 'https://prd.place/400/600',
+                            image: null,
                             price: 49.99,
                           ),
                           ProductCard(
                             id: 6,
                             title: 'Product 6',
                             category: 'category',
-                            image: 'https://prd.place/400/600',
+                            image: null,
                             price: 49.99,
                           ),
                           ProductCard(
                             id: 7,
                             title: 'Product 7',
                             category: 'category',
-                            image: 'https://prd.place/400/600',
+                            image: null,
                             price: 49.99,
                           ),
                           ProductCard(
                             id: 8,
                             title: 'Product 8',
                             category: 'category',
-                            image: 'https://prd.place/400/600',
+                            image: null,
                             price: 49.99,
                           ),
                           ProductCard(
                             id: 9,
                             title: 'Product 9',
                             category: 'category',
-                            image: 'https://prd.place/400/600',
+                            image: null,
                             price: 49.99,
                           ),
                         ],

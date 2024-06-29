@@ -1,0 +1,84 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mosaic_flair/mosaic_flair.dart';
+
+void main() {
+  group('AppButton Tests', () {
+    testWidgets('AppButton displays label and triggers onPressed',
+        (WidgetTester tester) async {
+      bool pressed = false;
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: AppButton(
+              label: 'Test Button',
+              onPressed: () {
+                pressed = true;
+              },
+            ),
+          ),
+        ),
+      );
+
+      // Verifica que el texto se muestra
+      expect(find.text('Test Button'), findsOneWidget);
+
+      // Simula un toque en el botón
+      await tester.tap(find.byType(AppButton));
+      await tester.pumpAndSettle();
+
+      // Verifica que el callback onPressed fue llamado
+      expect(pressed, true);
+    });
+
+    testWidgets('AppButton shows icon animation when hasIconAnimation is true',
+        (WidgetTester tester) async {
+      final iconAnimationController = AnimationController(
+        vsync: tester,
+        duration: const Duration(milliseconds: 600),
+      );
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: AppButton(
+              label: 'Test Button',
+              hasIconAnimation: true,
+              onPressed: () {},
+              iconAnimationController: iconAnimationController,
+            ),
+          ),
+        ),
+      );
+
+      // Verifica que el texto se muestra
+      expect(find.text('Test Button'), findsOneWidget);
+
+      // Verifica que el ícono se muestra
+      expect(find.byIcon(Icons.arrow_forward_sharp), findsOneWidget);
+
+      // Detiene la animación para evitar el bucle infinito
+      iconAnimationController.stop();
+    });
+
+    testWidgets('AppButton is disabled when onPressed is null',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: AppButton(
+              label: 'Test Button',
+              onPressed: null,
+            ),
+          ),
+        ),
+      );
+
+      // Verifica que el botón está deshabilitado
+      final Finder button = find.byType(ElevatedButton);
+      final ElevatedButton elevatedButton = tester.widget(button);
+      expect(elevatedButton.onPressed, null);
+    });
+  });
+}

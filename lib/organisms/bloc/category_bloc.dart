@@ -14,25 +14,27 @@ class CategoryBloc with ChangeNotifier {
 
   bool get isScrolling => _isScrolling;
 
-  void init(
-      TickerProvider ticker, double productHeight, double categoryHeight) {
-    tabController =
-        TabController(length: categoriesItems.length, vsync: ticker);
+  void init(TickerProvider ticker, double productHeight, double categoryHeight,
+      List<Category>? categoryItems) {
+    tabController = TabController(
+        length: (categoryItems ?? categoriesItems).length, vsync: ticker);
 
     double offsetFrom = 0.0;
     double offsetTo = 0.0;
 
-    for (int i = 0; i < categoriesItems.length; i++) {
-      final category = categoriesItems[i];
+    for (int i = 0; i < (categoryItems ?? categoriesItems).length; i++) {
+      final category = (categoryItems ?? categoriesItems)[i];
 
       if (i > 0) {
         offsetFrom +=
-            (categoriesItems[i - 1].products?.length ?? 0) * productHeight;
+            ((categoryItems ?? categoriesItems)[i - 1].products?.length ?? 0) *
+                productHeight;
       }
 
-      if (i < categoriesItems.length - 1) {
+      if (i < (categoryItems ?? categoriesItems).length - 1) {
         offsetTo = offsetFrom +
-            (categoriesItems[i + 1].products?.length ?? 0) * productHeight;
+            ((categoryItems ?? categoriesItems)[i + 1].products?.length ?? 0) *
+                productHeight;
       } else {
         offsetTo = double.infinity;
       }

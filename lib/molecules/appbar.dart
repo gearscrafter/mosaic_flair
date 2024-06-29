@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../atoms/icon.dart';
 import '../foundation/color_foundation.dart';
-import '../templates/search_template.dart';
 
 class Appbar extends StatelessWidget {
   final bool openMenu;

@@ -26,7 +26,7 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
 
   @override
   void initState() {
-    _bloc.init(this, productHeight, categoryHeight);
+    _bloc.init(this, productHeight, categoryHeight, widget.items);
     super.initState();
   }
 
@@ -74,7 +74,9 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
                       controller: _bloc.scrollController,
                       itemCount: _bloc.items.length,
                       itemBuilder: (context, index) {
-                        widget.onScrollChange!(_bloc.isScrolling);
+                        if (widget.onScrollChange != null) {
+                          widget.onScrollChange!(_bloc.isScrolling);
+                        }
                         final item = _bloc.items[index];
                         if (item.isCategory) {
                           return Padding(

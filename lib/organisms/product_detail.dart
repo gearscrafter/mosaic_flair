@@ -6,7 +6,6 @@ class ProductDetail extends StatelessWidget {
   final String description;
   final String? image;
   final double price;
-  final VoidCallback? onAddToCart;
 
   const ProductDetail({
     super.key,
@@ -14,7 +13,6 @@ class ProductDetail extends StatelessWidget {
     required this.description,
     this.image,
     required this.price,
-    this.onAddToCart,
   });
 
   @override
@@ -45,8 +43,12 @@ class ProductDetail extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(borderRadiusDimensions),
-                  child: Image.network(image!,
-                      fit: BoxFit.cover, height: 200, width: double.infinity),
+                  child: image != null
+                      ? Image.network(image!,
+                          fit: BoxFit.cover,
+                          height: 200,
+                          width: double.infinity)
+                      : const SizedBox.shrink(),
                 ),
               )
             : const SizedBox.shrink(),

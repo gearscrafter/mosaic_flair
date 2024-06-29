@@ -10,9 +10,10 @@ Este paquete proporciona un sistema de diseño modular basado en los principios 
 3. [Uso Básico](#uso)
 3. [Estructura del Paquete](#estructura)
 4. [Ejemplo de Showcase](#ejemplo)
-5. [Demo](#demo)
-6. [Contribuir](#contribuir)
-7. [Licencia](#licencia)
+5. [Tests](#tests)
+6. [Demo](#demo)
+7. [Contribuir](#contribuir)
+8. [Licencia](#licencia)
 
 <a name="descripcion"></a>
 ## Descripción
@@ -129,6 +130,19 @@ class ShowcaseHomePage extends StatelessWidget {
     );
   }
 }
+```
+<a name="tests"></a>
+## Tests
+Para ejecutar los tests widgets y de integración, ejecuta el siguiente script:
+```
+./run_all_tests.sh
+```
+### Informe de covertura
+![Imagen](/assets/images/coverage.png)
+
+Para abrir el test de cobertura, ejecuta el siguiente comando:
+```
+open coverage/html/index.html
 ```
 <a name="demo"></a>
 ## Demo

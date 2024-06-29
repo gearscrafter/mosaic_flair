@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mosaic_flair/atoms/button.dart';
-
+import '../atoms/button.dart';
 import '../atoms/text.dart';
 import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
 
 class PromotionCard extends StatelessWidget {
   final String? description;
-  final String image;
+  final String? image;
   final double percentage;
 
   const PromotionCard({
@@ -41,12 +40,14 @@ class PromotionCard extends StatelessWidget {
                     ).createShader(bounds);
                   },
                   blendMode: BlendMode.srcOver,
-                  child: Image.network(
-                    image,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: double.infinity,
-                  ),
+                  child: image != null
+                      ? Image.network(
+                          image!,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: double.infinity,
+                        )
+                      : const SizedBox.shrink(),
                 ),
               ),
             ),
@@ -56,12 +57,11 @@ class PromotionCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  description != null
-                      ? AppText(
-                          text: description,
-                          sizeText: SizeText.S,
-                        )
-                      : const SizedBox.shrink(),
+                  if (description != null)
+                    AppText(
+                      text: description,
+                      sizeText: SizeText.S,
+                    ),
                   Text(
                     '${percentage.toStringAsFixed(0)} %',
                     style: const TextStyle(
@@ -73,10 +73,15 @@ class PromotionCard extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  AppButton(
-                    label: 'Obtén ahora',
-                    width: 150,
-                    onPressed: () {},
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: AppButton(
+                        label: 'Obtén ahora',
+                        width: 150,
+                        onPressed: () {},
+                      ),
+                    ),
                   )
                 ],
               ),
