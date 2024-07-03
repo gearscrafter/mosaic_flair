@@ -26,7 +26,7 @@ class LoginForm extends StatelessWidget {
     return Column(
       children: [
         AppInput(
-          hintText: 'Email',
+          hintText: 'Username',
           controller: usernameController,
           colorInput: colorInput,
         ),

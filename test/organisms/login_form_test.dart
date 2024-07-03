@@ -31,10 +31,10 @@ void main() {
     expect(find.byType(AppButton), findsOneWidget);
 
     // Verify that the hint texts are correct
-    expect(find.text('Email'), findsOneWidget);
+    expect(find.text('Username'), findsOneWidget);
     expect(find.text('Password'), findsOneWidget);
 
-    // Enter text into the email and password fields
+    // Enter text into the username and password fields
     await tester.enterText(find.byType(AppInput).at(0), 'test@example.com');
     await tester.enterText(find.byType(AppInput).at(1), 'password');
 

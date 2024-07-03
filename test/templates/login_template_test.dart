@@ -11,7 +11,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: LoginTemplate(
-          onLogin: (email, password) {
+          onLogin: (username, password) {
             onLoginCalled = true;
           },
           onTapWithoutAccount: () {
@@ -23,12 +23,12 @@ void main() {
 
     // Verifica que los elementos iniciales se muestran correctamente
     expect(find.text('Bienvenido'), findsOneWidget);
-    expect(find.text('Email'), findsOneWidget);
+    expect(find.text('Username'), findsOneWidget);
     expect(find.text('Password'), findsOneWidget);
     expect(find.text('Login'), findsOneWidget);
     expect(find.text('¿Aún no tienes una cuenta?'), findsOneWidget);
 
-    // Introduce texto en los campos de email y password
+    // Introduce texto en los campos de username y password
     await tester.enterText(find.byType(TextField).at(0), 'test@example.com');
     await tester.enterText(find.byType(TextField).at(1), 'password123');
     await tester.pump();
@@ -48,14 +48,14 @@ void main() {
     expect(onTapWithoutAccountCalled, isFalse);
   });
 
-  testWidgets('Login button is disabled when email or password is empty',
+  testWidgets('Login button is disabled when username or password is empty',
       (WidgetTester tester) async {
     bool onLoginCalled = false;
 
     await tester.pumpWidget(
       MaterialApp(
         home: LoginTemplate(
-          onLogin: (email, password) {
+          onLogin: (username, password) {
             onLoginCalled = true;
           },
           onTapWithoutAccount: () {},
@@ -63,7 +63,7 @@ void main() {
       ),
     );
 
-    // Deja los campos de email y password vacíos y verifica que el botón de Login está deshabilitado
+    // Deja los campos de username y password vacíos y verifica que el botón de Login está deshabilitado
     await tester.enterText(find.byType(TextField).at(0), '');
     await tester.enterText(find.byType(TextField).at(1), '');
     await tester.pump();

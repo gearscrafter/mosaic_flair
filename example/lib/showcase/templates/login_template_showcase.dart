@@ -7,7 +7,7 @@ class LoginTemplateShowcase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoginTemplate(
-      onLogin: (email, password) {},
+      onLogin: (username, password) {},
     );
   }
 }
