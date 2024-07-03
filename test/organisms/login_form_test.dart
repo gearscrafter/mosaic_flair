@@ -6,7 +6,7 @@ void main() {
   testWidgets('LoginForm displays and works correctly',
       (WidgetTester tester) async {
     // Initialize the controllers for the text fields
-    final emailController = TextEditingController();
+    final usernameController = TextEditingController();
     final passwordController = TextEditingController();
 
     // A variable to track if the login button is pressed
@@ -16,7 +16,7 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: LoginForm(
-            emailController: emailController,
+            usernameController: usernameController,
             passwordController: passwordController,
             onLogin: () {
               isLoginPressed = true;
@@ -39,7 +39,7 @@ void main() {
     await tester.enterText(find.byType(AppInput).at(1), 'password');
 
     // Verify the entered text
-    expect(emailController.text, 'test@example.com');
+    expect(usernameController.text, 'test');
     expect(passwordController.text, 'password');
 
     // Tap the login button

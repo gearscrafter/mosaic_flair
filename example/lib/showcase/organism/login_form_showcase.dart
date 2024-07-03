@@ -20,7 +20,7 @@ class LoginFormShowcase extends StatelessWidget {
           child: Column(
             children: [
               LoginForm(
-                  emailController: TextEditingController(),
+                  usernameController: TextEditingController(),
                   passwordController: TextEditingController(),
                   onLogin: () {}),
               const SizedBox(height: 16.0),

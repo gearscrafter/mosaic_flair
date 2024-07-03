@@ -7,7 +7,7 @@ import '../organisms/login_form.dart';
 
 class LoginTemplate extends StatelessWidget {
   final VoidCallback? onTapWithoutAccount;
-  final void Function(String email, String password)? onLogin;
+  final void Function(String username, String password)? onLogin;
 
   LoginTemplate({
     super.key,
@@ -15,7 +15,7 @@ class LoginTemplate extends StatelessWidget {
     required this.onLogin,
   });
 
-  final emailController = TextEditingController();
+  final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
@@ -71,17 +71,18 @@ class LoginTemplate extends StatelessWidget {
                                       height: size.height * 0.02,
                                     ),
                                     LoginForm(
-                                      emailController: emailController,
+                                      usernameController: usernameController,
                                       passwordController: passwordController,
                                       colorInput: textColorPrimary,
                                       backgroundColor: accentColor1,
-                                      onLogin: emailController.text.isEmpty ||
+                                      onLogin: usernameController
+                                                  .text.isEmpty ||
                                               passwordController.text.isEmpty
                                           ? null
                                           : () {
                                               if (onLogin != null) {
                                                 onLogin!(
-                                                  emailController.text,
+                                                  usernameController.text,
                                                   passwordController.text,
                                                 );
                                               }

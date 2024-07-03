@@ -4,7 +4,7 @@ import '../atoms/button.dart';
 import '../atoms/input.dart';
 
 class LoginForm extends StatelessWidget {
-  final TextEditingController emailController;
+  final TextEditingController usernameController;
   final TextEditingController passwordController;
   final VoidCallback? onLogin;
   final Color? colorInput;
@@ -16,7 +16,7 @@ class LoginForm extends StatelessWidget {
     this.colorInput,
     this.backgroundColor,
     this.labelColor,
-    required this.emailController,
+    required this.usernameController,
     required this.passwordController,
     this.onLogin,
   });
@@ -27,7 +27,7 @@ class LoginForm extends StatelessWidget {
       children: [
         AppInput(
           hintText: 'Email',
-          controller: emailController,
+          controller: usernameController,
           colorInput: colorInput,
         ),
         const SizedBox(height: 16),
