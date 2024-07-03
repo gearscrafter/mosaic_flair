@@ -58,6 +58,9 @@ class ProductCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(title,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.fade,
+                                  textAlign: TextAlign.center,
                                   style: const TextStyle(
                                       color: textColorPrimary,
                                       fontWeight: FontWeight.bold,
