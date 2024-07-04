@@ -9,11 +9,17 @@ import '../organisms/synchronous_tab_bar.dart';
 class CatalogTemplate extends StatefulWidget {
   final List<ProductCard>? products;
   final List<Category>? items;
+  final VoidCallback? onTapHome;
+  final VoidCallback? onTapSupport;
+  final VoidCallback? onTapContact;
   final void Function(ProductCard? product)? onProductTap;
 
   const CatalogTemplate({
     this.products,
     this.onProductTap,
+    this.onTapHome,
+    this.onTapSupport,
+    this.onTapContact,
     this.items,
     super.key,
   });
@@ -53,6 +59,9 @@ class _CatalogTemplateState extends State<CatalogTemplate> {
                   _openMenu = openMenu;
                 });
               },
+              onTapContact: widget.onTapContact,
+              onTapHome: widget.onTapHome,
+              onTapSupport: widget.onTapSupport,
               isHome: true,
             ),
             Appbar(
