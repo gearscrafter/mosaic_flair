@@ -7,7 +7,7 @@ import '../../data/tab_category_data.dart';
 class CategoryBloc with ChangeNotifier {
   final tabs = <TabCategory>[];
   final items = <Item>[];
-  late TabController tabController;
+  TabController? tabController;
   ScrollController scrollController = ScrollController();
   bool _listen = true;
   bool _isScrolling = false;
@@ -16,6 +16,8 @@ class CategoryBloc with ChangeNotifier {
 
   void init(TickerProvider ticker, double productHeight, double categoryHeight,
       List<Category>? categoryItems) {
+    tabController?.dispose();
+
     final length = (categoryItems ?? categoriesItems).length;
     if (length > 0) {
       tabController = TabController(
@@ -72,7 +74,7 @@ class CategoryBloc with ChangeNotifier {
             scrollController.offset <= tab.offsetTo &&
             !tab.onSelected) {
           onCategorySelected(i, animationRequired: false);
-          tabController.animateTo(i);
+          tabController?.animateTo(i);
           break;
         }
       }
@@ -103,7 +105,7 @@ class CategoryBloc with ChangeNotifier {
   void dispose() {
     scrollController.removeListener(_onScrollListener);
     scrollController.dispose();
-    tabController.dispose();
+    tabController?.dispose();
     super.dispose();
   }
 }

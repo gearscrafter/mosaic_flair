@@ -62,20 +62,22 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
               SizedBox(
                 height: 60,
                 width: size.width,
-                child: TabBar(
-                    controller: _bloc.tabController,
-                    isScrollable: true,
-                    dividerColor: Colors.transparent,
-                    onTap: _bloc.onCategorySelected,
-                    overlayColor: WidgetStateColor.transparent,
-                    indicatorColor: Colors.transparent,
-                    tabs: _bloc.tabs
-                        .map((item) => CategoryCard(
-                              title: item.category.name ?? '',
-                              onSelected: item.onSelected,
-                              color: textColorPrimary,
-                            ))
-                        .toList()),
+                child: _bloc.tabController == null
+                    ? Container()
+                    : TabBar(
+                        controller: _bloc.tabController,
+                        isScrollable: true,
+                        dividerColor: Colors.transparent,
+                        onTap: _bloc.onCategorySelected,
+                        overlayColor: WidgetStateColor.transparent,
+                        indicatorColor: Colors.transparent,
+                        tabs: _bloc.tabs
+                            .map((item) => CategoryCard(
+                                  title: item.category.name ?? '',
+                                  onSelected: item.onSelected,
+                                  color: textColorPrimary,
+                                ))
+                            .toList()),
               ),
               Expanded(
                 child: Padding(
