@@ -63,6 +63,55 @@ class CategoryBloc with ChangeNotifier {
     notifyListeners();
   }
 
+  void update(TickerProvider ticker, double productHeight,
+      double categoryHeight, List<Category>? categoryItems) {
+    final length = (categoryItems ?? categoriesItems).length;
+    if (length > 0) {
+      tabController?.dispose();
+      tabController = TabController(length: length, vsync: ticker);
+
+      tabs.clear();
+      items.clear();
+
+      double offsetFrom = 0.0;
+      double offsetTo = 0.0;
+
+      for (int i = 0; i < length; i++) {
+        final category = (categoryItems ?? categoriesItems)[i];
+
+        if (i > 0) {
+          offsetFrom +=
+              ((categoryItems ?? categoriesItems)[i - 1].products?.length ??
+                      0) *
+                  productHeight;
+        }
+
+        if (i < length - 1) {
+          offsetTo = offsetFrom +
+              ((categoryItems ?? categoriesItems)[i + 1].products?.length ??
+                      0) *
+                  productHeight;
+        } else {
+          offsetTo = double.infinity;
+        }
+
+        tabs.add(TabCategory(
+            category: category,
+            onSelected: (i == 0),
+            offsetFrom: categoryHeight * i + offsetFrom,
+            offsetTo: offsetTo));
+
+        items.add(Item(category: category));
+        for (int j = 0; j < (category.products ?? []).length; j++) {
+          final product = category.products?[j];
+          items.add(Item(product: product));
+        }
+      }
+
+      notifyListeners();
+    }
+  }
+
   void _onScrollListener() {
     _isScrolling = true;
     notifyListeners();

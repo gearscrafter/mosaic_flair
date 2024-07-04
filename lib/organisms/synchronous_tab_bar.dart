@@ -37,12 +37,18 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
   void didUpdateWidget(covariant SynchronousTabBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.items != oldWidget.items) {
-      _initializeBloc();
+      _updateBloc();
     }
   }
 
   void _initializeBloc() {
-    _bloc.init(this, productHeight, categoryHeight, widget.items);
+    if (_bloc.tabController == null) {
+      _bloc.init(this, productHeight, categoryHeight, widget.items);
+    }
+  }
+
+  void _updateBloc() {
+    _bloc.update(this, productHeight, categoryHeight, widget.items);
   }
 
   @override
