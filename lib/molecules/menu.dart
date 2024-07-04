@@ -123,20 +123,16 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
                     widget.isHome
                         ? GestureDetector(
                             onTap: widget.onTapHome,
-                            child: Container(
-                              child: const AppText(
-                                text: 'Home',
-                                textColor: backgroundColor,
-                              ),
+                            child: const AppText(
+                              text: 'Home',
+                              textColor: backgroundColor,
                             ),
                           )
                         : GestureDetector(
                             onTap: widget.onTapProducts,
-                            child: Container(
-                              child: const AppText(
-                                text: 'Productos',
-                                textColor: backgroundColor,
-                              ),
+                            child: const AppText(
+                              text: 'Productos',
+                              textColor: backgroundColor,
                             ),
                           ),
                     const SizedBox(
@@ -144,11 +140,9 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
                     ),
                     GestureDetector(
                       onTap: widget.onTapSupport,
-                      child: Container(
-                        child: const AppText(
-                          text: 'Soporte',
-                          textColor: backgroundColor,
-                        ),
+                      child: const AppText(
+                        text: 'Soporte',
+                        textColor: backgroundColor,
                       ),
                     ),
                     const SizedBox(
@@ -156,11 +150,9 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
                     ),
                     GestureDetector(
                       onTap: widget.onTapContact,
-                      child: Container(
-                        child: const AppText(
-                          text: 'Contacto',
-                          textColor: backgroundColor,
-                        ),
+                      child: const AppText(
+                        text: 'Contacto',
+                        textColor: backgroundColor,
                       ),
                     ),
                   ],

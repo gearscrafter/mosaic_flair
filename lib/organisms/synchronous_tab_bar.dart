@@ -98,9 +98,7 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
                               price: 20,
                               image: item.product?.image,
                               height: productHeight,
-                              onPressed: () {
-                                print('carrito');
-                              },
+                              onPressed: () {},
                             ),
                           );
                         }

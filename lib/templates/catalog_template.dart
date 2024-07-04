@@ -8,10 +8,15 @@ import '../organisms/synchronous_tab_bar.dart';
 
 class CatalogTemplate extends StatefulWidget {
   final List<ProductCard>? products;
-  List<Category>? items;
+  final List<Category>? items;
   final void Function(ProductCard? product)? onProductTap;
 
-  CatalogTemplate({super.key, this.products, this.onProductTap, this.items});
+  const CatalogTemplate({
+    this.products,
+    this.onProductTap,
+    this.items,
+    super.key,
+  });
 
   @override
   State<CatalogTemplate> createState() => _CatalogTemplateState();

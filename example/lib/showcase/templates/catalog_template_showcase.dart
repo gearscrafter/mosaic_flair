@@ -6,6 +6,6 @@ class CatalogTemplateShowcase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CatalogTemplate();
+    return const CatalogTemplate();
   }
 }

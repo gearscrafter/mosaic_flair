@@ -39,7 +39,6 @@ void main() {
     ];
 
     bool seeMoreTapped = false;
-    bool homeTapped = false;
 
     // Crea el widget
     await tester.pumpWidget(
@@ -50,9 +49,7 @@ void main() {
           onTapSeeMore: () {
             seeMoreTapped = true;
           },
-          onTapHome: () {
-            homeTapped = true;
-          },
+          onTapHome: () {},
           products: products,
         ),
       ),

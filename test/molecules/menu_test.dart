@@ -6,7 +6,6 @@ void main() {
   testWidgets('Menu widget displays and handles interactions correctly',
       (WidgetTester tester) async {
     bool isHomeTapped = false;
-    bool isProductsTapped = false;
     bool isSupportTapped = false;
     bool isContactTapped = false;
     bool isMenuOpen = false;
@@ -19,9 +18,7 @@ void main() {
             onTapHome: () {
               isHomeTapped = true;
             },
-            onTapProducts: () {
-              isProductsTapped = true;
-            },
+            onTapProducts: () {},
             onTapSupport: () {
               isSupportTapped = true;
             },

@@ -10,17 +10,7 @@ class SynchronousTabBarShowcase extends StatefulWidget {
 }
 
 class _SynchronousTabBarShowcaseState extends State<SynchronousTabBarShowcase> {
-  bool _isScrolling = false;
-
-  void _updateScrolling(bool isScrolling) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        setState(() {
-          _isScrolling = isScrolling;
-        });
-      }
-    });
-  }
+  void _updateScrolling(bool isScrolling) {}
 
   @override
   Widget build(BuildContext context) {

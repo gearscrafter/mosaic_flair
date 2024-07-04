@@ -55,17 +55,15 @@ class ProductDetail extends StatelessWidget {
         const SizedBox(
           height: 40,
         ),
-        Container(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              '\$ ${price.toStringAsFixed(2)}',
-              overflow: TextOverflow.fade,
-              style: const TextStyle(
-                  fontSize: fontSizeLargeDimension,
-                  color: primaryColor,
-                  fontWeight: FontWeight.w600),
-            ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Text(
+            '\$ ${price.toStringAsFixed(2)}',
+            overflow: TextOverflow.fade,
+            style: const TextStyle(
+                fontSize: fontSizeLargeDimension,
+                color: primaryColor,
+                fontWeight: FontWeight.w600),
           ),
         ),
         Padding(

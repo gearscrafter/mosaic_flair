@@ -42,6 +42,14 @@ class _SearchTemplateState extends State<SearchTemplate> {
   }
 
   @override
+  void didUpdateWidget(covariant SearchTemplate oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.productCards != oldWidget.productCards) {
+      filteredListNotifier.value = widget.productCards ?? tileList;
+    }
+  }
+
+  @override
   void dispose() {
     _searchController.removeListener(_filterList);
     _searchController.dispose();
