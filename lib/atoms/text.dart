@@ -12,6 +12,8 @@ class AppText extends StatelessWidget {
   final TextAlign textAlign;
   final bool isRichText;
   final SizeText sizeText;
+  final int? maxLines;
+  final TextOverflow? overflow;
   final FontWeight? fontWeight;
 
   const AppText({
@@ -21,6 +23,8 @@ class AppText extends StatelessWidget {
     this.textColor = textColorPrimary,
     this.isRichText = false,
     this.textSpans,
+    this.maxLines,
+    this.overflow,
     this.sizeText = SizeText.M,
     this.style,
     this.textAlign = TextAlign.left,
@@ -49,6 +53,8 @@ class AppText extends StatelessWidget {
           )
         : Text(
             text ?? '',
+            maxLines: maxLines,
+            overflow: overflow,
             style: effectiveStyle,
             textAlign: textAlign,
           );

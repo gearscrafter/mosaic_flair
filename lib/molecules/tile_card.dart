@@ -40,6 +40,8 @@ class TileCard extends StatelessWidget {
             title: (title != null)
                 ? AppText(
                     text: title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                         fontSize: fontSizeLargeDimension,
                         fontWeight: FontWeight.bold,
