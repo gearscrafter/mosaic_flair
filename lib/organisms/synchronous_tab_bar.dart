@@ -21,7 +21,7 @@ class SynchronousTabBar extends StatefulWidget {
 }
 
 class _SynchronousTabBarState extends State<SynchronousTabBar>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late final _bloc = CategoryBloc();
 
   @override
