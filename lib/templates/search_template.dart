@@ -32,12 +32,12 @@ class _SearchTemplateState extends State<SearchTemplate> {
   ScrollController scrollController = ScrollController();
   bool _isScrolling = false;
   final _searchController = TextEditingController();
-  List<ProductCard> filteredList = [];
+  late ValueNotifier<List<ProductCard>> filteredListNotifier;
 
   @override
   void initState() {
     super.initState();
-    filteredList = widget.productCards ?? tileList;
+    filteredListNotifier = ValueNotifier(widget.productCards ?? tileList);
     _searchController.addListener(_filterList);
   }
 
@@ -45,15 +45,17 @@ class _SearchTemplateState extends State<SearchTemplate> {
   void dispose() {
     _searchController.removeListener(_filterList);
     _searchController.dispose();
+    filteredListNotifier.dispose();
     super.dispose();
   }
 
   void _filterList() {
     setState(() {
       if (_searchController.text.isEmpty) {
-        filteredList = widget.productCards ?? tileList;
+        filteredListNotifier.value = widget.productCards ?? tileList;
       } else {
-        filteredList = (widget.productCards ?? tileList).where((tile) {
+        filteredListNotifier.value =
+            (widget.productCards ?? tileList).where((tile) {
           return tile.title
               .toLowerCase()
               .contains(_searchController.text.toLowerCase());
@@ -99,29 +101,36 @@ class _SearchTemplateState extends State<SearchTemplate> {
 
                       return true;
                     },
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        controller: scrollController,
-                        itemCount: filteredList.length,
-                        itemBuilder: (context, index) {
-                          final item = filteredList[index];
-                          return Padding(
-                            padding:
-                                const EdgeInsets.all(paddingSmallDimension),
-                            child: TileCard(
-                              title: item.title,
-                              price: item.price,
-                              image: item.image,
-                              onPressed: () {
-                                widget.getProduct!(Product(
-                                    name: item.title,
-                                    description: "",
-                                    image: item.image ?? '',
-                                    price: item.price));
-                                widget.onPressItem;
-                              },
-                            ),
-                          );
+                    child: ValueListenableBuilder<List<ProductCard>>(
+                        valueListenable: filteredListNotifier,
+                        builder: (context, filteredList, child) {
+                          return ListView.builder(
+                              shrinkWrap: true,
+                              controller: scrollController,
+                              itemCount: filteredList.length,
+                              itemBuilder: (context, index) {
+                                final item = filteredList[index];
+                                return Padding(
+                                  padding: const EdgeInsets.all(
+                                      paddingSmallDimension),
+                                  child: TileCard(
+                                    title: item.title,
+                                    price: item.price,
+                                    image: item.image,
+                                    onPressed: () {
+                                      if (widget.getProduct != null) {
+                                        widget.getProduct!(Product(
+                                            name: item.title,
+                                            description: "",
+                                            image: item.image ?? '',
+                                            price: item.price));
+                                      }
+
+                                      widget.onPressItem;
+                                    },
+                                  ),
+                                );
+                              });
                         }),
                   ),
                 ),
