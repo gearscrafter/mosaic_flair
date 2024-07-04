@@ -72,6 +72,7 @@ class ProductDetail extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Text(
             title,
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.bold,
