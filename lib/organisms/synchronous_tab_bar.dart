@@ -31,6 +31,14 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
   }
 
   @override
+  void didUpdateWidget(covariant SynchronousTabBar oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.items != oldWidget.items) {
+      _bloc.init(this, productHeight, categoryHeight, widget.items);
+    }
+  }
+
+  @override
   void dispose() {
     _bloc.dispose();
     super.dispose();
