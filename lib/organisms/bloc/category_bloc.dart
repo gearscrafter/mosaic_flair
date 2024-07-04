@@ -16,43 +16,49 @@ class CategoryBloc with ChangeNotifier {
 
   void init(TickerProvider ticker, double productHeight, double categoryHeight,
       List<Category>? categoryItems) {
-    tabController = TabController(
-        length: (categoryItems ?? categoriesItems).length, vsync: ticker);
+    final length = (categoryItems ?? categoriesItems).length;
+    if (length > 0) {
+      tabController = TabController(
+          length: (categoryItems ?? categoriesItems).length, vsync: ticker);
 
-    double offsetFrom = 0.0;
-    double offsetTo = 0.0;
+      double offsetFrom = 0.0;
+      double offsetTo = 0.0;
 
-    for (int i = 0; i < (categoryItems ?? categoriesItems).length; i++) {
-      final category = (categoryItems ?? categoriesItems)[i];
+      for (int i = 0; i < (categoryItems ?? categoriesItems).length; i++) {
+        final category = (categoryItems ?? categoriesItems)[i];
 
-      if (i > 0) {
-        offsetFrom +=
-            ((categoryItems ?? categoriesItems)[i - 1].products?.length ?? 0) *
-                productHeight;
-      }
+        if (i > 0) {
+          offsetFrom +=
+              ((categoryItems ?? categoriesItems)[i - 1].products?.length ??
+                      0) *
+                  productHeight;
+        }
 
-      if (i < (categoryItems ?? categoriesItems).length - 1) {
-        offsetTo = offsetFrom +
-            ((categoryItems ?? categoriesItems)[i + 1].products?.length ?? 0) *
-                productHeight;
-      } else {
-        offsetTo = double.infinity;
-      }
+        if (i < (categoryItems ?? categoriesItems).length - 1) {
+          offsetTo = offsetFrom +
+              ((categoryItems ?? categoriesItems)[i + 1].products?.length ??
+                      0) *
+                  productHeight;
+        } else {
+          offsetTo = double.infinity;
+        }
 
-      tabs.add(TabCategory(
-          category: category,
-          onSelected: (i == 0),
-          offsetFrom: categoryHeight * i + offsetFrom,
-          offsetTo: offsetTo));
+        tabs.add(TabCategory(
+            category: category,
+            onSelected: (i == 0),
+            offsetFrom: categoryHeight * i + offsetFrom,
+            offsetTo: offsetTo));
 
-      items.add(Item(category: category));
-      for (int j = 0; j < (category.products ?? []).length; j++) {
-        final product = category.products?[j];
-        items.add(Item(product: product));
+        items.add(Item(category: category));
+        for (int j = 0; j < (category.products ?? []).length; j++) {
+          final product = category.products?[j];
+          items.add(Item(product: product));
+        }
       }
     }
 
     scrollController.addListener(_onScrollListener);
+    notifyListeners();
   }
 
   void _onScrollListener() {
