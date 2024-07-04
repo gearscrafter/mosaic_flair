@@ -39,7 +39,6 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
   }
 
   void _initializeBloc() {
-    _bloc.dispose();
     _bloc.init(this, productHeight, categoryHeight, widget.items);
   }
 
