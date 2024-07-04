@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mosaic_flair/molecules/menu.dart';
 import '../data/category_data.dart';
+import '../data/product_dart.dart';
 import '../foundation/color_foundation.dart';
 import '../molecules/appbar.dart';
 import '../molecules/product_card.dart';
@@ -12,6 +13,9 @@ class CatalogTemplate extends StatefulWidget {
   final VoidCallback? onTapHome;
   final VoidCallback? onTapSupport;
   final VoidCallback? onTapContact;
+  final VoidCallback? onTapSearch;
+  final VoidCallback? onTapCart;
+  final Function(Product? product)? getProduct;
   final void Function(ProductCard? product)? onProductTap;
 
   const CatalogTemplate({
@@ -20,7 +24,10 @@ class CatalogTemplate extends StatefulWidget {
     this.onTapHome,
     this.onTapSupport,
     this.onTapContact,
+    this.onTapCart,
+    this.onTapSearch,
     this.items,
+    this.getProduct,
     super.key,
   });
 
@@ -51,6 +58,7 @@ class _CatalogTemplateState extends State<CatalogTemplate> {
             SynchronousTabBar(
               items: widget.items,
               onScrollChange: _updateScrolling,
+              getProduct: widget.getProduct,
             ),
             Menu(
               isScrolling: _isScrolling,
@@ -66,6 +74,8 @@ class _CatalogTemplateState extends State<CatalogTemplate> {
             ),
             Appbar(
               openMenu: _openMenu,
+              onTapCart: widget.onTapCart,
+              onTapSearch: widget.onTapSearch,
             )
           ],
         ));

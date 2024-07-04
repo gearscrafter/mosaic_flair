@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../data/category_data.dart';
+import '../data/product_dart.dart';
 import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
 import '../molecules/category_card.dart';
@@ -14,7 +15,9 @@ const productHeight = 100.0;
 class SynchronousTabBar extends StatefulWidget {
   final List<Category>? items;
   final Function(bool isScrolling)? onScrollChange;
-  const SynchronousTabBar({this.onScrollChange, this.items, super.key});
+  final Function(Product? product)? getProduct;
+  const SynchronousTabBar(
+      {this.onScrollChange, this.getProduct, this.items, super.key});
 
   @override
   State<SynchronousTabBar> createState() => _SynchronousTabBarState();
@@ -112,7 +115,17 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
                               price: 20,
                               image: item.product?.image,
                               height: productHeight,
-                              onPressed: () {},
+                              onPressed: () {
+                                if (widget.getProduct != null) {
+                                  widget.getProduct!(Product(
+                                      id: item.product?.id,
+                                      name: item.product?.name ?? '',
+                                      description:
+                                          item.product?.description ?? '',
+                                      image: item.product?.image ?? '',
+                                      price: item.product?.price ?? 0.0));
+                                }
+                              },
                             ),
                           );
                         }
