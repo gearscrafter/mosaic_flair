@@ -122,7 +122,7 @@ class _SearchTemplateState extends State<SearchTemplate> {
                                   padding: const EdgeInsets.all(
                                       paddingSmallDimension),
                                   child: TileCard(
-                                    height: 120,
+                                    height: 100,
                                     title: item.title,
                                     price: item.price,
                                     image: item.image,
