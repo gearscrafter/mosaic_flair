@@ -6,11 +6,13 @@ import '../organisms/cart_summary.dart';
 class CartTemplate extends StatelessWidget {
   final List<CartItem> cartItems;
   final Function(List<ProductQuantity> products)? onCheckout;
+  final Function(int index)? onRemoveItem;
 
   const CartTemplate({
     super.key,
     required this.cartItems,
     this.onCheckout,
+    this.onRemoveItem,
   });
 
   @override
@@ -24,6 +26,7 @@ class CartTemplate extends StatelessWidget {
       ),
       body: CartSummary(
         items: cartItems,
+        onRemoveItem: onRemoveItem,
         onCheckout: onCheckout,
       ),
     );

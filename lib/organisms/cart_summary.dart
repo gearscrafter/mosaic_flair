@@ -8,12 +8,10 @@ import '../foundation/dimension_foundation.dart';
 class CartSummary extends StatefulWidget {
   final List<CartItem> items;
   final Function(List<ProductQuantity> products)? onCheckout;
+  final Function(int index)? onRemoveItem;
 
-  const CartSummary({
-    super.key,
-    required this.items,
-    this.onCheckout,
-  });
+  const CartSummary(
+      {super.key, required this.items, this.onCheckout, this.onRemoveItem});
 
   @override
   State<CartSummary> createState() => _CartSummaryState();
@@ -69,6 +67,9 @@ class _CartSummaryState extends State<CartSummary> {
                   onDismissed: (direction) {
                     if (direction == DismissDirection.endToStart) {
                       _removeItem(index);
+                      if (widget.onRemoveItem != null) {
+                        widget.onRemoveItem!(index);
+                      }
                     }
                   },
                   child: ListTile(
