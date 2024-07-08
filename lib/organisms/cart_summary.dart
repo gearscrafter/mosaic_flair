@@ -7,7 +7,7 @@ import '../foundation/dimension_foundation.dart';
 
 class CartSummary extends StatefulWidget {
   final List<CartItem> items;
-  final VoidCallback? onCheckout;
+  final Function(List<ProductQuantityEntity> products)? onCheckout;
 
   const CartSummary({
     super.key,
@@ -140,7 +140,17 @@ class _CartSummaryState extends State<CartSummary> {
                   ),
                 ),
                 AppButton(
-                  onPressed: widget.onCheckout,
+                  onPressed: () {
+                    if (widget.onCheckout != null) {
+                      final List<ProductQuantityEntity> products = widget.items
+                          .map((item) => ProductQuantityEntity(
+                                productId: item.id,
+                                quantity: item.quantity,
+                              ))
+                          .toList();
+                      widget.onCheckout!(products);
+                    }
+                  },
                   backColor: accentColor1,
                   width: size.width * 0.3,
                   label: 'Pagar',

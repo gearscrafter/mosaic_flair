@@ -5,12 +5,12 @@ import '../organisms/cart_summary.dart';
 
 class CartTemplate extends StatelessWidget {
   final List<CartItem> cartItems;
-  final VoidCallback onCheckout;
+  final Function(List<ProductQuantityEntity> products)? onCheckout;
 
   const CartTemplate({
     super.key,
     required this.cartItems,
-    required this.onCheckout,
+    this.onCheckout,
   });
 
   @override

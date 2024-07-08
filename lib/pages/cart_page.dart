@@ -9,11 +9,13 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartItems = [
       CartItem(
+          id: 1,
           name: 'Product 1',
           image: 'https://via.placeholder.com/150',
           price: 29.99,
           quantity: 2),
       CartItem(
+          id: 2,
           name: 'Product 2',
           image: 'https://via.placeholder.com/150',
           price: 49.99,
@@ -22,9 +24,6 @@ class CartPage extends StatelessWidget {
 
     return CartTemplate(
       cartItems: cartItems,
-      onCheckout: () {
-        // Handle checkout
-      },
     );
   }
 }
