@@ -56,7 +56,7 @@ class _CartSummaryState extends State<CartSummary> {
               itemBuilder: (context, index) {
                 final item = widget.items[index];
                 return Dismissible(
-                  key: UniqueKey(),
+                  key: Key('${item.id}_$index'),
                   direction: DismissDirection.endToStart,
                   background: Container(
                     color: Colors.red,
@@ -68,8 +68,8 @@ class _CartSummaryState extends State<CartSummary> {
                     if (direction == DismissDirection.endToStart) {
                       if (widget.onRemoveItem != null) {
                         widget.onRemoveItem!(index);
+                        _removeItem(index);
                       }
-                      _removeItem(index);
                     }
                   },
                   child: ListTile(
