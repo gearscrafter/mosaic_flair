@@ -7,7 +7,7 @@ import '../foundation/dimension_foundation.dart';
 
 class CartSummary extends StatefulWidget {
   final List<CartItem> items;
-  final Function(List<ProductQuantityEntity> products)? onCheckout;
+  final Function(List<ProductQuantity> products)? onCheckout;
 
   const CartSummary({
     super.key,
@@ -142,8 +142,8 @@ class _CartSummaryState extends State<CartSummary> {
                 AppButton(
                   onPressed: () {
                     if (widget.onCheckout != null) {
-                      final List<ProductQuantityEntity> products = widget.items
-                          .map((item) => ProductQuantityEntity(
+                      final List<ProductQuantity> products = widget.items
+                          .map((item) => ProductQuantity(
                                 productId: item.id,
                                 quantity: item.quantity,
                               ))

@@ -14,11 +14,11 @@ class CartItem {
   });
 }
 
-class ProductQuantityEntity {
+class ProductQuantity {
   int productId;
   int quantity;
 
-  ProductQuantityEntity({
+  ProductQuantity({
     required this.productId,
     required this.quantity,
   });

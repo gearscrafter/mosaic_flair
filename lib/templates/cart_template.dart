@@ -5,7 +5,7 @@ import '../organisms/cart_summary.dart';
 
 class CartTemplate extends StatelessWidget {
   final List<CartItem> cartItems;
-  final Function(List<ProductQuantityEntity> products)? onCheckout;
+  final Function(List<ProductQuantity> products)? onCheckout;
 
   const CartTemplate({
     super.key,

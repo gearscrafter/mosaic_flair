@@ -11,8 +11,10 @@ void main() {
       (WidgetTester tester) async {
     // Crea una lista de elementos del carrito
     final cartItems = [
-      CartItem(name: 'Product 1', image: null, price: 29.99, quantity: 1),
-      CartItem(name: 'Product 2', image: null, price: 49.99, quantity: 2),
+      CartItem(
+          id: 1, name: 'Product 1', image: null, price: 29.99, quantity: 1),
+      CartItem(
+          id: 2, name: 'Product 2', image: null, price: 49.99, quantity: 2),
     ];
 
     bool checkoutCalled = false;
@@ -22,9 +24,6 @@ void main() {
       MaterialApp(
         home: CartTemplate(
           cartItems: cartItems,
-          onCheckout: () {
-            checkoutCalled = true;
-          },
         ),
       ),
     );
