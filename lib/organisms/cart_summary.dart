@@ -66,10 +66,10 @@ class _CartSummaryState extends State<CartSummary> {
                   ),
                   onDismissed: (direction) {
                     if (direction == DismissDirection.endToStart) {
-                      _removeItem(index);
                       if (widget.onRemoveItem != null) {
                         widget.onRemoveItem!(index);
                       }
+                      _removeItem(index);
                     }
                   },
                   child: ListTile(
