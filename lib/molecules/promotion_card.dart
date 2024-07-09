@@ -6,11 +6,13 @@ import '../foundation/dimension_foundation.dart';
 
 class PromotionCard extends StatelessWidget {
   final String? description;
+  final String? extentDescription;
   final String? image;
   final double percentage;
 
   const PromotionCard({
     this.description,
+    this.extentDescription,
     required this.image,
     required this.percentage,
     super.key,
@@ -62,13 +64,22 @@ class PromotionCard extends StatelessWidget {
                       text: description,
                       sizeText: SizeText.S,
                     ),
-                  Text(
-                    '${percentage.toStringAsFixed(0)} %',
-                    style: const TextStyle(
-                      color: primaryColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 30,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        '${percentage.toStringAsFixed(0)} %',
+                        style: const TextStyle(
+                          color: primaryColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 30,
+                        ),
+                      ),
+                      if (description != null)
+                        AppText(
+                          text: extentDescription,
+                          sizeText: SizeText.S,
+                        ),
+                    ],
                   ),
                   const SizedBox(
                     height: 5,
