@@ -62,8 +62,7 @@ class PromotionCard extends StatelessWidget {
                   if (description != null)
                     AppText(
                       text: description,
-                      sizeText: SizeText.M,
-                      fontWeight: FontWeight.w400,
+                      sizeText: SizeText.S,
                     ),
                   Row(
                     children: [
@@ -78,7 +77,8 @@ class PromotionCard extends StatelessWidget {
                       if (description != null)
                         AppText(
                           text: extentDescription,
-                          sizeText: SizeText.S,
+                          sizeText: SizeText.M,
+                          fontWeight: FontWeight.w400,
                         ),
                     ],
                   ),
