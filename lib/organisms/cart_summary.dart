@@ -32,12 +32,6 @@ class _CartSummaryState extends State<CartSummary> {
     });
   }
 
-  void _removeItem(int index) {
-    setState(() {
-      widget.items.removeAt(index);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     double total =
@@ -56,7 +50,7 @@ class _CartSummaryState extends State<CartSummary> {
               itemBuilder: (context, index) {
                 final item = widget.items[index];
                 return Dismissible(
-                  key: Key('${item.id}_$index'),
+                  key: ValueKey('${item.id}_$index'),
                   direction: DismissDirection.endToStart,
                   background: Container(
                     color: Colors.red,
@@ -68,8 +62,10 @@ class _CartSummaryState extends State<CartSummary> {
                     if (direction == DismissDirection.endToStart) {
                       if (widget.onRemoveItem != null) {
                         widget.onRemoveItem!(index);
-                        _removeItem(index);
                       }
+                      setState(() {
+                        widget.items.removeAt(index);
+                      });
                     }
                   },
                   child: ListTile(
