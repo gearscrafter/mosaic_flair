@@ -131,7 +131,7 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
                         : GestureDetector(
                             onTap: widget.onTapProducts,
                             child: const AppText(
-                              text: 'Productos',
+                              text: 'Products',
                               textColor: backgroundColor,
                             ),
                           ),
@@ -141,7 +141,7 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
                     GestureDetector(
                       onTap: widget.onTapSupport,
                       child: const AppText(
-                        text: 'Soporte',
+                        text: 'Support',
                         textColor: backgroundColor,
                       ),
                     ),
@@ -151,7 +151,7 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
                     GestureDetector(
                       onTap: widget.onTapContact,
                       child: const AppText(
-                        text: 'Contacto',
+                        text: 'Contact',
                         textColor: backgroundColor,
                       ),
                     ),

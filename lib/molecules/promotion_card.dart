@@ -77,7 +77,7 @@ class PromotionCard extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.bottomLeft,
                       child: AppButton(
-                        label: 'Obtén ahora',
+                        label: 'Get it now',
                         width: 150,
                         onPressed: () {},
                       ),

@@ -69,13 +69,13 @@ class _HomeTemplateState extends State<HomeTemplate> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppText(
-                        text: 'Hola, ${widget.userName ?? 'Usuario'}',
+                        text: 'Hi, ${widget.userName ?? 'Usuario'}',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: fontSizeLargeDimension),
                       ),
                       const AppText(
-                        text: 'Ordena tu producto favorito',
+                        text: 'Order your favorite product',
                       ),
                     ],
                   ),
@@ -109,7 +109,7 @@ class _HomeTemplateState extends State<HomeTemplate> {
                       GestureDetector(
                         onTap: widget.onTapSeeMore,
                         child: const AppText(
-                          text: 'Ver más',
+                          text: 'See more',
                         ),
                       )
                     ],

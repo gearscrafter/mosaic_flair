@@ -20,7 +20,7 @@ class CartTemplate extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Carrito de compras',
+          'Shopping cart',
         ),
         centerTitle: true,
       ),

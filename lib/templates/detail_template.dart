@@ -70,7 +70,7 @@ class _DetailsTemplateState extends State<DetailsTemplate> {
               height: size.height * 0.05,
             ),
             ProcessButton(
-              steps: const ["Añadir al carrito"],
+              steps: const ["Add to cart"],
               leftOnTap: () {
                 Navigator.pop(context);
               },
