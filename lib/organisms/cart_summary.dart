@@ -50,7 +50,7 @@ class _CartSummaryState extends State<CartSummary> {
               itemBuilder: (context, index) {
                 final item = widget.items[index];
                 return Dismissible(
-                  key: ValueKey('${item.id}_$index'),
+                  key: UniqueKey(),
                   direction: DismissDirection.endToStart,
                   background: Container(
                     color: Colors.red,
