@@ -5,25 +5,44 @@ import '../data/cart_data.dart';
 import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
 
+/// `CartSummary` es un widget que muestra un resumen del carrito de compras.
+///
+/// ### Atributos:
+/// - `items`: Una lista de elementos del carrito.
+/// - `onCheckout`: Función que se ejecuta cuando se realiza el pago.
+/// - `onRemoveItem`: Función que se ejecuta cuando se elimina un elemento del carrito.
+
 class CartSummary extends StatefulWidget {
+  /// Una lista de elementos del carrito.
   final List<CartItem> items;
+
+  /// Función que se ejecuta cuando se realiza el pago.
   final Function(List<ProductQuantity> products)? onCheckout;
+
+  /// Función que se ejecuta cuando se elimina un elemento del carrito.
   final Function(int index)? onRemoveItem;
 
-  const CartSummary(
-      {super.key, required this.items, this.onCheckout, this.onRemoveItem});
+  /// Constructor para crear una instancia de `CartSummary`.
+  const CartSummary({
+    super.key,
+    required this.items,
+    this.onCheckout,
+    this.onRemoveItem,
+  });
 
   @override
   State<CartSummary> createState() => _CartSummaryState();
 }
 
 class _CartSummaryState extends State<CartSummary> {
+  /// Incrementa la cantidad de un elemento del carrito.
   void _increaseQuantity(int index) {
     setState(() {
       widget.items[index].quantity++;
     });
   }
 
+  /// Decrementa la cantidad de un elemento del carrito.
   void _decreaseQuantity(int index) {
     setState(() {
       if (widget.items[index].quantity > 1) {
@@ -99,7 +118,7 @@ class _CartSummaryState extends State<CartSummary> {
                           )
                         : const SizedBox.shrink(),
                     title: Text(item.name),
-                    subtitle: Text('Quantity: ${item.quantity}'),
+                    subtitle: Text('Cantidad: ${item.quantity}'),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [

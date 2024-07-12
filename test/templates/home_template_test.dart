@@ -38,7 +38,6 @@ void main() {
 
     bool seeMoreTapped = false;
 
-    // Crea el widget
     await tester.pumpWidget(
       MaterialApp(
         home: HomeTemplate(
@@ -53,22 +52,17 @@ void main() {
       ),
     );
 
-    // Verifica que el nombre de usuario se muestra correctamente
     expect(find.text('Hola, John Doe'), findsOneWidget);
 
-    // Verifica que las promociones se muestran correctamente
     expect(find.text('Descuento al 50%'), findsOneWidget);
     expect(find.text('Descuento al 30%'), findsNothing);
 
-    // Verifica que los productos se muestran correctamente
     expect(find.text('Product 1'), findsOneWidget);
     expect(find.text('Product 2'), findsOneWidget);
 
-    // Simula un toque en "Ver más"
     await tester.tap(find.text('Ver más'));
     await tester.pumpAndSettle();
 
-    // Verifica que el callback onTapSeeMore fue llamado
     expect(seeMoreTapped, isTrue);
   });
 }

@@ -60,7 +60,6 @@ void main() {
       return Stream<List<int>>.fromIterable([responseBody]).listen(null);
     });
 
-    // Añadir stub para compressionState
     when(mockResponse.compressionState)
         .thenReturn(HttpClientResponseCompressionState.notCompressed);
 

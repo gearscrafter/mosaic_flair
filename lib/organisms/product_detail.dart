@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:mosaic_flair/mosaic_flair.dart';
 
+/// `ProductDetail` es un widget que muestra los detalles de un producto.
+///
+/// ### Atributos:
+/// - `title`: El título del producto.
+/// - `description`: La descripción del producto.
+/// - `image`: La URL de la imagen del producto (opcional).
+/// - `price`: El precio del producto.
+
 class ProductDetail extends StatelessWidget {
+  /// El título del producto.
   final String title;
+
+  /// La descripción del producto.
   final String description;
+
+  /// La URL de la imagen del producto (opcional).
   final String? image;
+
+  /// El precio del producto.
   final double price;
 
+  /// Constructor para crear una instancia de `ProductDetail`.
   const ProductDetail({
     super.key,
     required this.title,
@@ -22,9 +38,7 @@ class ProductDetail extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(
-          height: 80,
-        ),
+        const SizedBox(height: 80),
         image != null
             ? Container(
                 height: 200,
@@ -52,9 +66,7 @@ class ProductDetail extends StatelessWidget {
                 ),
               )
             : const SizedBox.shrink(),
-        const SizedBox(
-          height: 40,
-        ),
+        const SizedBox(height: 40),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(

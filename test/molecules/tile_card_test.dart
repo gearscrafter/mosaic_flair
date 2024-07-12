@@ -22,20 +22,15 @@ void main() {
       ),
     );
 
-    // Verifica que el título se muestra correctamente
     expect(find.text('Test Product'), findsOneWidget);
 
-    // Verifica que el precio se muestra correctamente
     expect(find.text('\$ 19.99'), findsOneWidget);
 
-    // Verifica que el botón se muestra correctamente
     expect(find.byIcon(Icons.shopping_cart_outlined), findsOneWidget);
 
-    // Simula un toque en el botón
     await tester.tap(find.byIcon(Icons.shopping_cart_outlined));
     await tester.pump();
 
-    // Verifica que el callback onPressed se llama
     expect(buttonPressed, isTrue);
   });
 }

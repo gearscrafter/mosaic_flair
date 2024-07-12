@@ -28,17 +28,14 @@ void main() {
       ),
     );
 
-    // Verifica que los íconos se muestran correctamente
     expect(find.byIcon(Icons.search), findsOneWidget);
     expect(find.byIcon(Icons.all_inclusive_rounded), findsOneWidget);
     expect(find.byIcon(Icons.shopping_cart_outlined), findsOneWidget);
 
-    // Simula un toque en el ícono de búsqueda
     await tester.tap(find.byIcon(Icons.search));
     await tester.pumpAndSettle();
     expect(searchTapped, isTrue);
 
-    // Simula un toque en el ícono del carrito de compras
     await tester.tap(find.byIcon(Icons.shopping_cart_outlined));
     await tester.pumpAndSettle();
     expect(cartTapped, isTrue);

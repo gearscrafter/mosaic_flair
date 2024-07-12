@@ -6,7 +6,6 @@ void main() {
   testWidgets(
       'RegisterForm displays input fields and enables register button when all fields are filled',
       (WidgetTester tester) async {
-    // Crear controladores de texto para cada campo
     final emailController = TextEditingController();
     final usernameController = TextEditingController();
     final passwordController = TextEditingController();
@@ -15,7 +14,6 @@ void main() {
     final phoneController = TextEditingController();
     bool registerTapped = false;
 
-    // Construir el widget dentro de un MaterialApp para proporcionarle el contexto necesario
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -34,10 +32,8 @@ void main() {
       ),
     );
 
-    // Asegúrate de que el widget esté completamente renderizado
     await tester.pumpAndSettle();
 
-    // Verifica que los campos de entrada se muestran correctamente
     expect(find.byType(AppInput), findsNWidgets(6));
     expect(find.text('Email'), findsOneWidget);
     expect(find.text('Nombre de usuario'), findsOneWidget);
@@ -46,7 +42,6 @@ void main() {
     expect(find.text('Apellidos'), findsOneWidget);
     expect(find.text('Telefono'), findsOneWidget);
 
-    // Simula el ingreso de texto en los campos de entrada
     await tester.enterText(
         find.widgetWithText(AppInput, 'Email'), 'test@example.com');
     await tester.enterText(
@@ -59,14 +54,11 @@ void main() {
         find.widgetWithText(AppInput, 'Telefono'), '1234567890');
     await tester.pumpAndSettle();
 
-    // Verifica que el botón de registro se muestra correctamente
     expect(find.text('Registrarse'), findsOneWidget);
 
-    // Simula un toque en el botón de registro
     await tester.tap(find.text('Registrarse'));
     await tester.pumpAndSettle();
 
-    // Verifica que el callback de registro fue llamado
     expect(registerTapped, isTrue);
   });
 }

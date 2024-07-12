@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
-
 import '../atoms/icon.dart';
 import '../foundation/color_foundation.dart';
 
+/// `Appbar` es un widget que representa una barra de aplicaciones personalizada con iconos interactivos.
+///
+/// ### Atributos:
+/// - `openMenu`: Indica si el menú está abierto.
+/// - `onTapSearch`: Callback que se ejecuta cuando se presiona el icono de búsqueda.
+/// - `onTapCart`: Callback que se ejecuta cuando se presiona el icono del carrito.
+
 class Appbar extends StatelessWidget {
+  /// Indica si el menú está abierto.
   final bool openMenu;
+
+  /// Callback que se ejecuta cuando se presiona el icono de búsqueda.
   final VoidCallback? onTapSearch;
+
+  /// Callback que se ejecuta cuando se presiona el icono del carrito.
   final VoidCallback? onTapCart;
-  const Appbar(
-      {this.openMenu = false, this.onTapCart, this.onTapSearch, super.key});
+
+  /// Constructor para crear una instancia de `Appbar`.
+  const Appbar({
+    this.openMenu = false,
+    this.onTapCart,
+    this.onTapSearch,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +36,7 @@ class Appbar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          /// Animación de color para el icono de búsqueda.
           TweenAnimationBuilder<Color?>(
             duration: const Duration(milliseconds: 320),
             tween: ColorTween(
@@ -38,6 +56,8 @@ class Appbar extends StatelessWidget {
               );
             },
           ),
+
+          /// Animación de color para el icono de menú.
           TweenAnimationBuilder<Color?>(
             duration: const Duration(milliseconds: 320),
             tween: ColorTween(
@@ -54,6 +74,8 @@ class Appbar extends StatelessWidget {
               );
             },
           ),
+
+          /// Icono del carrito con animación y un contenedor adicional para notificaciones.
           Padding(
             padding: const EdgeInsets.only(right: 24),
             child: Stack(

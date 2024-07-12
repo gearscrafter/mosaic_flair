@@ -32,26 +32,20 @@ void main() {
       ),
     );
 
-    // Verifica que el hint se muestra
     expect(find.text('Select an item'), findsOneWidget);
 
-    // Abre el dropdown
     await tester.tap(find.text('Select an item'));
     await tester.pumpAndSettle();
 
-    // Verifica que los items se muestran
     expect(find.text('Item 1'), findsOneWidget);
     expect(find.text('Item 2'), findsOneWidget);
     expect(find.text('Item 3'), findsOneWidget);
 
-    // Selecciona un item
     await tester.tap(find.text('Item 2').last);
     await tester.pumpAndSettle();
 
-    // Verifica que el item seleccionado se muestra
     expect(find.text('Item 2'), findsOneWidget);
 
-    // Verifica que el callback onItemSelected fue llamado
     expect(selectedItem, isNotNull);
     expect((selectedItem as Text).data, 'Item 2');
   });

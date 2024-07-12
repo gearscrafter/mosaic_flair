@@ -12,12 +12,30 @@ import 'bloc/category_bloc.dart';
 const categoryHeight = 50.0;
 const productHeight = 100.0;
 
+/// `SynchronousTabBar` es un widget que muestra una barra de pestañas sincronizadas con una lista de categorías y productos.
+///
+/// ### Atributos:
+/// - `items`: Una lista de categorías opcional para mostrar en las pestañas.
+/// - `onScrollChange`: Función opcional que se ejecuta cuando cambia el estado de desplazamiento.
+/// - `getProduct`: Función opcional que se ejecuta cuando se selecciona un producto.
+
 class SynchronousTabBar extends StatefulWidget {
+  /// Una lista de categorías opcional para mostrar en las pestañas.
   final List<Category>? items;
+
+  /// Función opcional que se ejecuta cuando cambia el estado de desplazamiento.
   final Function(bool isScrolling)? onScrollChange;
+
+  /// Función opcional que se ejecuta cuando se selecciona un producto.
   final Function(Product? product)? getProduct;
-  const SynchronousTabBar(
-      {this.onScrollChange, this.getProduct, this.items, super.key});
+
+  /// Constructor para crear una instancia de `SynchronousTabBar`.
+  const SynchronousTabBar({
+    this.onScrollChange,
+    this.getProduct,
+    this.items,
+    super.key,
+  });
 
   @override
   State<SynchronousTabBar> createState() => _SynchronousTabBarState();
@@ -61,85 +79,84 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return AnimatedBuilder(
-        animation: _bloc,
-        builder: (_, __) {
-          return Column(
-            children: [
-              const SizedBox(
-                height: 80,
-              ),
-              SizedBox(
-                height: 60,
-                width: size.width,
-                child: _bloc.tabController == null
-                    ? Container()
-                    : TabBar(
-                        controller: _bloc.tabController,
-                        isScrollable: true,
-                        dividerColor: Colors.transparent,
-                        onTap: _bloc.onCategorySelected,
-                        overlayColor: WidgetStateColor.transparent,
-                        indicatorColor: Colors.transparent,
-                        tabs: _bloc.tabs
-                            .map((item) => CategoryCard(
-                                  title: item.category.name ?? '',
-                                  onSelected: item.onSelected,
-                                  color: textColorPrimary,
-                                ))
-                            .toList()),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: paddingLargeDimension),
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      controller: _bloc.scrollController,
-                      itemCount: _bloc.items.length,
-                      itemBuilder: (context, index) {
-                        if (widget.onScrollChange != null) {
-                          widget.onScrollChange!(_bloc.isScrolling);
-                        }
-                        final item = _bloc.items[index];
-                        if (item.isCategory) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: paddingMediumDimension,
-                                horizontal: paddingSmallDimension),
-                            child: CategoryItem(
-                              title: item.category?.name ?? '',
-                              categoryHeight: categoryHeight,
-                              color: textColorPrimary,
-                            ),
-                          );
-                        } else {
-                          return Padding(
-                            padding:
-                                const EdgeInsets.all(paddingSmallDimension),
-                            child: TileCard(
-                              title: item.product?.name,
-                              price: 20,
-                              image: item.product?.image,
-                              height: productHeight,
-                              onPressed: () {
-                                if (widget.getProduct != null) {
-                                  widget.getProduct!(Product(
-                                      id: item.product?.id,
-                                      name: item.product?.name ?? '',
-                                      description:
-                                          item.product?.description ?? '',
-                                      image: item.product?.image ?? '',
-                                      price: item.product?.price ?? 0.0));
-                                }
-                              },
-                            ),
-                          );
-                        }
-                      }),
+      animation: _bloc,
+      builder: (_, __) {
+        return Column(
+          children: [
+            const SizedBox(height: 80),
+            SizedBox(
+              height: 60,
+              width: size.width,
+              child: _bloc.tabController == null
+                  ? Container()
+                  : TabBar(
+                      controller: _bloc.tabController,
+                      isScrollable: true,
+                      dividerColor: Colors.transparent,
+                      onTap: _bloc.onCategorySelected,
+                      overlayColor: WidgetStateColor.transparent,
+                      indicatorColor: Colors.transparent,
+                      tabs: _bloc.tabs
+                          .map((item) => CategoryCard(
+                                title: item.category.name ?? '',
+                                onSelected: item.onSelected,
+                                color: textColorPrimary,
+                              ))
+                          .toList(),
+                    ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: paddingLargeDimension),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  controller: _bloc.scrollController,
+                  itemCount: _bloc.items.length,
+                  itemBuilder: (context, index) {
+                    if (widget.onScrollChange != null) {
+                      widget.onScrollChange!(_bloc.isScrolling);
+                    }
+                    final item = _bloc.items[index];
+                    if (item.isCategory) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: paddingMediumDimension,
+                            horizontal: paddingSmallDimension),
+                        child: CategoryItem(
+                          title: item.category?.name ?? '',
+                          categoryHeight: categoryHeight,
+                          color: textColorPrimary,
+                        ),
+                      );
+                    } else {
+                      return Padding(
+                        padding: const EdgeInsets.all(paddingSmallDimension),
+                        child: TileCard(
+                          title: item.product?.name,
+                          price: 20,
+                          image: item.product?.image,
+                          height: productHeight,
+                          onPressed: () {
+                            if (widget.getProduct != null) {
+                              widget.getProduct!(Product(
+                                  id: item.product?.id,
+                                  name: item.product?.name ?? '',
+                                  description: item.product?.description ?? '',
+                                  image: item.product?.image ?? '',
+                                  price: item.product?.price ?? 0.0));
+                            }
+                          },
+                        ),
+                      );
+                    }
+                  },
                 ),
               ),
-            ],
-          );
-        });
+            ),
+          ],
+        );
+      },
+    );
   }
 }

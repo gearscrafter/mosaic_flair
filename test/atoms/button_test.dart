@@ -21,14 +21,11 @@ void main() {
         ),
       );
 
-      // Verifica que el texto se muestra
       expect(find.text('Test Button'), findsOneWidget);
 
-      // Simula un toque en el botón
       await tester.tap(find.byType(AppButton));
       await tester.pumpAndSettle();
 
-      // Verifica que el callback onPressed fue llamado
       expect(pressed, true);
     });
 
@@ -52,13 +49,10 @@ void main() {
         ),
       );
 
-      // Verifica que el texto se muestra
       expect(find.text('Test Button'), findsOneWidget);
 
-      // Verifica que el ícono se muestra
       expect(find.byIcon(Icons.arrow_forward_sharp), findsOneWidget);
 
-      // Detiene la animación para evitar el bucle infinito
       iconAnimationController.stop();
     });
 
@@ -75,7 +69,6 @@ void main() {
         ),
       );
 
-      // Verifica que el botón está deshabilitado
       final Finder button = find.byType(ElevatedButton);
       final ElevatedButton elevatedButton = tester.widget(button);
       expect(elevatedButton.onPressed, null);

@@ -4,6 +4,17 @@ import '../atoms/text.dart';
 import '../data/support_data.dart';
 import '../foundation/dimension_foundation.dart';
 
+/// `SupportTemplate` es una plantilla que proporciona información y soporte al usuario.
+///
+/// ### Atributos:
+/// - `schedulesList`: Lista de horarios de servicio.
+/// - `email`: Correo electrónico para contacto.
+/// - `phone`: Número de teléfono para contacto.
+/// - `message`: Mensaje adicional para el usuario.
+///
+/// ### Variables:
+/// - `size`: Tamaño de la pantalla para manejar la disposición de los elementos.
+
 class SupportTemplate extends StatelessWidget {
   final List<String>? schedulesList;
   final String? email;
@@ -48,12 +59,12 @@ class SupportTemplate extends StatelessWidget {
               ),
               SizedBox(height: size.height * 0.05),
               const AppText(
-                text: 'No encontraste la respuesta a tu pregunta?',
+                text: '¿No encontraste la respuesta a tu pregunta?',
                 fontWeight: FontWeight.bold,
               ),
               SizedBox(height: size.height * 0.03),
               Support(
-                label: email ?? 'Envíanos en un correo',
+                label: email ?? 'Envíanos un correo',
                 icon: Icons.email,
                 info: 'Correo electrónico copiado al portapapeles.',
               ),
@@ -67,7 +78,7 @@ class SupportTemplate extends StatelessWidget {
               Support(
                 label: message ?? 'Envíanos un mensaje',
                 icon: Icons.message_rounded,
-                info: 'Escibiendo...',
+                info: 'Escribiendo...',
               ),
             ],
           ),

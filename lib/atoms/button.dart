@@ -3,15 +3,40 @@ import '../foundation/dimension_foundation.dart';
 import '../foundation/color_foundation.dart';
 import 'icon.dart';
 
+/// `AppButton` es un widget de botón personalizado que puede incluir animaciones y configuraciones personalizadas.
+///
+/// ### Atributos:
+/// - `label`: El texto que se muestra en el botón.
+/// - `onPressed`: Callback que se ejecuta cuando se presiona el botón.
+/// - `labelColor`: El color del texto del botón.
+/// - `backColor`: El color de fondo del botón.
+/// - `hasIconAnimation`: Indica si el botón debe tener una animación de icono.
+/// - `width`: La anchura del botón.
+/// - `iconAnimationController`: Controlador para la animación del icono.
+
 class AppButton extends StatefulWidget {
+  /// El texto que se muestra en el botón.
   final String label;
+
+  /// Callback que se ejecuta cuando se presiona el botón.
   final VoidCallback? onPressed;
+
+  /// El color del texto del botón.
   final Color? labelColor;
+
+  /// El color de fondo del botón.
   final Color? backColor;
+
+  /// Indica si el botón debe tener una animación de icono.
   final bool hasIconAnimation;
+
+  /// La anchura del botón.
   final double? width;
+
+  /// Controlador para la animación del icono.
   final AnimationController? iconAnimationController;
 
+  /// Constructor para crear una instancia de `AppButton`.
   const AppButton({
     this.labelColor = textColorPrimary,
     this.backColor,
@@ -36,6 +61,8 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+
+    /// Controlador de animación para el escalado del botón.
     _controller = AnimationController(
       duration: const Duration(milliseconds: 200),
       vsync: this,

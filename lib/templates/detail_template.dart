@@ -5,9 +5,20 @@ import '../data/product_dart.dart';
 import '../foundation/color_foundation.dart';
 import '../organisms/product_detail.dart';
 
+/// `DetailsTemplate` es un widget que representa la plantilla de detalles de un producto.
+///
+/// ### Atributos:
+/// - `product`: El producto a mostrar.
+/// - `onAddToCart`: Función que se ejecuta cuando se añade el producto al carrito.
+
 class DetailsTemplate extends StatefulWidget {
+  /// El producto a mostrar.
   final Product? product;
+
+  /// Función que se ejecuta cuando se añade el producto al carrito.
   final Function(Product? product, int quantity)? onAddToCart;
+
+  /// Constructor para crear una instancia de `DetailsTemplate`.
   const DetailsTemplate({super.key, this.product, this.onAddToCart});
 
   @override
@@ -17,12 +28,14 @@ class DetailsTemplate extends StatefulWidget {
 class _DetailsTemplateState extends State<DetailsTemplate> {
   int _quantity = 1;
 
+  /// Incrementa la cantidad del producto.
   void _increaseQuantity() {
     setState(() {
       _quantity++;
     });
   }
 
+  /// Decrementa la cantidad del producto.
   void _decreaseQuantity() {
     if (_quantity > 1) {
       setState(() {

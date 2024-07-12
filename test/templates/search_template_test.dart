@@ -9,7 +9,6 @@ class MockProduct extends Mock implements Product {}
 void main() {
   testWidgets('SearchTemplate displays products and handles search',
       (WidgetTester tester) async {
-    // Mock data
     final productCards = [
       const ProductCard(
         id: 1,
@@ -47,43 +46,34 @@ void main() {
       ),
     );
 
-    // Verifica que los productos se muestran inicialmente
     expect(find.text('Product 1'), findsAny);
     expect(find.text('Product 2'), findsOneWidget);
     expect(find.text('Another Product'), findsOneWidget);
 
-    // Realiza una búsqueda
     await tester.enterText(find.byType(TextField), 'Product 1');
     await tester.pump();
 
-    // Verifica que solo se muestra el producto que coincide con la búsqueda
     expect(find.text('Product 1'), findsAny);
     expect(find.text('Product 2'), findsNothing);
     expect(find.text('Another Product'), findsNothing);
 
-    // Realiza una búsqueda que no coincida
     await tester.enterText(find.byType(TextField), 'Non-existent Product');
     await tester.pump();
 
-    // Verifica que no se muestra ningún producto
     expect(find.text('Product 1'), findsNothing);
     expect(find.text('Product 2'), findsNothing);
     expect(find.text('Another Product'), findsNothing);
 
-    // Limpia la búsqueda
     await tester.enterText(find.byType(TextField), '');
     await tester.pump();
 
-    // Verifica que todos los productos se muestran nuevamente
     expect(find.text('Product 1'), findsOneWidget);
     expect(find.text('Product 2'), findsOneWidget);
     expect(find.text('Another Product'), findsOneWidget);
 
-    // Simula un toque en el primer producto
     await tester.tap(find.text('Product 1'));
     await tester.pump();
 
-    // Verifica que se llamó a la función getProduct
     expect(getProductCalled, isFalse);
   });
 
@@ -109,25 +99,19 @@ void main() {
       ),
     );
 
-    // Simula un toque en el menú de inicio
     await tester.tap(find.text('Home'));
     await tester.pumpAndSettle();
 
-    // Verifica que se llamó a la función onTapHome
     expect(onTapHomeCalled, isTrue);
 
-    // Simula un toque en el menú de soporte
     await tester.tap(find.text('Soporte'));
     await tester.pumpAndSettle();
 
-    // Verifica que se llamó a la función onTapSupport
     expect(onTapSupportCalled, isTrue);
 
-    // Simula un toque en el menú de contacto
     await tester.tap(find.text('Contacto'));
     await tester.pumpAndSettle();
 
-    // Verifica que se llamó a la función onTapContact
     expect(onTapContactCalled, isTrue);
   });
 }

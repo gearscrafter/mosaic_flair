@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mosaic_flair/mosaic_flair.dart'; // Asegúrate de importar tu paquete de diseño
+import 'package:mosaic_flair/mosaic_flair.dart';
 
 class IconsShowcase extends StatelessWidget {
   const IconsShowcase({super.key});

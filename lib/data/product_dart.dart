@@ -1,12 +1,31 @@
 import '../molecules/product_card.dart';
 
+/// `Product` es una clase que representa un producto.
+///
+/// ### Atributos:
+/// - `id`: El identificador único del producto (opcional).
+/// - `name`: El nombre del producto.
+/// - `description`: La descripción del producto.
+/// - `image`: Una URL de la imagen del producto (opcional).
+/// - `price`: El precio del producto.
+
 class Product {
+  /// El identificador único del producto (opcional).
   final int? id;
+
+  /// El nombre del producto.
   final String name;
+
+  /// La descripción del producto.
   final String description;
+
+  /// Una URL de la imagen del producto (opcional).
   final String? image;
+
+  /// El precio del producto.
   final double price;
 
+  /// Constructor para crear una instancia de `Product`.
   Product({
     this.id,
     required this.name,
@@ -15,6 +34,8 @@ class Product {
     required this.price,
   });
 }
+
+/// `tileList` es una lista de tarjetas de productos (`ProductCard`) para mostrar productos de ejemplo.
 
 final tileList = [
   const ProductCard(

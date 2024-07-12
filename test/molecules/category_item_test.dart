@@ -9,7 +9,6 @@ void main() {
     const testCategoryHeight = 100.0;
     const testColor = Colors.red;
 
-    // Build the widget inside a MaterialApp to provide necessary context
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(

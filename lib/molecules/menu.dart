@@ -4,6 +4,17 @@ import '../atoms/text.dart';
 import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
 
+/// `Menu` es un widget de menú personalizado que se puede abrir y cerrar con una animación.
+///
+/// ### Atributos:
+/// - `isScrolling`: Indica si la página se está desplazando.
+/// - `isHome`: Indica si el menú está en la página de inicio.
+/// - `onTapHome`: Callback que se ejecuta cuando se presiona la opción "Home".
+/// - `onTapProducts`: Callback que se ejecuta cuando se presiona la opción "Products".
+/// - `onTapSupport`: Callback que se ejecuta cuando se presiona la opción "Support".
+/// - `onTapContact`: Callback que se ejecuta cuando se presiona la opción "Contact".
+/// - `hasMenu`: Función que recibe un booleano para indicar si el menú está abierto.
+
 class Menu extends StatefulWidget {
   final bool isScrolling;
   final bool isHome;
@@ -31,7 +42,6 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation _animation;
-
   bool _isShowOverlay = false;
 
   @override
@@ -68,97 +78,88 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
           bottom: 60,
           right: 0,
           child: AnimatedBuilder(
-              animation: _controller,
-              builder: (context, child) {
-                return Transform.scale(
-                  scale: _animation.value * 160,
-                  child: Container(
-                    height: 10,
-                    width: 10,
-                    decoration: const BoxDecoration(
-                        color: primaryColor, shape: BoxShape.circle),
-                  ),
-                );
-              }),
-        ),
-        AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
-              return Opacity(
-                opacity: _animation.value,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const AppText(
-                          text: '*',
-                          textColor: backgroundColor,
-                        ),
-                        const SizedBox(
-                          width: paddingMediumDimension,
-                        ),
-                        AppText(
-                          text: 'Menu',
-                          textColor: backgroundColor.withOpacity(0.5),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const AppText(
-                          text: '*',
-                          textColor: backgroundColor,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: paddingLargeDimension,
-                    ),
-                    const SizedBox(
-                      height: paddingLargeDimension,
-                    ),
-                    widget.isHome
-                        ? GestureDetector(
-                            onTap: widget.onTapHome,
-                            child: const AppText(
-                              text: 'Home',
-                              textColor: backgroundColor,
-                            ),
-                          )
-                        : GestureDetector(
-                            onTap: widget.onTapProducts,
-                            child: const AppText(
-                              text: 'Products',
-                              textColor: backgroundColor,
-                            ),
-                          ),
-                    const SizedBox(
-                      height: paddingLargeDimension,
-                    ),
-                    GestureDetector(
-                      onTap: widget.onTapSupport,
-                      child: const AppText(
-                        text: 'Support',
-                        textColor: backgroundColor,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: paddingLargeDimension,
-                    ),
-                    GestureDetector(
-                      onTap: widget.onTapContact,
-                      child: const AppText(
-                        text: 'Contact',
-                        textColor: backgroundColor,
-                      ),
-                    ),
-                  ],
+              return Transform.scale(
+                scale: _animation.value * 160,
+                child: Container(
+                  height: 10,
+                  width: 10,
+                  decoration: const BoxDecoration(
+                    color: primaryColor,
+                    shape: BoxShape.circle,
+                  ),
                 ),
               );
-            }),
+            },
+          ),
+        ),
+        AnimatedBuilder(
+          animation: _controller,
+          builder: (context, child) {
+            return Opacity(
+              opacity: _animation.value,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const AppText(
+                        text: '*',
+                        textColor: backgroundColor,
+                      ),
+                      const SizedBox(width: paddingMediumDimension),
+                      AppText(
+                        text: 'Menu',
+                        textColor: backgroundColor.withOpacity(0.5),
+                      ),
+                      const SizedBox(width: 10),
+                      const AppText(
+                        text: '*',
+                        textColor: backgroundColor,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: paddingLargeDimension),
+                  widget.isHome
+                      ? GestureDetector(
+                          onTap: widget.onTapHome,
+                          child: const AppText(
+                            text: 'Home',
+                            textColor: backgroundColor,
+                          ),
+                        )
+                      : GestureDetector(
+                          onTap: widget.onTapProducts,
+                          child: const AppText(
+                            text: 'Productos',
+                            textColor: backgroundColor,
+                          ),
+                        ),
+                  const SizedBox(height: paddingLargeDimension),
+                  GestureDetector(
+                    onTap: widget.onTapSupport,
+                    child: const AppText(
+                      text: 'Soporte',
+                      textColor: backgroundColor,
+                    ),
+                  ),
+                  const SizedBox(height: paddingLargeDimension),
+                  GestureDetector(
+                    onTap: widget.onTapContact,
+                    child: const AppText(
+                      text: 'Contacto',
+                      textColor: backgroundColor,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
         AnimatedPositioned(
           duration: const Duration(milliseconds: 300),
           left: size.width * 0.5 - 20,

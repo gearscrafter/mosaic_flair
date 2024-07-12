@@ -5,13 +5,10 @@ import 'package:mosaic_flair/mosaic_flair.dart';
 void main() {
   testWidgets('AppInput applies colorInput correctly',
       (WidgetTester tester) async {
-    // Crear un controlador de texto
     final controller = TextEditingController();
 
-    // Definir el color de entrada
     const colorInput = Colors.red;
 
-    // Construir el widget dentro de un MaterialApp para proporcionarle el contexto necesario
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -24,7 +21,6 @@ void main() {
       ),
     );
 
-    // Verificar que los colores se aplican correctamente
     final textField = tester.widget<TextField>(find.byType(TextField));
     final decoration = textField.decoration as InputDecoration;
 

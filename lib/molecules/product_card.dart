@@ -2,16 +2,44 @@ import 'package:flutter/material.dart';
 import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
 
+/// `ProductCard` es un widget que representa una tarjeta de producto con información detallada.
+///
+/// ### Atributos:
+/// - `id`: El identificador único del producto.
+/// - `title`: El título del producto.
+/// - `image`: La URL de la imagen del producto (opcional).
+/// - `category`: La categoría del producto.
+/// - `price`: El precio del producto.
+/// - `topBoxHeight`: La altura de la caja superior (por defecto es 80.0).
+/// - `bottomBoxHeight`: La altura de la caja inferior (por defecto es 10.0).
+/// - `onTap`: Callback que se ejecuta cuando se presiona la tarjeta del producto (opcional).
+
 class ProductCard extends StatelessWidget {
+  /// El identificador único del producto.
   final int id;
+
+  /// El título del producto.
   final String title;
+
+  /// La URL de la imagen del producto (opcional).
   final String? image;
+
+  /// La categoría del producto.
   final String category;
+
+  /// El precio del producto.
   final double price;
+
+  /// La altura de la caja superior.
   final double topBoxHeight;
+
+  /// La altura de la caja inferior.
   final double bottomBoxHeight;
+
+  /// Callback que se ejecuta cuando se presiona la tarjeta del producto (opcional).
   final VoidCallback? onTap;
 
+  /// Constructor para crear una instancia de `ProductCard`.
   const ProductCard({
     super.key,
     required this.id,
@@ -57,24 +85,33 @@ class ProductCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(title,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.fade,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      color: textColorPrimary,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: fontSizeLargeDimension)),
-                              Text(category,
-                                  style: const TextStyle(
-                                      color: neutralColor,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: fontSizeMediumDimension)),
-                              Text('\$$price',
-                                  style: const TextStyle(
-                                      color: primaryColor,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: fontSizeMediumDimension)),
+                              Text(
+                                title,
+                                maxLines: 1,
+                                overflow: TextOverflow.fade,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  color: textColorPrimary,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: fontSizeLargeDimension,
+                                ),
+                              ),
+                              Text(
+                                category,
+                                style: const TextStyle(
+                                  color: neutralColor,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: fontSizeMediumDimension,
+                                ),
+                              ),
+                              Text(
+                                '\$$price',
+                                style: const TextStyle(
+                                  color: primaryColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: fontSizeMediumDimension,
+                                ),
+                              ),
                             ],
                           ),
                         ),

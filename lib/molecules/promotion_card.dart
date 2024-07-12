@@ -4,12 +4,28 @@ import '../atoms/text.dart';
 import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
 
+/// `PromotionCard` es un widget que representa una tarjeta de promoción con una imagen, un porcentaje de descuento y una descripción.
+///
+/// ### Atributos:
+/// - `description`: La descripción de la promoción (opcional).
+/// - `extentDescription`: Una descripción extendida de la promoción (opcional).
+/// - `image`: La URL de la imagen de la promoción (requerido).
+/// - `percentage`: El porcentaje de descuento de la promoción (requerido).
+
 class PromotionCard extends StatelessWidget {
+  /// La descripción de la promoción (opcional).
   final String? description;
+
+  /// Una descripción extendida de la promoción (opcional).
   final String? extentDescription;
+
+  /// La URL de la imagen de la promoción (requerido).
   final String? image;
+
+  /// El porcentaje de descuento de la promoción (requerido).
   final double percentage;
 
+  /// Constructor para crear una instancia de `PromotionCard`.
   const PromotionCard({
     this.description,
     this.extentDescription,
@@ -74,7 +90,7 @@ class PromotionCard extends StatelessWidget {
                           fontSize: 30,
                         ),
                       ),
-                      if (description != null)
+                      if (extentDescription != null)
                         AppText(
                           text: extentDescription,
                           sizeText: SizeText.M,
@@ -82,9 +98,7 @@ class PromotionCard extends StatelessWidget {
                         ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
+                  const SizedBox(height: 5),
                   Expanded(
                     child: Align(
                       alignment: Alignment.bottomLeft,

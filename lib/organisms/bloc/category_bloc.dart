@@ -4,16 +4,47 @@ import '../../data/category_data.dart';
 import '../../data/item_data.dart';
 import '../../data/tab_category_data.dart';
 
+/// `CategoryBloc` es una clase que maneja la lógica de las categorías y productos.
+/// Utiliza `ChangeNotifier` para notificar cambios a los widgets suscritos.
+///
+/// ### Atributos:
+/// - `tabs`: Una lista de categorías de pestañas.
+/// - `items`: Una lista de ítems (categorías y productos).
+/// - `tabController`: El controlador de pestañas.
+/// - `scrollController`: El controlador de desplazamiento.
+/// - `_listen`: Indica si se deben escuchar los cambios de desplazamiento.
+/// - `_isScrolling`: Indica si la página se está desplazando.
+///
+/// ### Métodos:
+/// - `init`: Inicializa las categorías y productos.
+/// - `update`: Actualiza las categorías y productos.
+/// - `_onScrollListener`: Escucha los cambios de desplazamiento y actualiza la selección de pestañas.
+/// - `onCategorySelected`: Maneja la selección de una categoría.
+/// - `dispose`: Elimina los controladores de desplazamiento y pestañas.
+
 class CategoryBloc with ChangeNotifier {
+  /// Una lista de categorías de pestañas.
   final tabs = <TabCategory>[];
+
+  /// Una lista de ítems (categorías y productos).
   final items = <Item>[];
+
+  /// El controlador de pestañas.
   TabController? tabController;
+
+  /// El controlador de desplazamiento.
   ScrollController scrollController = ScrollController();
+
+  /// Indica si se deben escuchar los cambios de desplazamiento.
   bool _listen = true;
+
+  /// Indica si la página se está desplazando.
   bool _isScrolling = false;
 
+  /// Obtiene el estado de desplazamiento.
   bool get isScrolling => _isScrolling;
 
+  /// Inicializa las categorías y productos.
   void init(TickerProvider ticker, double productHeight, double categoryHeight,
       List<Category>? categoryItems) {
     tabController?.dispose();
@@ -63,6 +94,7 @@ class CategoryBloc with ChangeNotifier {
     notifyListeners();
   }
 
+  /// Actualiza las categorías y productos.
   void update(TickerProvider ticker, double productHeight,
       double categoryHeight, List<Category>? categoryItems) {
     final length = (categoryItems ?? categoriesItems).length;
@@ -112,6 +144,7 @@ class CategoryBloc with ChangeNotifier {
     }
   }
 
+  /// Escucha los cambios de desplazamiento y actualiza la selección de pestañas.
   void _onScrollListener() {
     _isScrolling = true;
     notifyListeners();
@@ -135,6 +168,7 @@ class CategoryBloc with ChangeNotifier {
     });
   }
 
+  /// Maneja la selección de una categoría.
   void onCategorySelected(int index, {bool animationRequired = true}) async {
     final selected = tabs[index];
     for (int i = 0; i < tabs.length; i++) {

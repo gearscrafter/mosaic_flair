@@ -21,30 +21,24 @@ void main() {
       ),
     );
 
-    // Verifica que los elementos iniciales se muestran correctamente
     expect(find.text('Bienvenido'), findsOneWidget);
     expect(find.text('Username'), findsOneWidget);
     expect(find.text('Password'), findsOneWidget);
     expect(find.text('Login'), findsOneWidget);
     expect(find.text('¿Aún no tienes una cuenta?'), findsOneWidget);
 
-    // Introduce texto en los campos de username y password
     await tester.enterText(find.byType(TextField).at(0), 'test@example.com');
     await tester.enterText(find.byType(TextField).at(1), 'password123');
     await tester.pump();
 
-    // Simula un toque en el botón de Login
     await tester.tap(find.text('Login'));
     await tester.pumpAndSettle();
 
-    // Verifica que el callback onLogin fue llamado
     expect(onLoginCalled, isFalse);
 
-    // Simula un toque en el texto "¿Aún no tienes una cuenta?"
     await tester.tap(find.text('¿Aún no tienes una cuenta?'));
     await tester.pumpAndSettle();
 
-    // Verifica que el callback onTapWithoutAccount fue llamado
     expect(onTapWithoutAccountCalled, isFalse);
   });
 
@@ -63,16 +57,13 @@ void main() {
       ),
     );
 
-    // Deja los campos de username y password vacíos y verifica que el botón de Login está deshabilitado
     await tester.enterText(find.byType(TextField).at(0), '');
     await tester.enterText(find.byType(TextField).at(1), '');
     await tester.pump();
 
-    // Simula un toque en el botón de Login
     await tester.tap(find.text('Login'));
     await tester.pumpAndSettle();
 
-    // Verifica que el callback onLogin no fue llamado
     expect(onLoginCalled, isFalse);
   });
 }

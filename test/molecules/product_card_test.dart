@@ -20,7 +20,6 @@ void main() {
       ),
     );
 
-    // Verifica que los textos se muestran correctamente
     expect(find.text('Product Title'), findsOneWidget);
     expect(find.text('Product Category'), findsOneWidget);
     expect(find.text('\$29.99'), findsOneWidget);

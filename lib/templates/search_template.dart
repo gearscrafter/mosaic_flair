@@ -8,6 +8,23 @@ import '../molecules/product_card.dart';
 import '../molecules/search_bar.dart';
 import '../molecules/tile_card.dart';
 
+/// `SearchTemplate` es una plantilla que permite buscar productos y
+/// mostrarlos en una lista filtrable.
+///
+/// ### Atributos:
+/// - `productCards`: Lista de productos a mostrar.
+/// - `onTapHome`: Función a ejecutar al presionar el botón de inicio.
+/// - `onTapSupport`: Función a ejecutar al presionar el botón de soporte.
+/// - `onTapContact`: Función a ejecutar al presionar el botón de contacto.
+/// - `getProduct`: Función a ejecutar al seleccionar un producto, recibe el producto como parámetro.
+/// - `onPressItem`: Función a ejecutar al presionar un item de la lista.
+///
+/// ### Variables:
+/// - `scrollController`: Controlador del scroll para manejar el estado de desplazamiento.
+/// - `_isScrolling`: Indicador booleano de si la lista se está desplazando.
+/// - `_searchController`: Controlador de texto para el campo de búsqueda.
+/// - `filteredListNotifier`: Notificador de valor para la lista de productos filtrados.
+
 class SearchTemplate extends StatefulWidget {
   final List<ProductCard>? productCards;
   final VoidCallback? onTapHome;

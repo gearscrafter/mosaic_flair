@@ -6,7 +6,6 @@ void main() {
   testWidgets(
       'ContactTemplate displays contact and email information correctly',
       (WidgetTester tester) async {
-    // Crea el widget
     await tester.pumpWidget(
       const MaterialApp(
         home: ContactTemplate(
@@ -16,16 +15,13 @@ void main() {
       ),
     );
 
-    // Verifica que el AppBar se muestra correctamente
     expect(find.text('Contáctanos'), findsOneWidget);
 
-    // Verifica que el texto inicial se muestra correctamente
     expect(
         find.text(
             'Si tienes sugerencias, contáctate con nosotros.\n\nEstamos felices de ayudarte!!'),
         findsOneWidget);
 
-    // Verifica que los widgets de soporte se muestran correctamente
     expect(find.text('+ 31 20 123 4507'), findsOneWidget);
     expect(find.text('contact@creative.com'), findsOneWidget);
   });
@@ -33,14 +29,12 @@ void main() {
   testWidgets(
       'ContactTemplate displays default contact and email information when none provided',
       (WidgetTester tester) async {
-    // Crea el widget sin proporcionar contacto ni email
     await tester.pumpWidget(
       const MaterialApp(
         home: ContactTemplate(),
       ),
     );
 
-    // Verifica que los valores predeterminados se muestran correctamente
     expect(find.text('+ 31 20 123 4507'), findsOneWidget);
     expect(find.text('contact@creative.com'), findsOneWidget);
   });
@@ -60,11 +54,9 @@ void main() {
       ),
     );
 
-    // Simula un toque en el widget Support
     await tester.tap(find.byType(Support));
     await tester.pump();
 
-    // Verifica que el SnackBar se muestra con el mensaje correcto
     expect(find.text('Copiado al portapapeles!'), findsOneWidget);
   });
 }

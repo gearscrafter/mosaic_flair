@@ -19,7 +19,6 @@ void main() {
 
     bool checkoutCalled = false;
 
-    // Crea el widget
     await tester.pumpWidget(
       MaterialApp(
         home: CartTemplate(
@@ -28,7 +27,6 @@ void main() {
       ),
     );
 
-    // Verifica que los elementos del carrito se muestran correctamente
     expect(find.text('Product 1'), findsOneWidget);
     expect(find.text('Product 2'), findsOneWidget);
     expect(find.text('Quantity: 1'), findsOneWidget);
@@ -36,11 +34,9 @@ void main() {
     expect(find.text('\$29.99'), findsOneWidget);
     expect(find.text('\$99.98'), findsOneWidget);
 
-    // Simula un toque en el botón de pagar
     await tester.tap(find.text('Pagar'));
     await tester.pumpAndSettle();
 
-    // Verifica que el callback de pago fue llamado
     expect(checkoutCalled, isTrue);
   });
 }

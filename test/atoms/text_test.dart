@@ -17,7 +17,6 @@ void main() {
       ),
     );
 
-    // Verifica que el texto se muestra correctamente
     expect(find.text(testText), findsOneWidget);
   });
 
@@ -36,7 +35,6 @@ void main() {
       ),
     );
 
-    // Verifica que el texto se muestra con el estilo personalizado
     final textWidget = tester.widget<Text>(find.text(testText));
     expect(textWidget.style?.color, customStyle.color);
     expect(textWidget.style?.fontSize, customStyle.fontSize);
@@ -60,7 +58,6 @@ void main() {
       ),
     );
 
-    // Verifica que el tamaño del texto es el correcto
     final smallText = tester.widget<Text>(find.text(testText).at(0));
     final mediumText = tester.widget<Text>(find.text(testText).at(1));
     final largeText = tester.widget<Text>(find.text(testText).at(2));

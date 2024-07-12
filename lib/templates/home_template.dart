@@ -1,6 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:mosaic_flair/mosaic_flair.dart';
 
+/// `HomeTemplate` es un widget que representa la plantilla principal de la aplicación.
+/// Muestra una bienvenida al usuario, una lista de promociones y una lista de productos populares.
+/// Además, incluye navegación a otras secciones de la aplicación.
+///
+/// ### Atributos:
+/// - `userName`: El nombre del usuario.
+/// - `promotionCards`: Una lista de tarjetas de promoción.
+/// - `onTapSeeMore`: Función a ejecutar cuando se presiona "See more".
+/// - `products`: Una lista de tarjetas de productos.
+/// - `onTapHome`: Función a ejecutar cuando se presiona el botón de inicio.
+/// - `onTapProducts`: Función a ejecutar cuando se presiona el botón de productos.
+/// - `onTapSupport`: Función a ejecutar cuando se presiona el botón de soporte.
+/// - `onTapContact`: Función a ejecutar cuando se presiona el botón de contacto.
+/// - `onTapSearch`: Función a ejecutar cuando se presiona el botón de búsqueda.
+/// - `onTapCart`: Función a ejecutar cuando se presiona el botón del carrito.
+/// - `productSelected`: Función a ejecutar cuando se selecciona un producto.
+/// - `onTapProductSelected`: Función a ejecutar cuando se selecciona un producto.
+
 class HomeTemplate extends StatefulWidget {
   final String? userName;
   final List<PromotionCard>? promotionCards;
@@ -12,7 +30,6 @@ class HomeTemplate extends StatefulWidget {
   final VoidCallback? onTapContact;
   final VoidCallback? onTapSearch;
   final VoidCallback? onTapCart;
-
   final Function(int id)? productSelected;
   final VoidCallback? onTapProductSelected;
 
@@ -39,6 +56,7 @@ class _HomeTemplateState extends State<HomeTemplate> {
   bool _isScrolling = false;
   bool _openMenu = false;
 
+  /// Actualiza el estado de desplazamiento de la pantalla.
   void _updateScrolling(bool isScrolling) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
@@ -69,13 +87,13 @@ class _HomeTemplateState extends State<HomeTemplate> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppText(
-                        text: 'Hi, ${widget.userName ?? 'Usuario'}',
+                        text: 'Hola , ${widget.userName ?? 'Usuario'}',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: fontSizeLargeDimension),
                       ),
                       const AppText(
-                        text: 'Order your favorite product',
+                        text: 'Ordena tu producto favorito',
                       ),
                     ],
                   ),
@@ -109,7 +127,7 @@ class _HomeTemplateState extends State<HomeTemplate> {
                       GestureDetector(
                         onTap: widget.onTapSeeMore,
                         child: const AppText(
-                          text: 'See more',
+                          text: 'Ver más',
                         ),
                       )
                     ],

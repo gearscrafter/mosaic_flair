@@ -42,7 +42,6 @@ void main() {
       ),
     );
 
-    // Verifica que las categorías se muestran correctamente en la barra de pestañas
     expect(
         find.byWidgetPredicate(
             (widget) => widget is CategoryCard && widget.title == 'category1'),
@@ -52,18 +51,15 @@ void main() {
             (widget) => widget is CategoryCard && widget.title == 'category2'),
         findsOneWidget);
 
-    // Verifica que los productos se muestran correctamente
     expect(find.text('product1'), findsOneWidget);
     expect(find.text('product2'), findsOneWidget);
     expect(find.text('product3'), findsOneWidget);
     expect(find.text('product4'), findsOneWidget);
 
-    // Desliza hacia la segunda categoría
     await tester.tap(find.byWidgetPredicate(
         (widget) => widget is CategoryCard && widget.title == 'category2'));
     await tester.pumpAndSettle();
 
-    // Verifica que los productos de la segunda categoría se muestran correctamente
     expect(find.text('product3'), findsOneWidget);
     expect(find.text('product4'), findsOneWidget);
     expect(find.text('product1'), findsOneWidget);
@@ -107,17 +103,14 @@ void main() {
       ),
     );
 
-    // Verifica que los productos de la primera categoría se muestran correctamente
     expect(find.text('product1'), findsOneWidget);
     expect(find.text('product2'), findsOneWidget);
     expect(find.text('product3'), findsOneWidget);
     expect(find.text('product4'), findsOneWidget);
 
-    // Desplaza hacia abajo para ver los productos de la segunda categoría
     await tester.drag(find.byType(ListView), const Offset(0, -300));
     await tester.pumpAndSettle();
 
-    // Verifica que los productos de la segunda categoría se muestran correctamente
     expect(find.text('product3'), findsOneWidget);
     expect(find.text('product4'), findsOneWidget);
   });

@@ -21,11 +21,9 @@ void main() {
       ),
     );
 
-    // Verifica que el ListTile y el texto inicial están presentes
     expect(find.byType(ListTile), findsOneWidget);
     expect(find.text(testLabel), findsOneWidget);
 
-    // Simula un tap en el ListTile
     await tester.tap(find.byType(ListTile));
     await tester.pump();
   });

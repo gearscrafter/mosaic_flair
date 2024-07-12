@@ -8,7 +8,6 @@ void main() {
   testWidgets(
       'CatalogTemplate handles scrolling and menu interaction correctly',
       (WidgetTester tester) async {
-    // Define una lista de productos
     final products = [
       const ProductCard(
         id: 1,
@@ -28,28 +27,22 @@ void main() {
 
     bool isScrolling = false;
 
-    // Crea el widget
     await tester.pumpWidget(
       MaterialApp(
         home: CatalogTemplate(
           items: const [],
           products: products,
-          onProductTap: (product) {
-            // Maneja el toque en el producto
-          },
+          onProductTap: (product) {},
         ),
       ),
     );
 
-    // Simula el desplazamiento y verifica la interacción del menú
     final scrollableFinder = find.byType(SynchronousTabBar);
     await tester.drag(scrollableFinder, const Offset(0, -300));
     await tester.pumpAndSettle();
 
-    // Verifica que el menú maneja el desplazamiento correctamente
     expect(isScrolling, isFalse);
 
-    // Interactúa con el menú y verifica la interacción
     await tester.tap(find.byIcon(Icons.menu));
     await tester.pumpAndSettle();
     expect(find.byIcon(Icons.close), findsOneWidget);

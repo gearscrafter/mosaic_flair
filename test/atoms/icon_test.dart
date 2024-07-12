@@ -5,7 +5,6 @@ import 'package:mosaic_flair/mosaic_flair.dart';
 void main() {
   testWidgets('AppIcon displays correctly with given properties',
       (WidgetTester tester) async {
-    // Definir las propiedades para el test
     const iconData = Icons.home;
     const color = Colors.blue;
     const backgroundColor = Colors.red;
@@ -13,7 +12,6 @@ void main() {
     const sizeContainer = 50.0;
     const hasShadow = true;
 
-    // Construir el widget dentro de un MaterialApp para proporcionarle el contexto necesario
     await tester.pumpWidget(
       const MaterialApp(
         home: Scaffold(
@@ -31,7 +29,6 @@ void main() {
       ),
     );
 
-    // Verificar que el Container tiene las propiedades correctas
     final container = tester.widget<Container>(find.byType(Container));
     final decoration = container.decoration as BoxDecoration;
 

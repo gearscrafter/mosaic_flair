@@ -5,6 +5,17 @@ import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
 import '../organisms/login_form.dart';
 
+/// `LoginTemplate` es una plantilla de inicio de sesión que presenta un formulario de inicio de sesión
+/// y una opción para registrarse si el usuario no tiene una cuenta.
+///
+/// ### Atributos:
+/// - `onTapWithoutAccount`: Función a ejecutar cuando se presiona "¿Aún no tienes una cuenta?".
+/// - `onLogin`: Función a ejecutar cuando se presiona el botón de inicio de sesión con el nombre de usuario y la contraseña.
+///
+/// ### Variables:
+/// - `usernameController`: Controlador de texto para el campo de nombre de usuario.
+/// - `passwordController`: Controlador de texto para el campo de contraseña.
+
 class LoginTemplate extends StatelessWidget {
   final VoidCallback? onTapWithoutAccount;
   final void Function(String username, String password)? onLogin;

@@ -17,7 +17,6 @@ void main() {
       ),
     );
 
-    // Verifica que los elementos iniciales se muestran correctamente
     expect(find.text('Registrate'), findsOneWidget);
     expect(find.text('Email'), findsOneWidget);
     expect(find.text('Password'), findsOneWidget);
@@ -27,7 +26,6 @@ void main() {
     expect(find.text('Telefono'), findsOneWidget);
     expect(find.text('Registrarse'), findsOneWidget);
 
-    // Introduce texto en los campos del formulario
     await tester.enterText(find.byType(TextField).at(0), 'test@example.com');
     await tester.enterText(find.byType(TextField).at(1), 'password123');
     await tester.enterText(find.byType(TextField).at(2), 'testuser');
@@ -36,11 +34,9 @@ void main() {
     await tester.enterText(find.byType(TextField).at(5), '1234567890');
     await tester.pump();
 
-    // Simula un toque en el botón de Registrarse
     await tester.tap(find.text('Registrarse'));
     await tester.pumpAndSettle();
 
-    // Verifica que el callback onRegister fue llamado
     expect(onRegisterCalled, isFalse);
   });
 
@@ -58,7 +54,6 @@ void main() {
       ),
     );
 
-    // Deja los campos vacíos y verifica que el botón de Registrarse está deshabilitado
     await tester.enterText(find.byType(TextField).at(0), '');
     await tester.enterText(find.byType(TextField).at(1), 'password123');
     await tester.enterText(find.byType(TextField).at(2), 'testuser');
@@ -67,11 +62,9 @@ void main() {
     await tester.enterText(find.byType(TextField).at(5), '1234567890');
     await tester.pump();
 
-    // Simula un toque en el botón de Registrarse
     await tester.tap(find.text('Registrarse'));
     await tester.pumpAndSettle();
 
-    // Verifica que el callback onRegister no fue llamado
     expect(onRegisterCalled, isFalse);
   });
 }
