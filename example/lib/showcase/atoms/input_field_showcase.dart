@@ -15,16 +15,19 @@ class InputFieldShowcase extends StatelessWidget {
         child: Column(
           children: [
             AppInput(
+              colorInput: textColorPrimary,
               controller: TextEditingController(),
               hintText: 'Ingrese texto',
             ),
             const SizedBox(height: 16.0),
             AppInput(
+              colorInput: textColorPrimary,
               controller: TextEditingController(),
               hintText: 'Correo electrónico',
             ),
             const SizedBox(height: 16.0),
             AppInput(
+              colorInput: textColorPrimary,
               controller: TextEditingController(),
               hintText: 'Contraseña',
               obscureText: true,

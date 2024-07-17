@@ -10,8 +10,9 @@ class CartSummaryShowcase extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: const AppText(
+        title: AppText(
           text: 'Cart Summary',
+          textColor: textColorPrimary,
         ),
         centerTitle: true,
       ),

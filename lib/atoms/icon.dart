@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../foundation/color_foundation.dart';
-import '../foundation/dimension_foundation.dart';
 
 /// `AppIcon` es un widget que representa un icono dentro de un contenedor circular con opciones de personalización.
 ///
@@ -38,8 +36,8 @@ class AppIcon extends StatelessWidget {
     this.hasShadow = false,
     this.sizeContainer = 40.0,
     this.backgroundColor = Colors.white,
-    this.color = neutralColor,
-    this.size = paddingLargeDimension,
+    this.color = Colors.black,
+    this.size = 24.0,
   });
 
   @override

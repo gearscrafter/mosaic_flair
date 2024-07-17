@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../tokens/icons.dart';
 
-const IconData homeIcon = home;
-const IconData searchIcon = search;
-const IconData cartIcon = cart;
-const IconData profileIcon = profile;
-const IconData supportIcon = support;
+IconData homeIcon = home;
+IconData searchIcon = search;
+IconData cartIcon = cart;
+IconData profileIcon = profile;
+IconData supportIcon = support;

@@ -1,5 +1,5 @@
 import '../tokens/spacing.dart';
 
-const double spacingSmall = small;
-const double spacingMedium = medium;
-const double spacingLarge = large;
+double spacingSmall = small;
+double spacingMedium = medium;
+double spacingLarge = large;

@@ -9,8 +9,9 @@ class LoginFormShowcase extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: const AppText(
+        title: AppText(
           text: 'Login Form',
+          textColor: textColorPrimary,
         ),
         centerTitle: true,
       ),

@@ -47,88 +47,199 @@ flutter pub get
 ```
 <a name="uso"></a>
 ## Uso Básico
-Aquí tienes la pantalla principal del paquete:
+### Parametrización de la Aplicación con JSON
+Para parametrizar tu aplicación con datos provenientes de un archivo JSON, sigue los siguientes pasos:
 
-### Ejemplo 
+#### 1. Creación del Archivo JSON:
+Crea un archivo JSON que contenga las configuraciones, y agregala a una carpeta json y utilizalo en el pubspec. 
+
 ```
+  assets:
+    - assets/app_config.json
+```
+
+Utiliza este json, y reemplaza el valor que contenga la llave:
+
+```
+{
+  "durations": {
+    "short": 200,
+    "medium": 400,
+    "long": 600
+  },
+  "paddingSmall": 8.0,
+  "paddingMedium": 16.0,
+  "paddingLarge": 24.0,
+  "fontSizeSmall": 14.0,
+  "fontSizeMedium": 18.0,
+  "fontSizeLarge": 24.0,
+  "borderRadius": 8.0,
+  "mainLoginLabel": "Bienvenido",
+  "withoutAccountLabel": "¿Aún no tienes una cuenta?",
+  "userLoginLabel": "Username",
+  "passwordLoginLabel": "Password",
+  "buttonLoginLabel": "Login",
+  "mainRegisterLabel": "Registrate",
+  "emailRegisterLabel": "Email",
+  "nicknameRegisterLabel": "Nombre de usuario",
+  "passwordRegisterLabel": "Password",
+  "userRegisterLabel": "Nombres",
+  "lastnameRegisterLabel": "Apellidos",
+  "cellphoneRegisterLabel": "Telefono",
+  "buttonRegisterLabel": "Registrarse",
+  "greetingsLabel": "Hola, ",
+  "orderYourProductLabel": "Ordena tu producto favorito",
+  "popularSectionLabel": "Popular",
+  "seeMoreSectionLabel": "Ver más",
+  "menuLabel": "Menu",
+  "homeLabel": "Home",
+  "productLabel": "Productos",
+  "supportLabel": "Soporte",
+  "contactLabel": "Contacto",
+  "mainCartLabel": "Carrito de compras",
+  "payLabel": "Pagar",
+  "totalLabel": "Total",
+  "amountLabel": "Cantidad",
+  "mainContactLabel": "Contáctanos",
+  "descriptionContactLabel": "Si tienes sugerencias, contáctate con nosotros.\n\nEstamos felices de ayudarte!!",
+  "phoneContactLabel": "+ 31 20 123 4501",
+  "emailContactLabel": "contactos@creative.com",
+  "mainSupportLabel": "Ayuda y Soporte",
+  "descriptionSupportLabel": "Bienvenido a nuestro espacio de Ayuda y Soporte.",
+  "secondarySupportLabel": "Nuestros horarios de servicio",
+  "questionSupportLabel": "¿No encontraste la respuesta a tu pregunta?",
+  "emailDescriptionSupportLabel": "Envíanos un correo",
+  "phoneDescriptionSupportLabel": "Llámanos",
+  "messageDescriptionSupportLabel": "Envíanos un mensaje",
+  "colors": {
+    "primary": "0xFFA67C72",
+    "background": "0xFFF2F2F2",
+    "secondaryBackground": "0xFFD9D9D9",
+    "neutral": "0xFFA6A6A6",
+    "accent1": "0xFFFFB347",
+    "accent2": "0xFF79C7C5",
+    "success": "0xFF5BBD72",
+    "warning": "0xFFFF7F50",
+    "error": "0xFFE57373",
+    "textPrimary": "0xFF333333"
+  },
+  "typography": {
+    "line1": {
+      "fontSize": 24.0,
+      "fontWeight": 7,
+      "color": "0xFF333333"
+    },
+    "text1": {
+      "fontSize": 16.0,
+      "fontWeight": 4,
+      "color": "0xFF333333"
+    },
+    "text2": {
+      "fontSize": 14.0,
+      "fontWeight": 4,
+      "color": "0xFF333333"
+    }
+  }
+}
+```
+#### 2. Lectura del Archivo JSON en la Aplicación de Flutter:
+Implementa la lectura del archivo JSON como asset en tu aplicación.
+
+```
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-import 'showcase/atom_showcase.dart';
-import 'showcase/molecule_showcase.dart';
-import 'showcase/organism_showcase.dart';
-import 'showcase/page_showcase.dart';
-import 'showcase/template_showcase.dart';
+class AppConfig {
+  static final AppConfig _instance = AppConfig._internal();
+  late final Map<String, dynamic> config;
+  late final bool useJsonConfig;
 
-void main() {
+  factory AppConfig() {
+    return _instance;
+  }
+
+  AppConfig._internal();
+
+  Future<void> load(String path, {bool useJsonConfig = true}) async {
+    this.useJsonConfig = useJsonConfig;
+    if (useJsonConfig) {
+      final jsonString = await rootBundle.loadString(path);
+      config = json.decode(jsonString);
+    } else {
+      config = {};
+    }
+  }
+
+  String getString(String key, String defaultValue) {
+    return useJsonConfig
+        ? (config[key] as String? ?? defaultValue)
+        : defaultValue;
+  }
+
+  int getInt(String key, int defaultValue) {
+    return useJsonConfig ? (config[key] as int? ?? defaultValue) : defaultValue;
+  }
+
+  double getDouble(String key, double defaultValue) {
+    return useJsonConfig
+        ? (config[key] as double? ?? defaultValue)
+        : defaultValue;
+  }
+
+  Color getColor(String key, Color defaultValue) {
+    if (useJsonConfig) {
+      final colorString = config[key] as String?;
+      if (colorString != null && colorString.startsWith('0x')) {
+        return Color(int.parse(colorString));
+      }
+    }
+    return defaultValue;
+  }
+
+  Duration getDuration(String key, Duration defaultValue) {
+    return useJsonConfig
+        ? Duration(
+            milliseconds:
+                config['durations'][key] ?? defaultValue.inMilliseconds)
+        : defaultValue;
+  }
+
+  IconData getIcon(String key, IconData defaultValue) {
+    return useJsonConfig
+        ? IconData(config[key], fontFamily: 'MaterialIcons')
+        : defaultValue;
+  }
+
+  Radius getRadius(String key, Radius defaultValue) {
+    return useJsonConfig
+        ? Radius.circular(config[key] as double? ?? defaultValue.x)
+        : defaultValue;
+  }
+
+  TextStyle getTextStyle(String key, TextStyle defaultValue) {
+    if (useJsonConfig) {
+      final styleConfig = config[key] as Map<String, dynamic>? ?? {};
+      return TextStyle(
+        fontSize: styleConfig['fontSize']?.toDouble() ?? defaultValue.fontSize,
+        fontWeight: FontWeight.values[
+            styleConfig['fontWeight'] ?? defaultValue.fontWeight?.index ?? 0],
+      );
+    } else {
+      return defaultValue;
+    }
+  }
+}
+```
+### 3. Uso de los Datos Parametrizados:
+
+Usa los datos json parametrizados que se inicializa en el main de la aplicación, y este reemplaza los tokens predeterminados del paquete.
+
+```
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeApp(path: 'assets/app_config.json', useJsonConfig: true);
   runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Mosaic Flair Showcase',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const ShowcaseHomePage(),
-    );
-  }
-}
-
-class ShowcaseHomePage extends StatelessWidget {
-  const ShowcaseHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mosaic Flair Showcase'),
-      ),
-      body: ListView(
-        children: [
-          ListTile(
-            title: const Text('Atoms Showcase'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AtomsShowcase()),
-            ),
-          ),
-          ListTile(
-            title: const Text('Molecules Showcase'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const MoleculeShowcase()),
-            ),
-          ),
-          ListTile(
-            title: const Text('Organisms Showcase'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const OrganismShowcase()),
-            ),
-          ),
-          ListTile(
-            title: const Text('Templates Showcase'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const TemplateShowcase()),
-            ),
-          ),
-          ListTile(
-            title: const Text('Pages Showcase'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const PageShowcase()),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
 ```
 <a name="tests"></a>
@@ -184,6 +295,7 @@ lib/
 │   ├── radius_foundation.dart
 │   ├── spacing_foundation.dart
 │   ├── theme_foundation.dart
+│   ├── strings_foundation.dart
 │   └── typography_foundation.dart
 ├── molecules/                 # Combinaciones de átomos
 │   ├── appbar.dart
@@ -219,6 +331,7 @@ lib/
     ├── radius.dart
     ├── spacing.dart
     ├── themes.dart
+    ├── strings.dart
     └── typography.dart
 ```
 <a name="ejemplo"></a>

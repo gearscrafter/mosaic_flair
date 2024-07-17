@@ -82,18 +82,21 @@ class _HomeTemplateState extends State<HomeTemplate> {
                   height: 90,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: paddingMediumDimension),
+                  padding: EdgeInsets.only(left: paddingMediumDimension),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppText(
-                        text: 'Hola , ${widget.userName ?? 'Usuario'}',
-                        style: const TextStyle(
+                        text:
+                            '$greetingsLabelString${widget.userName ?? 'Usuario'}',
+                        textColor: textColorPrimary,
+                        style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: fontSizeLargeDimension),
                       ),
-                      const AppText(
-                        text: 'Ordena tu producto favorito',
+                      AppText(
+                        textColor: textColorPrimary,
+                        text: orderYourProductLabelString,
                       ),
                     ],
                   ),
@@ -110,30 +113,32 @@ class _HomeTemplateState extends State<HomeTemplate> {
                               image: null,
                               percentage: 30)
                         ]),
-                const SizedBox(
+                SizedBox(
                   height: paddingMediumDimension,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: paddingMediumDimension),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: paddingMediumDimension),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const AppText(
-                        text: 'Popular',
+                      AppText(
+                        text: popularSectionLabelString,
+                        textColor: textColorPrimary,
                         sizeText: SizeText.L,
                         fontWeight: FontWeight.bold,
                       ),
                       GestureDetector(
                         onTap: widget.onTapSeeMore,
-                        child: const AppText(
-                          text: 'Ver más',
+                        child: AppText(
+                          textColor: textColorPrimary,
+                          text: seeMoreSectionLabelString,
                         ),
                       )
                     ],
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: paddingMediumDimension,
                 ),
                 SizedBox(
@@ -143,64 +148,64 @@ class _HomeTemplateState extends State<HomeTemplate> {
                     onTapProductSelected: widget.onTapProductSelected,
                     productSelected: widget.productSelected,
                     products: widget.products ??
-                        const [
-                          ProductCard(
+                        [
+                          const ProductCard(
                             id: 1,
                             title: 'Product 1',
                             category: 'category',
                             image: null,
                             price: 29.99,
                           ),
-                          ProductCard(
+                          const ProductCard(
                             id: 2,
                             title: 'Product 2',
                             category: 'category',
                             image: null,
                             price: 49.99,
                           ),
-                          ProductCard(
+                          const ProductCard(
                             id: 3,
                             title: 'Product 3',
                             category: 'category',
                             image: null,
                             price: 49.99,
                           ),
-                          ProductCard(
+                          const ProductCard(
                             id: 4,
                             title: 'Product 4',
                             category: 'category',
                             image: null,
                             price: 49.99,
                           ),
-                          ProductCard(
+                          const ProductCard(
                             id: 5,
                             title: 'Product 5',
                             category: 'category',
                             image: null,
                             price: 49.99,
                           ),
-                          ProductCard(
+                          const ProductCard(
                             id: 6,
                             title: 'Product 6',
                             category: 'category',
                             image: null,
                             price: 49.99,
                           ),
-                          ProductCard(
+                          const ProductCard(
                             id: 7,
                             title: 'Product 7',
                             category: 'category',
                             image: null,
                             price: 49.99,
                           ),
-                          ProductCard(
+                          const ProductCard(
                             id: 8,
                             title: 'Product 8',
                             category: 'category',
                             image: null,
                             price: 49.99,
                           ),
-                          ProductCard(
+                          const ProductCard(
                             id: 9,
                             title: 'Product 9',
                             category: 'category',

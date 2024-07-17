@@ -36,7 +36,7 @@ class SearchBarM extends StatelessWidget {
       onChanged: onSearch,
       decoration: InputDecoration(
         hintText: hintText,
-        prefixIcon: const Icon(
+        prefixIcon: Icon(
           searchIcon,
           size: 35,
         ),
@@ -46,7 +46,7 @@ class SearchBarM extends StatelessWidget {
         ),
         filled: true,
         fillColor: backgroundColor,
-        contentPadding: const EdgeInsets.symmetric(
+        contentPadding: EdgeInsets.symmetric(
           horizontal: paddingMediumDimension,
           vertical: paddingMediumDimension,
         ),

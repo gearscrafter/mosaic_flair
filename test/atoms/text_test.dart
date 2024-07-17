@@ -8,9 +8,10 @@ void main() {
     const testText = 'Test Text';
 
     await tester.pumpWidget(
-      const MaterialApp(
+      MaterialApp(
         home: Scaffold(
           body: AppText(
+            textColor: textColorPrimary,
             text: testText,
           ),
         ),
@@ -25,11 +26,12 @@ void main() {
     const customStyle = TextStyle(color: Colors.red, fontSize: 24);
 
     await tester.pumpWidget(
-      const MaterialApp(
+      MaterialApp(
         home: Scaffold(
           body: AppText(
             text: testText,
             style: customStyle,
+            textColor: textColorPrimary,
           ),
         ),
       ),
@@ -45,13 +47,25 @@ void main() {
     const testText = 'Size Text';
 
     await tester.pumpWidget(
-      const MaterialApp(
+      MaterialApp(
         home: Scaffold(
           body: Column(
             children: [
-              AppText(text: testText, sizeText: SizeText.S),
-              AppText(text: testText, sizeText: SizeText.M),
-              AppText(text: testText, sizeText: SizeText.L),
+              AppText(
+                text: testText,
+                sizeText: SizeText.S,
+                textColor: textColorPrimary,
+              ),
+              AppText(
+                text: testText,
+                sizeText: SizeText.M,
+                textColor: textColorPrimary,
+              ),
+              AppText(
+                text: testText,
+                sizeText: SizeText.L,
+                textColor: textColorPrimary,
+              ),
             ],
           ),
         ),

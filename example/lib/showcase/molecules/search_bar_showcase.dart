@@ -12,7 +12,7 @@ class SearchBarShowcase extends StatelessWidget {
         children: [
           const SizedBox(height: 16.0),
           Padding(
-            padding: const EdgeInsets.all(paddingMediumDimension),
+            padding: EdgeInsets.all(paddingMediumDimension),
             child: SearchBarM(
               controller: TextEditingController(text: 'buscando...'),
               hintText: 'buscador',

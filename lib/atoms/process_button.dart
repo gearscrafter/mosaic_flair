@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '../foundation/dimension_foundation.dart';
 import 'icon.dart';
 import '../foundation/color_foundation.dart';
 
@@ -130,10 +131,11 @@ class _ProcessButtonState extends State<ProcessButton>
                   offset: Offset(_animation.value * spaceButton, 0),
                   child: Transform.rotate(
                     angle: -pi * 2 * _animation.value,
-                    child: const AppIcon(
+                    child: AppIcon(
                       iconData: Icons.arrow_back,
                       color: backgroundColor,
                       backgroundColor: primaryColor,
+                      size: paddingLargeDimension,
                     ),
                   ),
                 );
@@ -152,6 +154,7 @@ class _ProcessButtonState extends State<ProcessButton>
                       iconData: widget.iconData ?? Icons.bookmark_outline_sharp,
                       color: backgroundColor,
                       backgroundColor: primaryColor,
+                      size: paddingLargeDimension,
                     ),
                   ),
                 );
@@ -163,8 +166,8 @@ class _ProcessButtonState extends State<ProcessButton>
               animation: _controller,
               builder: (context, child) {
                 return Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
                     color: primaryColor,
                   ),
                   height: 40,
@@ -184,7 +187,7 @@ class _ProcessButtonState extends State<ProcessButton>
                         widget.steps?[_currentIndex] ?? '',
                         key: ValueKey<String>(
                             widget.steps?[_currentIndex] ?? ''),
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: backgroundColor,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

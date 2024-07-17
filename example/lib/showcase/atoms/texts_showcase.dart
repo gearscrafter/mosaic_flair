@@ -10,38 +10,47 @@ class TextsShowcase extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Tipos de texto'),
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppText(text: 'Texto de ejemplo - Estilo predeterminado'),
-            SizedBox(height: 16.0),
+            AppText(
+              text: 'Texto de ejemplo - Estilo predeterminado',
+              textColor: textColorPrimary,
+            ),
+            const SizedBox(height: 16.0),
             AppText(
               text: 'Texto grande',
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              textColor: textColorPrimary,
+              style:
+                  const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             AppText(
               text: 'Texto mediano',
-              style: TextStyle(fontSize: 18.0),
+              textColor: textColorPrimary,
+              style: const TextStyle(fontSize: 18.0),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             AppText(
               text: 'Texto pequeño',
-              style: TextStyle(fontSize: 14.0),
+              textColor: textColorPrimary,
+              style: const TextStyle(fontSize: 14.0),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             AppText(
               text: 'Texto en cursiva',
-              style: TextStyle(fontStyle: FontStyle.italic),
+              textColor: textColorPrimary,
+              style: const TextStyle(fontStyle: FontStyle.italic),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             AppText(
               isRichText: true,
-              textSpans: [
+              textColor: textColorPrimary,
+              textSpans: const [
                 TextSpan(
                   text: 'Esta es una ',
                   style: TextStyle(fontSize: 16.0),

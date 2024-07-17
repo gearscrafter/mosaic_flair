@@ -72,7 +72,7 @@ class ProductDetail extends StatelessWidget {
           child: Text(
             '\$ ${price.toStringAsFixed(2)}',
             overflow: TextOverflow.fade,
-            style: const TextStyle(
+            style: TextStyle(
                 fontSize: fontSizeLargeDimension,
                 color: primaryColor,
                 fontWeight: FontWeight.w600),

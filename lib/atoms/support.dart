@@ -38,8 +38,7 @@ class Support extends StatelessWidget {
         border: Border.all(
           color: accentColor1,
         ),
-        borderRadius:
-            const BorderRadius.all(Radius.circular(borderRadiusDimensions)),
+        borderRadius: BorderRadius.all(Radius.circular(borderRadiusDimensions)),
       ),
 
       /// Contenido del ListTile con ícono, etiqueta y funcionalidad de clic.
@@ -48,7 +47,10 @@ class Support extends StatelessWidget {
         leading: Icon(icon),
 
         /// Etiqueta del soporte.
-        title: AppText(text: label),
+        title: AppText(
+          text: label,
+          textColor: textColorPrimary,
+        ),
 
         /// Función que se ejecuta cuando se hace clic en el ListTile.
         onTap: () {

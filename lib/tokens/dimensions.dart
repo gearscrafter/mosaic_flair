@@ -1,9 +1,14 @@
-const double paddingSmall = 8.0;
-const double paddingMedium = 16.0;
-const double paddingLarge = 24.0;
+// lib/foundation/dimension_foundation.dart
+import '../core/app_config.dart';
 
-const double fontSizeSmall = 14.0;
-const double fontSizeMedium = 18.0;
-const double fontSizeLarge = 24.0;
+final appConfig = AppConfig();
 
-const double borderRadius = 8.0;
+final double paddingSmall = appConfig.getDouble('paddingSmall', 8.0);
+final double paddingMedium = appConfig.getDouble('paddingMedium', 16.0);
+final double paddingLarge = appConfig.getDouble('paddingLarge', 24.0);
+
+final double fontSizeSmall = appConfig.getDouble('fontSizeSmall', 14.0);
+final double fontSizeMedium = appConfig.getDouble('fontSizeMedium', 18.0);
+final double fontSizeLarge = appConfig.getDouble('fontSizeLarge', 24.0);
+
+final double borderRadius = appConfig.getDouble('borderRadius', 8.0);

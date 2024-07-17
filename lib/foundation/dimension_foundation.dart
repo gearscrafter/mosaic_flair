@@ -1,11 +1,11 @@
 import '../tokens/dimensions.dart';
 
-const double paddingSmallDimension = paddingSmall;
-const double paddingMediumDimension = paddingMedium;
-const double paddingLargeDimension = paddingLarge;
+double paddingSmallDimension = paddingSmall;
+double paddingMediumDimension = paddingMedium;
+double paddingLargeDimension = paddingLarge;
 
-const double fontSizeSmallDimension = fontSizeSmall;
-const double fontSizeMediumDimension = fontSizeMedium;
-const double fontSizeLargeDimension = fontSizeLarge;
+double fontSizeSmallDimension = fontSizeSmall;
+double fontSizeMediumDimension = fontSizeMedium;
+double fontSizeLargeDimension = fontSizeLarge;
 
-const double borderRadiusDimensions = borderRadius;
+double borderRadiusDimensions = borderRadius;

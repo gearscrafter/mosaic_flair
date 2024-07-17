@@ -3,6 +3,7 @@ import '../atoms/icon.dart';
 import '../atoms/text.dart';
 import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
+import '../foundation/strings_foundation.dart';
 import '../organisms/login_form.dart';
 
 /// `LoginTemplate` es una plantilla de inicio de sesión que presenta un formulario de inicio de sesión
@@ -48,9 +49,9 @@ class LoginTemplate extends StatelessWidget {
                       height: size.height * 0.2,
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(paddingLargeDimension),
+                      padding: EdgeInsets.all(paddingLargeDimension),
                       child: Container(
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                             color: backgroundColor,
                             borderRadius: BorderRadius.all(
                                 Radius.circular(borderRadiusDimensions))),
@@ -61,18 +62,18 @@ class LoginTemplate extends StatelessWidget {
                             SizedBox(
                               height: size.height * 0.05,
                             ),
-                            const Padding(
+                            Padding(
                               padding:
                                   EdgeInsets.only(left: paddingLargeDimension),
                               child: AppText(
-                                text: 'Bienvenido',
-                                style: TextStyle(
+                                textColor: textColorPrimary,
+                                text: mainLoginLabelString,
+                                style: const TextStyle(
                                     fontSize: 24, fontWeight: FontWeight.bold),
                               ),
                             ),
                             Container(
-                              padding:
-                                  const EdgeInsets.all(paddingLargeDimension),
+                              padding: EdgeInsets.all(paddingLargeDimension),
                               child: SingleChildScrollView(
                                 child: Column(
                                   mainAxisAlignment:
@@ -106,7 +107,7 @@ class LoginTemplate extends StatelessWidget {
                                       onTap: onTapWithoutAccount,
                                       child: Container(
                                         width: double.infinity,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                           border: Border(
                                             top: BorderSide(
                                               color: primaryColor,
@@ -114,11 +115,11 @@ class LoginTemplate extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        child: const Padding(
+                                        child: Padding(
                                           padding: EdgeInsets.only(
                                               top: paddingLargeDimension),
                                           child: Text(
-                                            '¿Aún no tienes una cuenta?',
+                                            withoutAccountLabelString,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: primaryColor,
@@ -145,7 +146,7 @@ class LoginTemplate extends StatelessWidget {
                       top: size.height * 0.15,
                       left: 0,
                       right: 0,
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.only(left: paddingLargeDimension),
                         child: AppIcon(
                           iconData: Icons.all_inclusive_rounded,

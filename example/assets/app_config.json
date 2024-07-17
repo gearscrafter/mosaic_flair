@@ -1,0 +1,81 @@
+{
+    "durations": {
+      "short": 200,
+      "medium": 400,
+      "long": 600
+    },
+    "paddingSmall": 8.0,
+    "paddingMedium": 16.0,
+    "paddingLarge": 24.0,
+    "fontSizeSmall": 14.0,
+    "fontSizeMedium": 18.0,
+    "fontSizeLarge": 24.0,
+    "borderRadius": 8.0,
+    "mainLoginLabel": "Bienvenido",
+    "withoutAccountLabel": "¿Aún no tienes una cuenta?",
+    "userLoginLabel": "Username",
+    "passwordLoginLabel": "Password",
+    "buttonLoginLabel": "Login",
+    "mainRegisterLabel": "Registrate",
+    "emailRegisterLabel": "Email",
+    "nicknameRegisterLabel": "Nombre de usuario",
+    "passwordRegisterLabel": "Password",
+    "userRegisterLabel": "Nombres",
+    "lastnameRegisterLabel": "Apellidos",
+    "cellphoneRegisterLabel": "Telefono",
+    "buttonRegisterLabel": "Registrarse",
+    "greetingsLabel": "Hola, ",
+    "orderYourProductLabel": "Ordena tu producto favorito",
+    "popularSectionLabel": "Popular",
+    "seeMoreSectionLabel": "Ver más",
+    "menuLabel": "Menu",
+    "homeLabel": "Home",
+    "productLabel": "Productos",
+    "supportLabel": "Soporte",
+    "contactLabel": "Contacto",
+    "mainCartLabel": "Carrito de compras",
+    "payLabel": "Pagar",
+    "totalLabel": "Total",
+    "amountLabel": "Cantidad",
+    "mainContactLabel": "Contáctanos",
+    "descriptionContactLabel": "Si tienes sugerencias, contáctate con nosotros.\n\nEstamos felices de ayudarte!!",
+    "phoneContactLabel": "+ 31 20 123 4501",
+    "emailContactLabel": "contactos@creative.com",
+    "mainSupportLabel": "Ayuda y Soporte",
+    "descriptionSupportLabel": "Bienvenido a nuestro espacio de Ayuda y Soporte.",
+    "secondarySupportLabel": "Nuestros horarios de servicio",
+    "questionSupportLabel": "¿No encontraste la respuesta a tu pregunta?",
+    "emailDescriptionSupportLabel": "Envíanos un correo",
+    "phoneDescriptionSupportLabel": "Llámanos",
+    "messageDescriptionSupportLabel": "Envíanos un mensaje",
+    "colors": {
+      "primary": "0xFFA67C72",
+      "background": "0xFFF2F2F2",
+      "secondaryBackground": "0xFFD9D9D9",
+      "neutral": "0xFFA6A6A6",
+      "accent1": "0xFFFFB347",
+      "accent2": "0xFF79C7C5",
+      "success": "0xFF5BBD72",
+      "warning": "0xFFFF7F50",
+      "error": "0xFFE57373",
+      "textPrimary": "0xFF333333"
+    },
+    "typography": {
+      "line1": {
+        "fontSize": 24.0,
+        "fontWeight": 7,
+        "color": "0xFF333333"
+      },
+      "text1": {
+        "fontSize": 16.0,
+        "fontWeight": 4,
+        "color": "0xFF333333"
+      },
+      "text2": {
+        "fontSize": 14.0,
+        "fontWeight": 4,
+        "color": "0xFF333333"
+      }
+    }
+  }
+  

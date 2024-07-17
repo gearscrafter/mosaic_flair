@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import '../atoms/support.dart';
 import '../atoms/text.dart';
 import '../data/support_data.dart';
+import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
+import '../foundation/strings_foundation.dart';
 
 /// `SupportTemplate` es una plantilla que proporciona información y soporte al usuario.
 ///
@@ -28,24 +30,27 @@ class SupportTemplate extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const AppText(
-          text: 'Ayuda y Soporte',
+        title: AppText(
+          textColor: textColorPrimary,
+          text: mainSupportLabelString,
           sizeText: SizeText.L,
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(paddingLargeDimension),
+        padding: EdgeInsets.all(paddingLargeDimension),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const AppText(
-                text: 'Bienvenido a nuestro espacio de Ayuda y Soporte.',
+              AppText(
+                textColor: textColorPrimary,
+                text: descriptionSupportLabelString,
                 sizeText: SizeText.M,
               ),
               SizedBox(height: size.height * 0.05),
-              const AppText(
-                text: 'Nuestros horarios de servicio:',
+              AppText(
+                textColor: textColorPrimary,
+                text: secondarySupportLabelString,
                 fontWeight: FontWeight.bold,
               ),
               SizedBox(height: size.height * 0.01),
@@ -53,30 +58,32 @@ class SupportTemplate extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: (schedulesList ?? workSchedules)
                     .map((item) => AppText(
+                          textColor: textColorPrimary,
                           text: ' - $item',
                         ))
                     .toList(),
               ),
               SizedBox(height: size.height * 0.05),
-              const AppText(
-                text: '¿No encontraste la respuesta a tu pregunta?',
+              AppText(
+                textColor: textColorPrimary,
+                text: questionSupportLabelString,
                 fontWeight: FontWeight.bold,
               ),
               SizedBox(height: size.height * 0.03),
               Support(
-                label: email ?? 'Envíanos un correo',
+                label: email ?? emailDescriptionSupportLabelString,
                 icon: Icons.email,
                 info: 'Correo electrónico copiado al portapapeles.',
               ),
               SizedBox(height: size.height * 0.03),
               Support(
-                label: phone ?? 'Llámanos',
+                label: phone ?? phoneDescriptionSupportLabelString,
                 icon: Icons.phone,
                 info: '+1 123 456 7890',
               ),
               SizedBox(height: size.height * 0.03),
               Support(
-                label: message ?? 'Envíanos un mensaje',
+                label: message ?? messageDescriptionSupportLabelString,
                 icon: Icons.message_rounded,
                 info: 'Escribiendo...',
               ),

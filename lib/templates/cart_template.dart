@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../data/cart_data.dart';
+import '../foundation/strings_foundation.dart';
 import '../organisms/cart_summary.dart';
 
 /// `CartTemplate` es un widget que representa la plantilla del carrito de compras.
@@ -32,8 +33,8 @@ class CartTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Carrito de compras',
+        title: Text(
+          mainCartLabelString,
         ),
         centerTitle: true,
       ),

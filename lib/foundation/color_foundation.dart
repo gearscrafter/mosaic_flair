@@ -1,15 +1,17 @@
+import 'package:flutter/material.dart';
+
 import '../tokens/colors.dart';
 
-const primaryColor = primary;
-const backgroundColor = background;
-const secondaryBackgroundColor = secondaryBackground;
-const neutralColor = neutral;
+Color primaryColor = primary;
+Color backgroundColor = background;
+Color secondaryBackgroundColor = secondaryBackground;
+Color neutralColor = neutral;
 
-const accentColor1 = accent1;
-const accentColor2 = accent2;
+Color accentColor1 = accent1;
+Color accentColor2 = accent2;
 
-const successColor = success;
-const warningColor = warning;
-const errorColor = error;
+Color successColor = success;
+Color warningColor = warning;
+Color errorColor = error;
 
-const textColorPrimary = textPrimary;
+Color textColorPrimary = textPrimary;

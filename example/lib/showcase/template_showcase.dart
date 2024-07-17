@@ -34,7 +34,10 @@ class TemplateShowcase extends StatelessWidget {
           children: [
             /// Elemento de la lista que navega a la pantalla `LoginTemplateShowcase`.
             ListTile(
-              title: const AppText(text: 'Login Template'),
+              title: AppText(
+                text: 'Login Template',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -46,7 +49,10 @@ class TemplateShowcase extends StatelessWidget {
 
             /// Elemento de la lista que navega a la pantalla `RegisterTemplateShowcase`.
             ListTile(
-              title: const AppText(text: 'Registro Template'),
+              title: AppText(
+                text: 'Registro Template',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -58,7 +64,10 @@ class TemplateShowcase extends StatelessWidget {
 
             /// Elemento de la lista que navega a la pantalla `HomeTemplateShowcase`.
             ListTile(
-              title: const AppText(text: 'Home Template'),
+              title: AppText(
+                text: 'Home Template',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -70,7 +79,10 @@ class TemplateShowcase extends StatelessWidget {
 
             /// Elemento de la lista que navega a la pantalla `CatalogTemplateShowcase`.
             ListTile(
-              title: const AppText(text: 'Catalogo Template'),
+              title: AppText(
+                text: 'Catalogo Template',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -82,7 +94,10 @@ class TemplateShowcase extends StatelessWidget {
 
             /// Elemento de la lista que navega a la pantalla `SearchTemplateShowcase`.
             ListTile(
-              title: const AppText(text: 'Búsqueda Template'),
+              title: AppText(
+                text: 'Búsqueda Template',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -94,7 +109,10 @@ class TemplateShowcase extends StatelessWidget {
 
             /// Elemento de la lista que navega a la pantalla `DetailTemplateShowcase`.
             ListTile(
-              title: const AppText(text: 'Detalle del producto Template'),
+              title: AppText(
+                text: 'Detalle del producto Template',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -106,7 +124,10 @@ class TemplateShowcase extends StatelessWidget {
 
             /// Elemento de la lista que navega a la pantalla `CartTemplateShowcase`.
             ListTile(
-              title: const AppText(text: 'Carrito de compras Template'),
+              title: AppText(
+                text: 'Carrito de compras Template',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -118,7 +139,10 @@ class TemplateShowcase extends StatelessWidget {
 
             /// Elemento de la lista que navega a la pantalla `ContactTemplateShowcase`.
             ListTile(
-              title: const AppText(text: 'Contacto Template'),
+              title: AppText(
+                text: 'Contacto Template',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -130,7 +154,10 @@ class TemplateShowcase extends StatelessWidget {
 
             /// Elemento de la lista que navega a la pantalla `SupportTemplateShowcase`.
             ListTile(
-              title: const AppText(text: 'Soporte Template'),
+              title: AppText(
+                text: 'Soporte Template',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,

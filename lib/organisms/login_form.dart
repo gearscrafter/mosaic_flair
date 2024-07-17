@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../atoms/button.dart';
 import '../atoms/input.dart';
+import '../foundation/strings_foundation.dart';
 
 /// `LoginForm` es un widget que representa un formulario de inicio de sesión.
 ///
@@ -48,20 +49,20 @@ class LoginForm extends StatelessWidget {
     return Column(
       children: [
         AppInput(
-          hintText: 'Username',
+          hintText: userLoginLabelString,
           controller: usernameController,
           colorInput: colorInput,
         ),
         const SizedBox(height: 16),
         AppInput(
-          hintText: 'Password',
+          hintText: passwordLoginLabelString,
           controller: passwordController,
           obscureText: true,
           colorInput: colorInput,
         ),
         const SizedBox(height: 100),
         AppButton(
-          label: 'Login',
+          label: buttonLoginLabelString,
           onPressed: onLogin,
           backColor: backgroundColor,
           labelColor: labelColor,

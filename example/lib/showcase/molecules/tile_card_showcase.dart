@@ -9,7 +9,7 @@ class TileCardShowcase extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(paddingMediumDimension),
+        padding: EdgeInsets.all(paddingMediumDimension),
         child: TileCard(
           title: 'producto',
           height: 80,

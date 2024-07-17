@@ -31,7 +31,10 @@ class OrganismShowcase extends StatelessWidget {
           children: [
             /// Elemento de la lista que navega a la pantalla `CartSummaryShowcase`.
             ListTile(
-              title: const AppText(text: 'Resumen de carrito de compras'),
+              title: AppText(
+                text: 'Resumen de carrito de compras',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -43,7 +46,10 @@ class OrganismShowcase extends StatelessWidget {
 
             /// Elemento de la lista que navega a la pantalla `LoginFormShowcase`.
             ListTile(
-              title: const AppText(text: 'Formulario de Login'),
+              title: AppText(
+                text: 'Formulario de Login',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -55,7 +61,10 @@ class OrganismShowcase extends StatelessWidget {
 
             /// Elemento de la lista que navega a la pantalla `ProductDetailShowcase`.
             ListTile(
-              title: const AppText(text: 'Detalle del producto'),
+              title: AppText(
+                text: 'Detalle del producto',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -67,7 +76,10 @@ class OrganismShowcase extends StatelessWidget {
 
             /// Elemento de la lista que navega a la pantalla `ProductListShowcase`.
             ListTile(
-              title: const AppText(text: 'Listado de productos'),
+              title: AppText(
+                text: 'Listado de productos',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,
@@ -79,7 +91,10 @@ class OrganismShowcase extends StatelessWidget {
 
             /// Elemento de la lista que navega a la pantalla `SynchronousTabBarShowcase`.
             ListTile(
-              title: const AppText(text: 'TabBar productos'),
+              title: AppText(
+                text: 'TabBar productos',
+                textColor: textColorPrimary,
+              ),
               onTap: () {
                 Navigator.push(
                   context,

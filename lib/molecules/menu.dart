@@ -3,6 +3,7 @@ import '../atoms/icon.dart';
 import '../atoms/text.dart';
 import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
+import '../foundation/strings_foundation.dart';
 
 /// `Menu` es un widget de menú personalizado que se puede abrir y cerrar con una animación.
 ///
@@ -85,7 +86,7 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
                 child: Container(
                   height: 10,
                   width: 10,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: primaryColor,
                     shape: BoxShape.circle,
                   ),
@@ -107,51 +108,51 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const AppText(
+                      AppText(
                         text: '*',
                         textColor: backgroundColor,
                       ),
-                      const SizedBox(width: paddingMediumDimension),
+                      SizedBox(width: paddingMediumDimension),
                       AppText(
-                        text: 'Menu',
+                        text: menuLabelString,
                         textColor: backgroundColor.withOpacity(0.5),
                       ),
                       const SizedBox(width: 10),
-                      const AppText(
+                      AppText(
                         text: '*',
                         textColor: backgroundColor,
                       ),
                     ],
                   ),
-                  const SizedBox(height: paddingLargeDimension),
+                  SizedBox(height: paddingLargeDimension),
                   widget.isHome
                       ? GestureDetector(
                           onTap: widget.onTapHome,
-                          child: const AppText(
-                            text: 'Home',
+                          child: AppText(
+                            text: homeLabelString,
                             textColor: backgroundColor,
                           ),
                         )
                       : GestureDetector(
                           onTap: widget.onTapProducts,
-                          child: const AppText(
-                            text: 'Productos',
+                          child: AppText(
+                            text: productLabelString,
                             textColor: backgroundColor,
                           ),
                         ),
-                  const SizedBox(height: paddingLargeDimension),
+                  SizedBox(height: paddingLargeDimension),
                   GestureDetector(
                     onTap: widget.onTapSupport,
-                    child: const AppText(
-                      text: 'Soporte',
+                    child: AppText(
+                      text: supportLabelString,
                       textColor: backgroundColor,
                     ),
                   ),
-                  const SizedBox(height: paddingLargeDimension),
+                  SizedBox(height: paddingLargeDimension),
                   GestureDetector(
                     onTap: widget.onTapContact,
-                    child: const AppText(
-                      text: 'Contacto',
+                    child: AppText(
+                      text: contactLabelString,
                       textColor: backgroundColor,
                     ),
                   ),
@@ -192,6 +193,7 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
                     color: _isShowOverlay ? primaryColor : backgroundColor,
                     backgroundColor:
                         _isShowOverlay ? backgroundColor : primaryColor,
+                    size: paddingLargeDimension,
                   ),
                 ),
               ),

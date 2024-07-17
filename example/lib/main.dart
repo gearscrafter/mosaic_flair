@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:mosaic_flair/mosaic_flair.dart';
 import 'showcase/atom_showcase.dart';
 import 'showcase/molecule_showcase.dart';
 import 'showcase/organism_showcase.dart';
 import 'showcase/page_showcase.dart';
 import 'showcase/template_showcase.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeApp(path: 'assets/app_config.json', useJsonConfig: true);
   runApp(const MyApp());
 }
 

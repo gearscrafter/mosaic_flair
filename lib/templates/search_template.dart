@@ -101,7 +101,7 @@ class _SearchTemplateState extends State<SearchTemplate> {
                 height: 32,
               ),
               Padding(
-                padding: const EdgeInsets.only(
+                padding: EdgeInsets.only(
                   left: paddingMediumDimension,
                   right: paddingMediumDimension,
                 ),
@@ -112,8 +112,8 @@ class _SearchTemplateState extends State<SearchTemplate> {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: paddingLargeDimension),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: paddingLargeDimension),
                   child: NotificationListener<ScrollNotification>(
                     onNotification: (ScrollNotification notification) {
                       setState(() {
@@ -136,8 +136,8 @@ class _SearchTemplateState extends State<SearchTemplate> {
                               itemBuilder: (context, index) {
                                 final item = filteredList[index];
                                 return Padding(
-                                  padding: const EdgeInsets.all(
-                                      paddingSmallDimension),
+                                  padding:
+                                      EdgeInsets.all(paddingSmallDimension),
                                   child: TileCard(
                                     height: 100,
                                     title: item.title,

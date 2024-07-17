@@ -10,9 +10,9 @@ class IconsShowcase extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Iconos'),
       ),
-      body: const Center(
+      body: Center(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Wrap(
             spacing: 16.0,
             runSpacing: 16.0,
@@ -22,30 +22,37 @@ class IconsShowcase extends StatelessWidget {
               AppIcon(
                 iconData: Icons.home,
                 color: primaryColor,
+                size: paddingLargeDimension,
               ),
               AppIcon(
                 iconData: Icons.star,
                 color: primaryColor,
+                size: paddingLargeDimension,
               ),
               AppIcon(
                 iconData: Icons.shopping_cart,
                 color: backgroundColor,
+                size: paddingLargeDimension,
               ),
               AppIcon(
                 iconData: Icons.favorite,
                 color: warningColor,
+                size: paddingLargeDimension,
               ),
               AppIcon(
                 iconData: Icons.search,
                 color: successColor,
+                size: paddingLargeDimension,
               ),
               AppIcon(
                 iconData: Icons.filter_alt_rounded,
                 color: accentColor1,
+                size: paddingLargeDimension,
               ),
               AppIcon(
                 iconData: Icons.account_circle,
                 color: accentColor2,
+                size: paddingLargeDimension,
               ),
             ],
           ),

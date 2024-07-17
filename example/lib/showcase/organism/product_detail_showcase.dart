@@ -9,7 +9,10 @@ class ProductDetailShowcase extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: const AppText(text: 'Product Detail'),
+        title: AppText(
+          text: 'Product Detail',
+          textColor: textColorPrimary,
+        ),
         centerTitle: true,
       ),
       body: const Center(

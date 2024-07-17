@@ -107,8 +107,8 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: paddingLargeDimension),
+                padding:
+                    EdgeInsets.symmetric(horizontal: paddingLargeDimension),
                 child: ListView.builder(
                   shrinkWrap: true,
                   controller: _bloc.scrollController,
@@ -120,7 +120,7 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
                     final item = _bloc.items[index];
                     if (item.isCategory) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(
+                        padding: EdgeInsets.symmetric(
                             vertical: paddingMediumDimension,
                             horizontal: paddingSmallDimension),
                         child: CategoryItem(
@@ -131,7 +131,7 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
                       );
                     } else {
                       return Padding(
-                        padding: const EdgeInsets.all(paddingSmallDimension),
+                        padding: EdgeInsets.all(paddingSmallDimension),
                         child: TileCard(
                           title: item.product?.name,
                           price: 20,

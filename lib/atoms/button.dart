@@ -38,7 +38,7 @@ class AppButton extends StatefulWidget {
 
   /// Constructor para crear una instancia de `AppButton`.
   const AppButton({
-    this.labelColor = textColorPrimary,
+    this.labelColor = Colors.black,
     this.backColor,
     super.key,
     this.width,
@@ -124,7 +124,7 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
                 foregroundColor: widget.labelColor,
                 disabledBackgroundColor: backgroundColor,
                 elevation: 2,
-                padding: const EdgeInsets.all(paddingMediumDimension),
+                padding: EdgeInsets.all(paddingMediumDimension),
               ),
               onPressed: widget.onPressed != null
                   ? () {
@@ -145,7 +145,7 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
                   Flexible(
                     child: Text(
                       widget.label,
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: fontSizeMediumDimension,
                           fontWeight: FontWeight.w600),
                     ),
@@ -161,6 +161,7 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
                                     widget.backColor ?? backgroundColor,
                                 iconData: Icons.arrow_forward_sharp,
                                 color: textColorPrimary,
+                                size: paddingLargeDimension,
                               ),
                             );
                           })

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../foundation/color_foundation.dart';
 
 /// `AppInput` es un widget de campo de texto personalizado con opciones de personalización.
 ///
@@ -27,7 +26,7 @@ class AppInput extends StatefulWidget {
     super.key,
     required this.controller,
     required this.hintText,
-    this.colorInput = textColorPrimary,
+    this.colorInput = Colors.black,
     this.obscureText = false,
   });
 

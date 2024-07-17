@@ -26,8 +26,9 @@ class ButtonsShowcase extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 /// Ejemplo de un botón deshabilitado.
-                const AppButton(
+                AppButton(
                   onPressed: null,
+                  labelColor: textColorPrimary,
                   label: 'Botón Deshabilitado',
                 ),
                 const SizedBox(height: 24.0),
@@ -35,19 +36,26 @@ class ButtonsShowcase extends StatelessWidget {
                 /// Ejemplo de un botón habilitado.
                 AppButton(
                   onPressed: () {},
+                  labelColor: textColorPrimary,
                   label: 'Botón Habilitado',
                 ),
                 const SizedBox(height: 24.0),
 
                 /// Ejemplo de un botón desplegable con múltiples opciones.
                 AppDropdownButton(
-                  hint: const AppText(
+                  hint: AppText(
                     text: 'Botón de opciones multiples',
+                    textColor: textColorPrimary,
                   ),
                   items: [
-                    const AppText(text: 'Item 1'),
-                    const AppIcon(
+                    AppText(
+                      text: 'Item 1',
+                      textColor: textColorPrimary,
+                    ),
+                    AppIcon(
                       iconData: Icons.star,
+                      color: neutralColor,
+                      size: paddingLargeDimension,
                     ),
                     Container(
                       width: 100,

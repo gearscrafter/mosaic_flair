@@ -46,7 +46,7 @@ class _AppCarouselState extends State<AppCarousel> {
             },
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.all(paddingMediumDimension),
+                padding: EdgeInsets.all(paddingMediumDimension),
                 child: widget.items[index],
               );
             },

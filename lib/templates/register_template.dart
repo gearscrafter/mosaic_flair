@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../atoms/text.dart';
 import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
+import '../foundation/strings_foundation.dart';
 import '../organisms/register_form.dart';
 
 /// `RegisterTemplate` es una plantilla de registro que presenta un formulario
@@ -43,7 +44,7 @@ class RegisterTemplate extends StatelessWidget {
       backgroundColor: primaryColor,
       appBar: AppBar(
         backgroundColor: primaryColor,
-        leading: const BackButton(
+        leading: BackButton(
           color: backgroundColor,
         ),
       ),
@@ -56,13 +57,13 @@ class RegisterTemplate extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(paddingLargeDimension),
+                  padding: EdgeInsets.all(paddingLargeDimension),
                   child: Container(
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                         color: backgroundColor,
                         borderRadius: BorderRadius.all(
                             Radius.circular(borderRadiusDimensions))),
-                    padding: const EdgeInsets.all(paddingLargeDimension),
+                    padding: EdgeInsets.all(paddingLargeDimension),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -103,13 +104,14 @@ class RegisterTemplate extends StatelessWidget {
               ),
             ],
           ),
-          const Positioned(
+          Positioned(
             left: 20,
             top: 20,
             child: Padding(
               padding: EdgeInsets.only(left: paddingSmallDimension),
               child: AppText(
-                text: 'Registrate',
+                textColor: textColorPrimary,
+                text: mainRegisterLabelString,
                 style: TextStyle(
                     color: backgroundColor,
                     fontSize: 24,

@@ -79,12 +79,13 @@ class PromotionCard extends StatelessWidget {
                     AppText(
                       text: description,
                       sizeText: SizeText.S,
+                      textColor: textColorPrimary,
                     ),
                   Row(
                     children: [
                       Text(
                         '${percentage.toStringAsFixed(0)} %',
-                        style: const TextStyle(
+                        style: TextStyle(
                           color: primaryColor,
                           fontWeight: FontWeight.w600,
                           fontSize: 30,
@@ -94,6 +95,7 @@ class PromotionCard extends StatelessWidget {
                         AppText(
                           text: extentDescription,
                           sizeText: SizeText.M,
+                          textColor: textColorPrimary,
                           fontWeight: FontWeight.w400,
                         ),
                     ],
@@ -103,7 +105,8 @@ class PromotionCard extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.bottomLeft,
                       child: AppButton(
-                        label: 'Get it now',
+                        labelColor: textColorPrimary,
+                        label: 'Obténlo ahora',
                         width: 150,
                         onPressed: () {},
                       ),

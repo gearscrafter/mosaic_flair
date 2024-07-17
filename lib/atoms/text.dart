@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../foundation/dimension_foundation.dart';
-import '/foundation/color_foundation.dart';
 
 /// `SizeText` enum para definir tamaños de texto.
 enum SizeText { S, M, L }
@@ -55,7 +54,7 @@ class AppText extends StatelessWidget {
     this.text,
     super.key,
     this.fontWeight,
-    this.textColor = textColorPrimary,
+    this.textColor = Colors.black,
     this.isRichText = false,
     this.textSpans,
     this.maxLines,

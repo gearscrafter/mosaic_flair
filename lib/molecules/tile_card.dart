@@ -54,7 +54,7 @@ class TileCard extends StatelessWidget {
             offset: const Offset(0, 3),
           ),
         ],
-        borderRadius: const BorderRadius.all(
+        borderRadius: BorderRadius.all(
           Radius.circular(borderRadiusDimensions),
         ),
       ),
@@ -64,8 +64,9 @@ class TileCard extends StatelessWidget {
               ? AppText(
                   text: title,
                   maxLines: 1,
+                  textColor: textColorPrimary,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: fontSizeLargeDimension,
                     fontWeight: FontWeight.bold,
                     color: textColorPrimary,
@@ -88,7 +89,7 @@ class TileCard extends StatelessWidget {
           subtitle: (price != null)
               ? AppText(
                   text: '\$ $price',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: fontSizeMediumDimension,
                     fontWeight: FontWeight.bold,
                     color: primaryColor,
@@ -102,12 +103,14 @@ class TileCard extends StatelessWidget {
               disabledBackgroundColor: Colors.white,
               overlayColor: secondaryBackgroundColor,
               elevation: 2,
-              padding: const EdgeInsets.all(paddingMediumDimension),
+              padding: EdgeInsets.all(paddingMediumDimension),
             ),
             onPressed: onPressed,
-            child: const AppIcon(
+            child: AppIcon(
               backgroundColor: Colors.white,
               iconData: Icons.shopping_cart_outlined,
+              color: neutralColor,
+              size: paddingLargeDimension,
             ),
           ),
         ),

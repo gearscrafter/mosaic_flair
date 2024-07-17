@@ -3,6 +3,7 @@ import 'package:mosaic_flair/foundation/color_foundation.dart';
 
 import '../atoms/button.dart';
 import '../atoms/input.dart';
+import '../foundation/strings_foundation.dart';
 
 /// `RegisterForm` es un widget que representa un formulario de registro.
 ///
@@ -69,44 +70,44 @@ class RegisterForm extends StatelessWidget {
     return Column(
       children: [
         AppInput(
-          hintText: 'Email',
+          hintText: emailRegisterLabelString,
           controller: emailController,
           colorInput: colorInput,
         ),
         const SizedBox(height: 16),
         AppInput(
-          hintText: 'Nombre de usuario',
+          hintText: nicknameRegisterLabelString,
           controller: usernameController,
           colorInput: colorInput,
         ),
         const SizedBox(height: 16),
         AppInput(
-          hintText: 'Password',
+          hintText: passwordRegisterLabelString,
           controller: passwordController,
           colorInput: colorInput,
         ),
         const SizedBox(height: 16),
         AppInput(
-          hintText: 'Nombres',
+          hintText: userRegisterLabelString,
           controller: nameController,
           colorInput: colorInput,
         ),
         const SizedBox(height: 16),
         AppInput(
-          hintText: 'Apellidos',
+          hintText: lastnameRegisterLabelString,
           controller: lastNameController,
           colorInput: colorInput,
         ),
         const SizedBox(height: 16),
         AppInput(
-          hintText: 'Telefono',
+          hintText: cellphoneRegisterLabelString,
           controller: phoneController,
           colorInput: colorInput,
         ),
         const SizedBox(height: 16),
         const SizedBox(height: 100),
         AppButton(
-          label: 'Registrarse',
+          label: buttonRegisterLabelString,
           onPressed: onRegister,
           backColor: accentColor1,
           labelColor: labelColor,

@@ -4,6 +4,7 @@ import '../atoms/text.dart';
 import '../data/cart_data.dart';
 import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
+import '../foundation/strings_foundation.dart';
 
 /// `CartSummary` es un widget que muestra un resumen del carrito de compras.
 ///
@@ -118,7 +119,7 @@ class _CartSummaryState extends State<CartSummary> {
                           )
                         : const SizedBox.shrink(),
                     title: Text(item.name),
-                    subtitle: Text('Cantidad: ${item.quantity}'),
+                    subtitle: Text('$amountLabelString: ${item.quantity}'),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -126,7 +127,10 @@ class _CartSummaryState extends State<CartSummary> {
                           icon: const Icon(Icons.remove),
                           onPressed: () => _decreaseQuantity(index),
                         ),
-                        AppText(text: '${item.quantity}'),
+                        AppText(
+                          text: '${item.quantity}',
+                          textColor: textColorPrimary,
+                        ),
                         IconButton(
                           icon: const Icon(Icons.add),
                           onPressed: () => _increaseQuantity(index),
@@ -135,6 +139,7 @@ class _CartSummaryState extends State<CartSummary> {
                         AppText(
                           text:
                               '\$${(item.price * item.quantity).toStringAsFixed(2)}',
+                          textColor: textColorPrimary,
                         ),
                       ],
                     ),
@@ -149,13 +154,15 @@ class _CartSummaryState extends State<CartSummary> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppText(
-                  text: 'Total: \$${total.toStringAsFixed(2)}',
+                  text: '$totalLabelString: \$${total.toStringAsFixed(2)}',
+                  textColor: textColorPrimary,
                   style: const TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 AppButton(
+                  labelColor: textColorPrimary,
                   onPressed: () {
                     if (widget.onCheckout != null) {
                       final List<ProductQuantity> products = widget.items
@@ -169,7 +176,7 @@ class _CartSummaryState extends State<CartSummary> {
                   },
                   backColor: accentColor1,
                   width: size.width * 0.3,
-                  label: 'Pagar',
+                  label: payLabelString,
                 ),
               ],
             ),

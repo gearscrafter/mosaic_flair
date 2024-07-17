@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../atoms/support.dart';
 import '../atoms/text.dart';
+import '../foundation/color_foundation.dart';
 import '../foundation/dimension_foundation.dart';
+import '../foundation/strings_foundation.dart';
 
 /// `ContactTemplate` es un widget que representa la plantilla de contacto.
 ///
@@ -25,32 +27,33 @@ class ContactTemplate extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const AppText(
-          text: 'Contáctanos',
+        title: AppText(
+          text: contact ?? mainContactLabelString,
+          textColor: textColorPrimary,
           sizeText: SizeText.L,
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(paddingLargeDimension),
+        padding: EdgeInsets.all(paddingLargeDimension),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const AppText(
-              text:
-                  'Si tienes sugerencias, contáctate con nosotros.\n\nEstamos felices de ayudarte!!',
+            AppText(
+              text: descriptionContactLabelString,
+              textColor: textColorPrimary,
               sizeText: SizeText.M,
             ),
             SizedBox(height: size.height * 0.04),
             Support(
-              label: contact ?? '+ 31 20 123 4507',
+              label: contact ?? phoneContactLabelString,
               icon: Icons.contact_support_rounded,
-              info: contact ?? '+ 31 20 123 4507',
+              info: contact ?? phoneContactLabelString,
             ),
             SizedBox(height: size.height * 0.03),
             Support(
-              label: email ?? 'contact@creative.com',
+              label: email ?? emailContactLabelString,
               icon: Icons.email,
-              info: email ?? 'contact@creative.com',
+              info: email ?? emailContactLabelString,
             ),
           ],
         ),

@@ -79,7 +79,7 @@ class ProductCard extends StatelessWidget {
                         height: topBoxHeight,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(paddingMediumDimension),
+                        padding: EdgeInsets.all(paddingMediumDimension),
                         child: SingleChildScrollView(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,7 +90,7 @@ class ProductCard extends StatelessWidget {
                                 maxLines: 1,
                                 overflow: TextOverflow.fade,
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: textColorPrimary,
                                   fontWeight: FontWeight.bold,
                                   fontSize: fontSizeLargeDimension,
@@ -98,7 +98,7 @@ class ProductCard extends StatelessWidget {
                               ),
                               Text(
                                 category,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: neutralColor,
                                   fontWeight: FontWeight.w400,
                                   fontSize: fontSizeMediumDimension,
@@ -106,7 +106,7 @@ class ProductCard extends StatelessWidget {
                               ),
                               Text(
                                 '\$$price',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: primaryColor,
                                   fontWeight: FontWeight.w600,
                                   fontSize: fontSizeMediumDimension,

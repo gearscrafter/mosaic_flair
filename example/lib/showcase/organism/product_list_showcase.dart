@@ -17,7 +17,10 @@ class _ProductListShowcaseState extends State<ProductListShowcase> {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: const AppText(text: 'Product List'),
+        title: AppText(
+          text: 'Product List',
+          textColor: textColorPrimary,
+        ),
         centerTitle: true,
         elevation: 0,
       ),

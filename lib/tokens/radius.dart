@@ -1,5 +1,12 @@
 import 'package:flutter/rendering.dart';
 
-const Radius small = Radius.circular(4.0);
-const Radius medium = Radius.circular(8.0);
-const Radius large = Radius.circular(16.0);
+import '../core/app_config.dart';
+
+final appConfig = AppConfig();
+
+final Radius smallRadiusToken =
+    Radius.circular(appConfig.getDouble('smallRadius', 4.0));
+final Radius mediumRadiusToken =
+    Radius.circular(appConfig.getDouble('mediumRadius', 8.0));
+final Radius largeRadiusToken =
+    Radius.circular(appConfig.getDouble('largeRadius', 16.0));

@@ -8,6 +8,7 @@ export 'foundation/icon_foundation.dart';
 export 'foundation/radius_foundation.dart';
 export 'foundation/spacing_foundation.dart';
 export 'foundation/typography_foundation.dart';
+export 'foundation/strings_foundation.dart';
 
 // Atomos
 export 'atoms/button.dart';
@@ -59,3 +60,11 @@ export 'pages/login_page.dart';
 export 'pages/register_page.dart';
 export 'pages/search_page.dart';
 export 'pages/support_page.dart';
+
+// Inicializador
+import 'app_initializer.dart';
+
+Future<void> initializeApp(
+    {required String path, bool useJsonConfig = true}) async {
+  await AppInitializer().initialize(path: path, useJsonConfig: useJsonConfig);
+}
