@@ -135,17 +135,25 @@ class _HomeTemplateState extends State<HomeTemplate> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppText(
-                            text: popularSectionLabelString,
-                            textColor: textColorPrimary,
-                            sizeText: SizeText.L,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          GestureDetector(
-                            onTap: widget.onTapSeeMore,
+                          Semantics(
+                            label: 'listado de productos populares',
+                            hint: 'listado de productos populares',
                             child: AppText(
+                              text: popularSectionLabelString,
                               textColor: textColorPrimary,
-                              text: seeMoreSectionLabelString,
+                              sizeText: SizeText.L,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Semantics(
+                            label: 'Ver más productos',
+                            hint: 'Ver más productos',
+                            child: GestureDetector(
+                              onTap: widget.onTapSeeMore,
+                              child: AppText(
+                                textColor: textColorPrimary,
+                                text: seeMoreSectionLabelString,
+                              ),
                             ),
                           )
                         ],
@@ -237,21 +245,18 @@ class _HomeTemplateState extends State<HomeTemplate> {
               ),
             ),
           ),
-          Semantics(
-            label: 'Menú de navegación',
-            child: Menu(
-              isScrolling: _isScrolling,
-              hasMenu: (openMenu) {
-                setState(() {
-                  _openMenu = openMenu;
-                });
-              },
-              isHome: false,
-              onTapContact: widget.onTapContact,
-              onTapHome: widget.onTapHome,
-              onTapProducts: widget.onTapProducts,
-              onTapSupport: widget.onTapSupport,
-            ),
+          Menu(
+            isScrolling: _isScrolling,
+            hasMenu: (openMenu) {
+              setState(() {
+                _openMenu = openMenu;
+              });
+            },
+            isHome: false,
+            onTapContact: widget.onTapContact,
+            onTapHome: widget.onTapHome,
+            onTapProducts: widget.onTapProducts,
+            onTapSupport: widget.onTapSupport,
           ),
           Appbar(
             openMenu: _openMenu,
