@@ -85,31 +85,40 @@ class ProductCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                title,
-                                maxLines: 1,
-                                overflow: TextOverflow.fade,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: textColorPrimary,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: fontSizeLargeDimension,
+                              Semantics(
+                                label: 'Título del producto',
+                                child: Text(
+                                  title,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.fade,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: textColorPrimary,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: fontSizeLargeDimension,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                category,
-                                style: TextStyle(
-                                  color: neutralColor,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: fontSizeMediumDimension,
+                              Semantics(
+                                label: 'Categoría del producto',
+                                child: Text(
+                                  category,
+                                  style: TextStyle(
+                                    color: neutralColor,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: fontSizeMediumDimension,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                '\$$price',
-                                style: TextStyle(
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: fontSizeMediumDimension,
+                              Semantics(
+                                label: 'Precio del producto',
+                                child: Text(
+                                  '\$$price',
+                                  style: TextStyle(
+                                    color: primaryColor,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: fontSizeMediumDimension,
+                                  ),
                                 ),
                               ),
                             ],

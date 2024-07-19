@@ -111,67 +111,72 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return SizedBox(
-          width: widget.width ?? (size.width - 50),
-          child: Transform.scale(
-            scale: _animation.value,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: widget.backColor,
-                foregroundColor: widget.labelColor,
-                disabledBackgroundColor: backgroundColor,
-                elevation: 2,
-                padding: EdgeInsets.all(paddingMediumDimension),
-              ),
-              onPressed: widget.onPressed != null
-                  ? () {
-                      if (!_isAnimating) {
-                        setState(() {
-                          _isAnimating = true;
-                        });
-                        _controller.forward();
+    return Semantics(
+      label: widget.label,
+      button: true,
+      enabled: widget.onPressed != null,
+      child: AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return SizedBox(
+            width: widget.width ?? (size.width - 50),
+            child: Transform.scale(
+              scale: _animation.value,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: widget.backColor,
+                  foregroundColor: widget.labelColor,
+                  disabledBackgroundColor: backgroundColor,
+                  elevation: 2,
+                  padding: EdgeInsets.all(paddingMediumDimension),
+                ),
+                onPressed: widget.onPressed != null
+                    ? () {
+                        if (!_isAnimating) {
+                          setState(() {
+                            _isAnimating = true;
+                          });
+                          _controller.forward();
+                        }
                       }
-                    }
-                  : null,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: widget.hasIconAnimation
-                    ? MainAxisAlignment.spaceAround
-                    : MainAxisAlignment.center,
-                children: [
-                  Flexible(
-                    child: Text(
-                      widget.label,
-                      style: TextStyle(
-                          fontSize: fontSizeMediumDimension,
-                          fontWeight: FontWeight.w600),
+                    : null,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: widget.hasIconAnimation
+                      ? MainAxisAlignment.spaceAround
+                      : MainAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        widget.label,
+                        style: TextStyle(
+                            fontSize: fontSizeMediumDimension,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
-                  ),
-                  widget.hasIconAnimation
-                      ? AnimatedBuilder(
-                          animation: _iconAnimation,
-                          builder: (context, child) {
-                            return Transform.translate(
-                              offset: Offset(_iconAnimation.value * -8, 0),
-                              child: AppIcon(
-                                backgroundColor:
-                                    widget.backColor ?? backgroundColor,
-                                iconData: Icons.arrow_forward_sharp,
-                                color: textColorPrimary,
-                                size: paddingLargeDimension,
-                              ),
-                            );
-                          })
-                      : const SizedBox.shrink()
-                ],
+                    widget.hasIconAnimation
+                        ? AnimatedBuilder(
+                            animation: _iconAnimation,
+                            builder: (context, child) {
+                              return Transform.translate(
+                                offset: Offset(_iconAnimation.value * -8, 0),
+                                child: AppIcon(
+                                  backgroundColor:
+                                      widget.backColor ?? backgroundColor,
+                                  iconData: Icons.arrow_forward_sharp,
+                                  color: textColorPrimary,
+                                  size: paddingLargeDimension,
+                                ),
+                              );
+                            })
+                        : const SizedBox.shrink()
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

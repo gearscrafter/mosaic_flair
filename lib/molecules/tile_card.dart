@@ -42,75 +42,88 @@ class TileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
-        borderRadius: BorderRadius.all(
-          Radius.circular(borderRadiusDimensions),
-        ),
-      ),
-      child: Center(
-        child: ListTile(
-          title: (title != null)
-              ? AppText(
-                  text: title,
-                  maxLines: 1,
-                  textColor: textColorPrimary,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: fontSizeLargeDimension,
-                    fontWeight: FontWeight.bold,
-                    color: textColorPrimary,
-                  ),
-                )
-              : const SizedBox.shrink(),
-          leading: (image != null)
-              ? SizedBox(
-                  height: 60,
-                  width: 60,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(borderRadiusDimensions),
-                    child: Image.network(
-                      image ?? '',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                )
-              : const SizedBox.shrink(),
-          subtitle: (price != null)
-              ? AppText(
-                  text: '\$ $price',
-                  style: TextStyle(
-                    fontSize: fontSizeMediumDimension,
-                    fontWeight: FontWeight.bold,
-                    color: primaryColor,
-                  ),
-                )
-              : const SizedBox.shrink(),
-          trailing: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white,
-              foregroundColor: textColorPrimary,
-              disabledBackgroundColor: Colors.white,
-              overlayColor: secondaryBackgroundColor,
-              elevation: 2,
-              padding: EdgeInsets.all(paddingMediumDimension),
+    return Semantics(
+      label: title != null ? 'Producto: $title' : 'Tarjeta de producto',
+      child: Container(
+        height: height,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
             ),
-            onPressed: onPressed,
-            child: AppIcon(
-              backgroundColor: Colors.white,
-              iconData: Icons.shopping_cart_outlined,
-              color: neutralColor,
-              size: paddingLargeDimension,
+          ],
+          borderRadius: BorderRadius.all(
+            Radius.circular(borderRadiusDimensions),
+          ),
+        ),
+        child: Center(
+          child: ListTile(
+            title: (title != null)
+                ? Semantics(
+                    label: '$title',
+                    child: AppText(
+                      text: title,
+                      maxLines: 1,
+                      textColor: textColorPrimary,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: fontSizeLargeDimension,
+                        fontWeight: FontWeight.bold,
+                        color: textColorPrimary,
+                      ),
+                    ),
+                  )
+                : const SizedBox.shrink(),
+            leading: (image != null)
+                ? SizedBox(
+                    height: 60,
+                    width: 60,
+                    child: ClipRRect(
+                      borderRadius:
+                          BorderRadius.circular(borderRadiusDimensions),
+                      child: Image.network(
+                        image ?? '',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
+                : const SizedBox.shrink(),
+            subtitle: (price != null)
+                ? Semantics(
+                    label: 'Precio: \$ $price',
+                    child: AppText(
+                      text: '\$ $price',
+                      style: TextStyle(
+                        fontSize: fontSizeMediumDimension,
+                        fontWeight: FontWeight.bold,
+                        color: primaryColor,
+                      ),
+                    ),
+                  )
+                : const SizedBox.shrink(),
+            trailing: Semantics(
+              label: 'Botón para añadir al carrito',
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: textColorPrimary,
+                  disabledBackgroundColor: Colors.white,
+                  overlayColor: secondaryBackgroundColor,
+                  elevation: 2,
+                  padding: EdgeInsets.all(paddingMediumDimension),
+                ),
+                onPressed: onPressed,
+                child: AppIcon(
+                  backgroundColor: Colors.white,
+                  iconData: Icons.shopping_cart_outlined,
+                  color: neutralColor,
+                  size: paddingLargeDimension,
+                ),
+              ),
             ),
           ),
         ),

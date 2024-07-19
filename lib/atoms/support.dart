@@ -42,32 +42,39 @@ class Support extends StatelessWidget {
       ),
 
       /// Contenido del ListTile con ícono, etiqueta y funcionalidad de clic.
-      child: ListTile(
-        /// Ícono que se muestra al lado de la etiqueta.
-        leading: Icon(icon),
+      child: Semantics(
+        label: 'Item de soporte',
+        hint: 'Doble toque para copiar $label al portapapeles',
+        child: ListTile(
+          /// Ícono que se muestra al lado de la etiqueta.
+          leading: Icon(icon),
 
-        /// Etiqueta del soporte.
-        title: AppText(
-          text: label,
-          textColor: textColorPrimary,
-        ),
-
-        /// Función que se ejecuta cuando se hace clic en el ListTile.
-        onTap: () {
-          /// Copia el texto de la etiqueta al portapapeles.
-          Clipboard.setData(ClipboardData(text: label));
-
-          /// Muestra un mensaje emergente con la información proporcionada.
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              behavior: SnackBarBehavior.floating,
-              content: AppText(
-                text: info,
-                textColor: backgroundColor,
-              ),
+          /// Etiqueta del soporte.
+          title: Semantics(
+            hint: label,
+            child: AppText(
+              text: label,
+              textColor: textColorPrimary,
             ),
-          );
-        },
+          ),
+
+          /// Función que se ejecuta cuando se hace clic en el ListTile.
+          onTap: () {
+            /// Copia el texto de la etiqueta al portapapeles.
+            Clipboard.setData(ClipboardData(text: label));
+
+            /// Muestra un mensaje emergente con la información proporcionada.
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                behavior: SnackBarBehavior.floating,
+                content: AppText(
+                  text: info,
+                  textColor: backgroundColor,
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

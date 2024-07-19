@@ -58,130 +58,168 @@ class _CartSummaryState extends State<CartSummary> {
         widget.items.fold(0, (sum, item) => sum + item.price * item.quantity);
     final size = MediaQuery.of(context).size;
 
-    return SizedBox(
-      height: size.height - 80,
-      width: size.width,
-      child: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: widget.items.length,
-              itemBuilder: (context, index) {
-                final item = widget.items[index];
-                return Dismissible(
-                  key: UniqueKey(),
-                  direction: DismissDirection.endToStart,
-                  background: Container(
-                    color: Colors.red,
-                    alignment: Alignment.centerRight,
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Icon(Icons.delete, color: Colors.white),
-                  ),
-                  onDismissed: (direction) {
-                    if (direction == DismissDirection.endToStart) {
-                      if (widget.onRemoveItem != null) {
-                        widget.onRemoveItem!(index);
-                      }
-                      setState(() {
-                        widget.items.removeAt(index);
-                      });
-                    }
-                  },
-                  child: ListTile(
-                    leading: (item.image ?? '').isNotEmpty
-                        ? Container(
-                            height: 50,
-                            width: 50,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.circular(borderRadiusDimensions),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.4),
-                                  spreadRadius: 0.7,
-                                  blurRadius: 1,
-                                  offset: const Offset(0, 1),
+    return Semantics(
+      label: 'Resumen del carrito de compras',
+      child: SizedBox(
+        height: size.height - 80,
+        width: size.width,
+        child: Column(
+          children: [
+            Expanded(
+              child: Semantics(
+                label: 'Lista de artículos en el carrito',
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: widget.items.length,
+                  itemBuilder: (context, index) {
+                    final item = widget.items[index];
+                    return Dismissible(
+                      key: UniqueKey(),
+                      direction: DismissDirection.endToStart,
+                      background: Container(
+                        color: Colors.red,
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: const Icon(Icons.delete, color: Colors.white),
+                      ),
+                      onDismissed: (direction) {
+                        if (direction == DismissDirection.endToStart) {
+                          if (widget.onRemoveItem != null) {
+                            widget.onRemoveItem!(index);
+                          }
+                          setState(() {
+                            widget.items.removeAt(index);
+                          });
+                        }
+                      },
+                      child: Semantics(
+                        hint:
+                            'Artículo: ${item.name}, Cantidad: ${item.quantity}, Precio unitario: \$${item.price.toStringAsFixed(2)}, Total: \$${(item.price * item.quantity).toStringAsFixed(2)}',
+                        child: ListTile(
+                          leading: (item.image ?? '').isNotEmpty
+                              ? Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(
+                                        borderRadiusDimensions),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.4),
+                                        spreadRadius: 0.7,
+                                        blurRadius: 1,
+                                        offset: const Offset(0, 1),
+                                      ),
+                                    ],
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(
+                                        borderRadiusDimensions),
+                                    child: item.image != null
+                                        ? Image.network(
+                                            item.image!,
+                                            fit: BoxFit.cover,
+                                          )
+                                        : const SizedBox.shrink(),
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
+                          title: Semantics(
+                            hint: 'Nombre del artículo: ${item.name}',
+                            child: Text(item.name),
+                          ),
+                          subtitle: Semantics(
+                            label: 'Cantidad: ${item.quantity}',
+                            child: Text('$amountLabelString: ${item.quantity}'),
+                          ),
+                          trailing: Semantics(
+                            hint:
+                                'Controles para ajustar la cantidad del artículo',
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Semantics(
+                                  label: 'quitar item',
+                                  hint: 'quitar item',
+                                  child: IconButton(
+                                    icon: const Icon(Icons.remove),
+                                    onPressed: () => _decreaseQuantity(index),
+                                  ),
+                                ),
+                                AppText(
+                                  text: '${item.quantity}',
+                                  textColor: textColorPrimary,
+                                ),
+                                Semantics(
+                                  label: 'Añadir item',
+                                  hint: 'Añadir item',
+                                  child: IconButton(
+                                    icon: const Icon(Icons.add),
+                                    onPressed: () => _increaseQuantity(index),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                AppText(
+                                  text:
+                                      '\$${(item.price * item.quantity).toStringAsFixed(2)}',
+                                  textColor: textColorPrimary,
                                 ),
                               ],
                             ),
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.circular(borderRadiusDimensions),
-                              child: item.image != null
-                                  ? Image.network(
-                                      item.image!,
-                                      fit: BoxFit.cover,
-                                    )
-                                  : const SizedBox.shrink(),
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                    title: Text(item.name),
-                    subtitle: Text('$amountLabelString: ${item.quantity}'),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.remove),
-                          onPressed: () => _decreaseQuantity(index),
+                          ),
                         ),
-                        AppText(
-                          text: '${item.quantity}',
-                          textColor: textColorPrimary,
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.add),
-                          onPressed: () => _increaseQuantity(index),
-                        ),
-                        const SizedBox(width: 10),
-                        AppText(
-                          text:
-                              '\$${(item.price * item.quantity).toStringAsFixed(2)}',
-                          textColor: textColorPrimary,
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppText(
-                  text: '$totalLabelString: \$${total.toStringAsFixed(2)}',
-                  textColor: textColorPrimary,
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                AppButton(
-                  labelColor: textColorPrimary,
-                  onPressed: () {
-                    if (widget.onCheckout != null) {
-                      final List<ProductQuantity> products = widget.items
-                          .map((item) => ProductQuantity(
-                                productId: item.id,
-                                quantity: item.quantity,
-                              ))
-                          .toList();
-                      widget.onCheckout!(products);
-                    }
+                      ),
+                    );
                   },
-                  backColor: accentColor1,
-                  width: size.width * 0.3,
-                  label: payLabelString,
                 ),
-              ],
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Semantics(
+                hint: 'Resumen del total y botón de pago',
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Semantics(
+                      label: 'Total del carrito: \$${total.toStringAsFixed(2)}',
+                      child: AppText(
+                        text:
+                            '$totalLabelString: \$${total.toStringAsFixed(2)}',
+                        textColor: textColorPrimary,
+                        style: const TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Semantics(
+                      hint: 'Botón para realizar el pago',
+                      child: AppButton(
+                        labelColor: textColorPrimary,
+                        onPressed: () {
+                          if (widget.onCheckout != null) {
+                            final List<ProductQuantity> products = widget.items
+                                .map((item) => ProductQuantity(
+                                      productId: item.id,
+                                      quantity: item.quantity,
+                                    ))
+                                .toList();
+                            widget.onCheckout!(products);
+                          }
+                        },
+                        backColor: accentColor1,
+                        width: size.width * 0.3,
+                        label: payLabelString,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -76,19 +76,26 @@ class PromotionCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if (description != null)
-                    AppText(
-                      text: description,
-                      sizeText: SizeText.S,
-                      textColor: textColorPrimary,
+                    Semantics(
+                      label: 'Descripción de la promoción: $description',
+                      child: AppText(
+                        text: description,
+                        sizeText: SizeText.S,
+                        textColor: textColorPrimary,
+                      ),
                     ),
                   Row(
                     children: [
-                      Text(
-                        '${percentage.toStringAsFixed(0)} %',
-                        style: TextStyle(
-                          color: primaryColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 30,
+                      Semantics(
+                        label:
+                            'Porcentaje de descuento: ${percentage.toStringAsFixed(0)}%',
+                        child: Text(
+                          '${percentage.toStringAsFixed(0)} %',
+                          style: TextStyle(
+                            color: primaryColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 30,
+                          ),
                         ),
                       ),
                       if (extentDescription != null)
@@ -104,11 +111,14 @@ class PromotionCard extends StatelessWidget {
                   Expanded(
                     child: Align(
                       alignment: Alignment.bottomLeft,
-                      child: AppButton(
-                        labelColor: textColorPrimary,
-                        label: 'Obténlo ahora',
-                        width: 150,
-                        onPressed: () {},
+                      child: Semantics(
+                        label: 'Botón para obtener la oferta',
+                        child: AppButton(
+                          labelColor: textColorPrimary,
+                          label: 'Obténlo ahora',
+                          width: 150,
+                          onPressed: () {},
+                        ),
                       ),
                     ),
                   )

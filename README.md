@@ -8,12 +8,13 @@ Este paquete proporciona un sistema de diseño modular basado en los principios 
 1. [Descripción](#descripcion)
 2. [Instalación](#instalacion)
 3. [Uso Básico](#uso)
-3. [Estructura del Paquete](#estructura)
-4. [Ejemplo de Showcase](#ejemplo)
-5. [Tests](#tests)
-6. [Demo](#demo)
-7. [Contribuir](#contribuir)
-8. [Licencia](#licencia)
+4. [Accesibilidad](#accesibilidad)
+5. [Estructura del Paquete](#estructura)
+6. [Ejemplo de Showcase](#ejemplo)
+7. [Tests](#tests)
+8. [Demo](#demo)
+9. [Contribuir](#contribuir)
+10. [Licencia](#licencia)
 
 <a name="descripcion"></a>
 ## Descripción
@@ -36,7 +37,7 @@ El `Mosaic Flair` facilita la construcción de interfaces de usuario con compone
 ## Instalación
 Para añadir este paquete a tu proyecto Flutter, agrega el siguiente código a tu archivo `pubspec.yaml`:
 
-```
+```yaml
 dependencies:
   mosaic_flair: ^0.0.1
 ```
@@ -53,14 +54,14 @@ Para parametrizar tu aplicación con datos provenientes de un archivo JSON, sigu
 #### 1. Creación del Archivo JSON:
 Crea un archivo JSON que contenga las configuraciones, y agregala a una carpeta json y utilizalo en el pubspec. 
 
-```
+```yaml
   assets:
     - assets/app_config.json
 ```
 
 Utiliza este json, y reemplaza el valor que contenga la llave:
 
-```
+```json
 {
   "durations": {
     "short": 200,
@@ -145,7 +146,7 @@ Utiliza este json, y reemplaza el valor que contenga la llave:
 #### 2. Lectura del Archivo JSON en la Aplicación de Flutter:
 Implementa la lectura del archivo JSON como asset en tu aplicación.
 
-```
+```dart
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -235,12 +236,32 @@ class AppConfig {
 
 Usa los datos json parametrizados que se inicializa en el main de la aplicación, y este reemplaza los tokens predeterminados del paquete.
 
-```
+```dart
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeApp(path: 'assets/app_config.json', useJsonConfig: true);
   runApp(const MyApp());
 }
+```
+
+<a name="accesibilidad"></a>
+## Accesibilidad
+
+Para mejorar la accesibilidad en la aplicación, el paquete `Mosaic Flair` utiliza la clase `Semantics` de Flutter para proporcionar información adicional sobre los widgets a los usuarios que utilizan tecnologías asistivas como TalkBack y VoiceOver. A continuación, se presentan algunas prácticas recomendadas para asegurar que los componentes sean accesibles:
+
+- **Descripción Semántica:** Asegúrate de que todos los elementos interactivos (como botones y campos de texto) tengan descripciones semánticas apropiadas. Usa el widget `Semantics` para agregar etiquetas descriptivas y propiedades relevantes.
+
+**Ejemplo de Uso de Semantics:**
+
+```dart
+Semantics(
+  label: 'Botón de inicio',
+  button: true,
+  child: ElevatedButton(
+    onPressed: () {},
+    child: Text('Inicio'),
+  ),
+)
 ```
 <a name="tests"></a>
 ## Tests

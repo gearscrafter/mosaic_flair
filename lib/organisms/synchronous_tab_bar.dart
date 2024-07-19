@@ -78,85 +78,103 @@ class _SynchronousTabBarState extends State<SynchronousTabBar>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return AnimatedBuilder(
-      animation: _bloc,
-      builder: (_, __) {
-        return Column(
-          children: [
-            const SizedBox(height: 80),
-            SizedBox(
-              height: 60,
-              width: size.width,
-              child: _bloc.tabController == null
-                  ? Container()
-                  : TabBar(
-                      controller: _bloc.tabController,
-                      isScrollable: true,
-                      dividerColor: Colors.transparent,
-                      onTap: _bloc.onCategorySelected,
-                      overlayColor: WidgetStateColor.transparent,
-                      indicatorColor: Colors.transparent,
-                      tabs: _bloc.tabs
-                          .map((item) => CategoryCard(
-                                title: item.category.name ?? '',
-                                onSelected: item.onSelected,
-                                color: textColorPrimary,
-                              ))
-                          .toList(),
-                    ),
-            ),
-            Expanded(
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: paddingLargeDimension),
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  controller: _bloc.scrollController,
-                  itemCount: _bloc.items.length,
-                  itemBuilder: (context, index) {
-                    if (widget.onScrollChange != null) {
-                      widget.onScrollChange!(_bloc.isScrolling);
-                    }
-                    final item = _bloc.items[index];
-                    if (item.isCategory) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: paddingMediumDimension,
-                            horizontal: paddingSmallDimension),
-                        child: CategoryItem(
-                          title: item.category?.name ?? '',
-                          categoryHeight: categoryHeight,
-                          color: textColorPrimary,
+    return Semantics(
+      label: 'Barra de pestañas sincronizadas con categorías y productos',
+      child: AnimatedBuilder(
+        animation: _bloc,
+        builder: (_, __) {
+          return Column(
+            children: [
+              const SizedBox(height: 80),
+              Semantics(
+                label: 'Categorías',
+                child: SizedBox(
+                  height: 60,
+                  width: size.width,
+                  child: _bloc.tabController == null
+                      ? Container()
+                      : TabBar(
+                          controller: _bloc.tabController,
+                          isScrollable: true,
+                          dividerColor: Colors.transparent,
+                          onTap: _bloc.onCategorySelected,
+                          overlayColor: WidgetStateColor.transparent,
+                          indicatorColor: Colors.transparent,
+                          tabs: _bloc.tabs
+                              .map((item) => CategoryCard(
+                                    title: item.category.name ?? '',
+                                    onSelected: item.onSelected,
+                                    color: textColorPrimary,
+                                  ))
+                              .toList(),
                         ),
-                      );
-                    } else {
-                      return Padding(
-                        padding: EdgeInsets.all(paddingSmallDimension),
-                        child: TileCard(
-                          title: item.product?.name,
-                          price: 20,
-                          image: item.product?.image,
-                          height: productHeight,
-                          onPressed: () {
-                            if (widget.getProduct != null) {
-                              widget.getProduct!(Product(
-                                  id: item.product?.id,
-                                  name: item.product?.name ?? '',
-                                  description: item.product?.description ?? '',
-                                  image: item.product?.image ?? '',
-                                  price: item.product?.price ?? 0.0));
-                            }
-                          },
-                        ),
-                      );
-                    }
-                  },
                 ),
               ),
-            ),
-          ],
-        );
-      },
+              Expanded(
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: paddingLargeDimension),
+                  child: Semantics(
+                    label: 'Lista de productos y categorías',
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      controller: _bloc.scrollController,
+                      itemCount: _bloc.items.length,
+                      itemBuilder: (context, index) {
+                        if (widget.onScrollChange != null) {
+                          widget.onScrollChange!(_bloc.isScrolling);
+                        }
+                        final item = _bloc.items[index];
+                        if (item.isCategory) {
+                          return Semantics(
+                            label:
+                                'Categoría: ${item.category?.name ?? 'Sin nombre'}',
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: paddingMediumDimension,
+                                  horizontal: paddingSmallDimension),
+                              child: CategoryItem(
+                                title: item.category?.name ?? '',
+                                categoryHeight: categoryHeight,
+                                color: textColorPrimary,
+                              ),
+                            ),
+                          );
+                        } else {
+                          return Semantics(
+                            label:
+                                'Producto: ${item.product?.name ?? 'Sin nombre'}, Precio: \$${item.product?.price.toStringAsFixed(2) ?? '0.00'}',
+                            child: Padding(
+                              padding: EdgeInsets.all(paddingSmallDimension),
+                              child: TileCard(
+                                title: item.product?.name,
+                                price: item.product?.price ?? 0.0,
+                                image: item.product?.image,
+                                height: productHeight,
+                                onPressed: () {
+                                  if (widget.getProduct != null) {
+                                    widget.getProduct!(Product(
+                                        id: item.product?.id,
+                                        name: item.product?.name ?? '',
+                                        description:
+                                            item.product?.description ?? '',
+                                        image: item.product?.image ?? '',
+                                        price: item.product?.price ?? 0.0));
+                                  }
+                                },
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

@@ -100,63 +100,75 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
           builder: (context, child) {
             return Opacity(
               opacity: _animation.value,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AppText(
-                        text: '*',
-                        textColor: backgroundColor,
-                      ),
-                      SizedBox(width: paddingMediumDimension),
-                      AppText(
-                        text: menuLabelString,
-                        textColor: backgroundColor.withOpacity(0.5),
-                      ),
-                      const SizedBox(width: 10),
-                      AppText(
-                        text: '*',
-                        textColor: backgroundColor,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: paddingLargeDimension),
-                  widget.isHome
-                      ? GestureDetector(
-                          onTap: widget.onTapHome,
-                          child: AppText(
-                            text: homeLabelString,
-                            textColor: backgroundColor,
-                          ),
-                        )
-                      : GestureDetector(
-                          onTap: widget.onTapProducts,
-                          child: AppText(
-                            text: productLabelString,
-                            textColor: backgroundColor,
-                          ),
+              child: Semantics(
+                label: 'Menú',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AppText(
+                          text: '*',
+                          textColor: backgroundColor,
                         ),
-                  SizedBox(height: paddingLargeDimension),
-                  GestureDetector(
-                    onTap: widget.onTapSupport,
-                    child: AppText(
-                      text: supportLabelString,
-                      textColor: backgroundColor,
+                        SizedBox(width: paddingMediumDimension),
+                        AppText(
+                          text: menuLabelString,
+                          textColor: backgroundColor.withOpacity(0.5),
+                        ),
+                        const SizedBox(width: 10),
+                        AppText(
+                          text: '*',
+                          textColor: backgroundColor,
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(height: paddingLargeDimension),
-                  GestureDetector(
-                    onTap: widget.onTapContact,
-                    child: AppText(
-                      text: contactLabelString,
-                      textColor: backgroundColor,
+                    SizedBox(height: paddingLargeDimension),
+                    Semantics(
+                      label: widget.isHome ? 'Página de inicio' : 'Productos',
+                      hint:
+                          'Presiona para ir a ${widget.isHome ? 'la página de inicio' : 'la lista de productos'}',
+                      child: GestureDetector(
+                        onTap: widget.isHome
+                            ? widget.onTapHome
+                            : widget.onTapProducts,
+                        child: AppText(
+                          text: widget.isHome
+                              ? homeLabelString
+                              : productLabelString,
+                          textColor: backgroundColor,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: paddingLargeDimension),
+                    Semantics(
+                      label: 'Soporte',
+                      hint: 'Presiona para obtener soporte',
+                      child: GestureDetector(
+                        onTap: widget.onTapSupport,
+                        child: AppText(
+                          text: supportLabelString,
+                          textColor: backgroundColor,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: paddingLargeDimension),
+                    Semantics(
+                      label: 'Contacto',
+                      hint: 'Presiona para contactar',
+                      child: GestureDetector(
+                        onTap: widget.onTapContact,
+                        child: AppText(
+                          text: contactLabelString,
+                          textColor: backgroundColor,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           },
@@ -168,32 +180,38 @@ class _MenuState extends State<Menu> with TickerProviderStateMixin {
           child: AnimatedScale(
             duration: const Duration(milliseconds: 300),
             scale: widget.isScrolling ? 0 : 1,
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  _isShowOverlay = !_isShowOverlay;
-                  widget.hasMenu(_isShowOverlay);
-                  if (_isShowOverlay) {
-                    _controller.forward();
-                  } else {
-                    _controller.reverse();
-                  }
-                });
-              },
-              child: Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  color: _isShowOverlay ? backgroundColor : primaryColor,
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: AppIcon(
-                    iconData: _isShowOverlay ? Icons.close : Icons.menu,
-                    color: _isShowOverlay ? primaryColor : backgroundColor,
-                    backgroundColor:
-                        _isShowOverlay ? backgroundColor : primaryColor,
-                    size: paddingLargeDimension,
+            child: Semantics(
+              label: _isShowOverlay ? 'Cerrar menú' : 'Abrir menú',
+              hint: _isShowOverlay
+                  ? 'Presiona para cerrar el menú'
+                  : 'Presiona para abrir el menú',
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isShowOverlay = !_isShowOverlay;
+                    widget.hasMenu(_isShowOverlay);
+                    if (_isShowOverlay) {
+                      _controller.forward();
+                    } else {
+                      _controller.reverse();
+                    }
+                  });
+                },
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    color: _isShowOverlay ? backgroundColor : primaryColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: AppIcon(
+                      iconData: _isShowOverlay ? Icons.close : Icons.menu,
+                      color: _isShowOverlay ? primaryColor : backgroundColor,
+                      backgroundColor:
+                          _isShowOverlay ? backgroundColor : primaryColor,
+                      size: paddingLargeDimension,
+                    ),
                   ),
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import '../foundation/dimension_foundation.dart';
 import 'icon.dart';
 import '../foundation/color_foundation.dart';
@@ -56,6 +57,7 @@ class _ProcessButtonState extends State<ProcessButton>
 
   /// Espacio de desplazamiento para la animación de los botones laterales.
   double spaceButton = -160.0;
+  bool readSteps = false;
 
   /// Índice del paso actual.
   late int _currentIndex = 0;
@@ -105,6 +107,7 @@ class _ProcessButtonState extends State<ProcessButton>
     setState(() {
       if (_currentIndex < (widget.steps ?? []).length - 1) {
         _currentIndex++;
+        readSteps = false;
         widget.onTextChange?.call(_currentIndex);
       } else {
         if (_controller.isCompleted) {
@@ -209,18 +212,22 @@ class _ProcessButtonState extends State<ProcessButton>
                           ? size.width * 0.025
                           : size.width * 0.275,
                 ),
-                child: GestureDetector(
-                  onTap: () {
-                    if (_controller.isCompleted && widget.leftOnTap != null) {
-                      widget.leftOnTap!();
-                    }
-                  },
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.transparent,
+                child: Semantics(
+                  label: 'Botón izquierdo',
+                  hint: 'Va a una pantalla hacia atrás',
+                  child: GestureDetector(
+                    onTap: () {
+                      if (_controller.isCompleted && widget.leftOnTap != null) {
+                        widget.leftOnTap!();
+                      }
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.transparent,
+                      ),
                     ),
                   ),
                 ),
@@ -230,21 +237,26 @@ class _ProcessButtonState extends State<ProcessButton>
             /// Área sensible al clic para el botón central.
             Align(
               alignment: Alignment.center,
-              child: GestureDetector(
-                onTap: () {
-                  if (_controller.isCompleted &&
-                      widget.centerOnTap != null &&
-                      (widget.steps ?? []).isNotEmpty) {
-                    _nextText();
-                    widget.centerOnTap!();
-                  }
-                },
-                child: Container(
-                  height: 40,
-                  width: 200,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
+              child: Semantics(
+                label: 'Botón central',
+                hint: widget.steps?[_currentIndex],
+                tooltip: widget.steps?[_currentIndex],
+                child: GestureDetector(
+                  onTap: () {
+                    if (_controller.isCompleted &&
+                        widget.centerOnTap != null &&
+                        (widget.steps ?? []).isNotEmpty) {
+                      _nextText();
+                      widget.centerOnTap!();
+                    }
+                  },
+                  child: Container(
+                    height: 40,
+                    width: 200,
+                    decoration: const BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
                   ),
                 ),
               ),
@@ -260,18 +272,23 @@ class _ProcessButtonState extends State<ProcessButton>
                           ? size.width * 0.025
                           : size.width * 0.275,
                 ),
-                child: GestureDetector(
-                  onTap: () {
-                    if (_controller.isCompleted && widget.rightOnTap != null) {
-                      widget.rightOnTap!();
-                    }
-                  },
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent,
-                      shape: BoxShape.circle,
+                child: Semantics(
+                  label: 'Botón derecho',
+                  hint: 'Realiza una acción',
+                  child: GestureDetector(
+                    onTap: () {
+                      if (_controller.isCompleted &&
+                          widget.rightOnTap != null) {
+                        widget.rightOnTap!();
+                      }
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: const BoxDecoration(
+                        color: Colors.transparent,
+                        shape: BoxShape.circle,
+                      ),
                     ),
                   ),
                 ),

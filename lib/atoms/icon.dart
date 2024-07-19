@@ -42,39 +42,41 @@ class AppIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      /// Altura del contenedor.
-      height: sizeContainer,
+    return Semantics(
+      child: Container(
+        /// Altura del contenedor.
+        height: sizeContainer,
 
-      /// Anchura del contenedor.
-      width: sizeContainer,
+        /// Anchura del contenedor.
+        width: sizeContainer,
 
-      /// Decoración del contenedor.
-      decoration: BoxDecoration(
-        /// Sombras del contenedor.
-        boxShadow: hasShadow
-            ? [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.3),
-                  spreadRadius: 1,
-                  blurRadius: 1,
-                  offset: const Offset(0, 1),
-                ),
-              ]
-            : null,
+        /// Decoración del contenedor.
+        decoration: BoxDecoration(
+          /// Sombras del contenedor.
+          boxShadow: hasShadow
+              ? [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    spreadRadius: 1,
+                    blurRadius: 1,
+                    offset: const Offset(0, 1),
+                  ),
+                ]
+              : null,
 
-        /// Color de fondo del contenedor.
-        color: backgroundColor,
+          /// Color de fondo del contenedor.
+          color: backgroundColor,
 
-        /// Forma del contenedor.
-        shape: BoxShape.circle,
-      ),
+          /// Forma del contenedor.
+          shape: BoxShape.circle,
+        ),
 
-      /// Icono dentro del contenedor.
-      child: Icon(
-        iconData,
-        color: color,
-        size: size,
+        /// Icono dentro del contenedor.
+        child: Icon(
+          iconData,
+          color: color,
+          size: size,
+        ),
       ),
     );
   }

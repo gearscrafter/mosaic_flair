@@ -38,11 +38,14 @@ class CategoryCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Center(
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: color,
+              child: Semantics(
+                label: title,
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: color,
+                  ),
                 ),
               ),
             ),

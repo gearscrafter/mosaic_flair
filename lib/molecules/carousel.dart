@@ -37,19 +37,26 @@ class _AppCarouselState extends State<AppCarousel> {
         /// Contenedor que define la altura del carrusel y muestra los elementos deslizables.
         SizedBox(
           height: widget.height,
-          child: PageView.builder(
-            itemCount: widget.items.length,
-            onPageChanged: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.all(paddingMediumDimension),
-                child: widget.items[index],
-              );
-            },
+          child: Semantics(
+            label: 'Carrusel de elementos deslizables',
+            child: PageView.builder(
+              itemCount: widget.items.length,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+              itemBuilder: (context, index) {
+                String value = 'Elemento  de la posición $index del carrusel';
+                return Semantics(
+                  label: value,
+                  child: Padding(
+                    padding: EdgeInsets.all(paddingMediumDimension),
+                    child: widget.items[index],
+                  ),
+                );
+              },
+            ),
           ),
         ),
 

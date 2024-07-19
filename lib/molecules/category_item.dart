@@ -32,11 +32,14 @@ class CategoryItem extends StatelessWidget {
       width: categoryHeight,
       child: Align(
         alignment: Alignment.centerLeft,
-        child: Text(
-          title,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: color,
+        child: Semantics(
+          label: title,
+          child: Text(
+            title,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: color,
+            ),
           ),
         ),
       ),

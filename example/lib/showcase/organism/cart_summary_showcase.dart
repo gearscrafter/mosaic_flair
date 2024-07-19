@@ -16,49 +16,51 @@ class CartSummaryShowcase extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          CartSummary(
-            items: [
-              CartItem(
-                id: 1,
-                name: 'Product 1',
-                image: 'https://via.placeholder.com/150',
-                price: 29.99,
-                quantity: 2,
-              ),
-              CartItem(
-                id: 2,
-                name: 'Product 2',
-                image: 'https://via.placeholder.com/150',
-                price: 49.99,
-                quantity: 1,
-              ),
-              CartItem(
-                id: 3,
-                name: 'Product 2',
-                image: 'https://via.placeholder.com/150',
-                price: 49.99,
-                quantity: 1,
-              ),
-              CartItem(
-                id: 4,
-                name: 'Product 2',
-                image: 'https://via.placeholder.com/150',
-                price: 49.99,
-                quantity: 1,
-              ),
-              CartItem(
-                id: 5,
-                name: 'Product 2',
-                image: 'https://via.placeholder.com/150',
-                price: 49.99,
-                quantity: 1,
-              ),
-            ],
-            onCheckout: null,
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CartSummary(
+              items: [
+                CartItem(
+                  id: 1,
+                  name: 'Product 1',
+                  image: 'https://via.placeholder.com/150',
+                  price: 29.99,
+                  quantity: 2,
+                ),
+                CartItem(
+                  id: 2,
+                  name: 'Product 2',
+                  image: 'https://via.placeholder.com/150',
+                  price: 49.99,
+                  quantity: 1,
+                ),
+                CartItem(
+                  id: 3,
+                  name: 'Product 2',
+                  image: 'https://via.placeholder.com/150',
+                  price: 49.99,
+                  quantity: 1,
+                ),
+                CartItem(
+                  id: 4,
+                  name: 'Product 2',
+                  image: 'https://via.placeholder.com/150',
+                  price: 49.99,
+                  quantity: 1,
+                ),
+                CartItem(
+                  id: 5,
+                  name: 'Product 2',
+                  image: 'https://via.placeholder.com/150',
+                  price: 49.99,
+                  quantity: 1,
+                ),
+              ],
+              onCheckout: null,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -43,102 +43,119 @@ class LoginTemplate extends StatelessWidget {
           return Stack(
             children: [
               SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: size.height * 0.2,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(paddingLargeDimension),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: backgroundColor,
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(borderRadiusDimensions))),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: size.height * 0.05,
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(left: paddingLargeDimension),
-                              child: AppText(
-                                textColor: textColorPrimary,
-                                text: mainLoginLabelString,
-                                style: const TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.bold),
+                child: Semantics(
+                  label: 'Pantalla de inicio de sesión',
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: size.height * 0.2,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(paddingLargeDimension),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: backgroundColor,
+                              borderRadius: BorderRadius.all(
+                                  Radius.circular(borderRadiusDimensions))),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: size.height * 0.05,
                               ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(paddingLargeDimension),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    SizedBox(
-                                      height: size.height * 0.02,
-                                    ),
-                                    LoginForm(
-                                      usernameController: usernameController,
-                                      passwordController: passwordController,
-                                      colorInput: textColorPrimary,
-                                      backgroundColor: accentColor1,
-                                      onLogin: usernameController
-                                                  .text.isEmpty ||
-                                              passwordController.text.isEmpty
-                                          ? null
-                                          : () {
-                                              if (onLogin != null) {
-                                                onLogin!(
-                                                  usernameController.text,
-                                                  passwordController.text,
-                                                );
-                                              }
-                                            },
-                                    ),
-                                    SizedBox(
-                                      height: size.height * 0.1,
-                                    ),
-                                    GestureDetector(
-                                      onTap: onTapWithoutAccount,
-                                      child: Container(
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          border: Border(
-                                            top: BorderSide(
-                                              color: primaryColor,
-                                              width: 0.5,
-                                            ),
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                              top: paddingLargeDimension),
-                                          child: Text(
-                                            withoutAccountLabelString,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: primaryColor,
-                                              fontSize: fontSizeMediumDimension,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: paddingLargeDimension),
+                                child: Semantics(
+                                  label: 'Encabezado de inicio de sesión',
+                                  child: AppText(
+                                    textColor: textColorPrimary,
+                                    text: mainLoginLabelString,
+                                    style: const TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                              Container(
+                                padding: EdgeInsets.all(paddingLargeDimension),
+                                child: Semantics(
+                                  label: 'Formulario de inicio de sesión',
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        SizedBox(
+                                          height: size.height * 0.02,
+                                        ),
+                                        LoginForm(
+                                          usernameController:
+                                              usernameController,
+                                          passwordController:
+                                              passwordController,
+                                          colorInput: textColorPrimary,
+                                          backgroundColor: accentColor1,
+                                          onLogin: usernameController
+                                                      .text.isEmpty ||
+                                                  passwordController
+                                                      .text.isEmpty
+                                              ? null
+                                              : () {
+                                                  if (onLogin != null) {
+                                                    onLogin!(
+                                                      usernameController.text,
+                                                      passwordController.text,
+                                                    );
+                                                  }
+                                                },
+                                        ),
+                                        SizedBox(
+                                          height: size.height * 0.1,
+                                        ),
+                                        Semantics(
+                                          label: 'Enlace para crear una cuenta',
+                                          child: GestureDetector(
+                                            onTap: onTapWithoutAccount,
+                                            child: Container(
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                border: Border(
+                                                  top: BorderSide(
+                                                    color: primaryColor,
+                                                    width: 0.5,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: paddingLargeDimension),
+                                                child: Text(
+                                                  withoutAccountLabelString,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    color: primaryColor,
+                                                    fontSize:
+                                                        fontSizeMediumDimension,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               (!isLandscape)
@@ -148,13 +165,16 @@ class LoginTemplate extends StatelessWidget {
                       right: 0,
                       child: Padding(
                         padding: EdgeInsets.only(left: paddingLargeDimension),
-                        child: AppIcon(
-                          iconData: Icons.all_inclusive_rounded,
-                          color: primaryColor,
-                          backgroundColor: backgroundColor,
-                          hasShadow: true,
-                          size: 60,
-                          sizeContainer: 100,
+                        child: Semantics(
+                          label: 'Icono de aplicación',
+                          child: AppIcon(
+                            iconData: Icons.all_inclusive_rounded,
+                            color: primaryColor,
+                            backgroundColor: backgroundColor,
+                            hasShadow: true,
+                            size: 60,
+                            sizeContainer: 100,
+                          ),
                         ),
                       ),
                     )

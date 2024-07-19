@@ -37,27 +37,31 @@ class Appbar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           /// Animación de color para el icono de búsqueda.
-          TweenAnimationBuilder<Color?>(
-            duration: const Duration(milliseconds: 320),
-            tween: ColorTween(
-              begin: openMenu ? backgroundColor : primaryColor,
-              end: openMenu ? primaryColor : backgroundColor,
+          Semantics(
+            label: 'Buscar',
+            hint: 'Toca para buscar',
+            child: TweenAnimationBuilder<Color?>(
+              duration: const Duration(milliseconds: 320),
+              tween: ColorTween(
+                begin: openMenu ? backgroundColor : primaryColor,
+                end: openMenu ? primaryColor : backgroundColor,
+              ),
+              builder: (context, color, child) {
+                return GestureDetector(
+                  onTap: onTapSearch,
+                  child: AppIcon(
+                    sizeContainer: 60,
+                    iconData: Icons.search,
+                    color: openMenu ? backgroundColor : textColorPrimary,
+                    size: 35,
+                    backgroundColor: color ?? Colors.white,
+                  ),
+                );
+              },
             ),
-            builder: (context, color, child) {
-              return GestureDetector(
-                onTap: onTapSearch,
-                child: AppIcon(
-                  sizeContainer: 60,
-                  iconData: Icons.search,
-                  color: openMenu ? backgroundColor : textColorPrimary,
-                  size: 35,
-                  backgroundColor: color ?? Colors.white,
-                ),
-              );
-            },
           ),
 
-          /// Animación de color para el icono de menú.
+          /// Animación de color para el icono del logo.
           TweenAnimationBuilder<Color?>(
             duration: const Duration(milliseconds: 320),
             tween: ColorTween(
@@ -76,41 +80,45 @@ class Appbar extends StatelessWidget {
           ),
 
           /// Icono del carrito con animación y un contenedor adicional para notificaciones.
-          Padding(
-            padding: const EdgeInsets.only(right: 24),
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                TweenAnimationBuilder<Color?>(
-                  duration: const Duration(milliseconds: 320),
-                  tween: ColorTween(
-                    begin: openMenu ? backgroundColor : primaryColor,
-                    end: openMenu ? primaryColor : backgroundColor,
+          Semantics(
+            label: 'Carrito de compras',
+            hint: 'Toca para ver el carrito',
+            child: Padding(
+              padding: const EdgeInsets.only(right: 24),
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  TweenAnimationBuilder<Color?>(
+                    duration: const Duration(milliseconds: 320),
+                    tween: ColorTween(
+                      begin: openMenu ? backgroundColor : primaryColor,
+                      end: openMenu ? primaryColor : backgroundColor,
+                    ),
+                    builder: (context, color, child) {
+                      return GestureDetector(
+                        onTap: onTapCart,
+                        child: AppIcon(
+                          sizeContainer: 60,
+                          iconData: Icons.shopping_cart_outlined,
+                          color: openMenu ? backgroundColor : textColorPrimary,
+                          size: 35,
+                          backgroundColor: color ?? Colors.white,
+                        ),
+                      );
+                    },
                   ),
-                  builder: (context, color, child) {
-                    return GestureDetector(
-                      onTap: onTapCart,
-                      child: AppIcon(
-                        sizeContainer: 60,
-                        iconData: Icons.shopping_cart_outlined,
-                        color: openMenu ? backgroundColor : textColorPrimary,
-                        size: 35,
-                        backgroundColor: color ?? Colors.white,
-                      ),
-                    );
-                  },
-                ),
-                Positioned(
-                  top: 10,
-                  right: 10,
-                  child: Container(
-                    height: 14,
-                    width: 14,
-                    decoration: const BoxDecoration(
-                        color: Colors.transparent, shape: BoxShape.circle),
-                  ),
-                )
-              ],
+                  Positioned(
+                    top: 10,
+                    right: 10,
+                    child: Container(
+                      height: 14,
+                      width: 14,
+                      decoration: const BoxDecoration(
+                          color: Colors.transparent, shape: BoxShape.circle),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ],

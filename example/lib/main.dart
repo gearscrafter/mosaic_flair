@@ -8,7 +8,7 @@ import 'showcase/template_showcase.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initializeApp(path: 'assets/app_config.json', useJsonConfig: true);
+  await initializeApp(path: 'assets/app_config.json', useJsonConfig: false);
   runApp(const MyApp());
 }
 

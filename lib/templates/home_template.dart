@@ -74,163 +74,184 @@ class _HomeTemplateState extends State<HomeTemplate> {
       backgroundColor: backgroundColor,
       body: Stack(
         children: [
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 90,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: paddingMediumDimension),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppText(
-                        text:
-                            '$greetingsLabelString${widget.userName ?? 'Usuario'}',
-                        textColor: textColorPrimary,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: fontSizeLargeDimension),
-                      ),
-                      AppText(
-                        textColor: textColorPrimary,
-                        text: orderYourProductLabelString,
-                      ),
-                    ],
+          Semantics(
+            label: 'Contenido principal',
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 90,
                   ),
-                ),
-                AppCarousel(
-                    items: widget.promotionCards ??
-                        [
-                          const PromotionCard(
-                              description: 'Descuento al',
-                              image: null,
-                              percentage: 50),
-                          const PromotionCard(
-                              description: 'Descuento al',
-                              image: null,
-                              percentage: 30)
-                        ]),
-                SizedBox(
-                  height: paddingMediumDimension,
-                ),
-                Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: paddingMediumDimension),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppText(
-                        text: popularSectionLabelString,
-                        textColor: textColorPrimary,
-                        sizeText: SizeText.L,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      GestureDetector(
-                        onTap: widget.onTapSeeMore,
-                        child: AppText(
-                          textColor: textColorPrimary,
-                          text: seeMoreSectionLabelString,
+                  Padding(
+                    padding: EdgeInsets.only(left: paddingMediumDimension),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Semantics(
+                          label: 'Saludo al usuario ${widget.userName}',
+                          child: AppText(
+                            text:
+                                '$greetingsLabelString${widget.userName ?? 'Usuario'}',
+                            textColor: textColorPrimary,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: fontSizeLargeDimension),
+                          ),
                         ),
-                      )
-                    ],
+                        Semantics(
+                          label: 'Ordena tu producto favorito',
+                          child: AppText(
+                            textColor: textColorPrimary,
+                            text: orderYourProductLabelString,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: paddingMediumDimension,
-                ),
-                SizedBox(
-                  height: size.height * 0.5,
-                  child: ProductList(
-                    aspectHeight: 4,
-                    onTapProductSelected: widget.onTapProductSelected,
-                    productSelected: widget.productSelected,
-                    products: widget.products ??
-                        [
-                          const ProductCard(
-                            id: 1,
-                            title: 'Product 1',
-                            category: 'category',
-                            image: null,
-                            price: 29.99,
+                  Semantics(
+                    label: 'Carrusel de promociones',
+                    child: AppCarousel(
+                        items: widget.promotionCards ??
+                            [
+                              const PromotionCard(
+                                  description: 'Descuento al',
+                                  image: null,
+                                  percentage: 50),
+                              const PromotionCard(
+                                  description: 'Descuento al',
+                                  image: null,
+                                  percentage: 30)
+                            ]),
+                  ),
+                  SizedBox(
+                    height: paddingMediumDimension,
+                  ),
+                  Semantics(
+                    label: 'Sección de productos populares',
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: paddingMediumDimension),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AppText(
+                            text: popularSectionLabelString,
+                            textColor: textColorPrimary,
+                            sizeText: SizeText.L,
+                            fontWeight: FontWeight.bold,
                           ),
-                          const ProductCard(
-                            id: 2,
-                            title: 'Product 2',
-                            category: 'category',
-                            image: null,
-                            price: 49.99,
-                          ),
-                          const ProductCard(
-                            id: 3,
-                            title: 'Product 3',
-                            category: 'category',
-                            image: null,
-                            price: 49.99,
-                          ),
-                          const ProductCard(
-                            id: 4,
-                            title: 'Product 4',
-                            category: 'category',
-                            image: null,
-                            price: 49.99,
-                          ),
-                          const ProductCard(
-                            id: 5,
-                            title: 'Product 5',
-                            category: 'category',
-                            image: null,
-                            price: 49.99,
-                          ),
-                          const ProductCard(
-                            id: 6,
-                            title: 'Product 6',
-                            category: 'category',
-                            image: null,
-                            price: 49.99,
-                          ),
-                          const ProductCard(
-                            id: 7,
-                            title: 'Product 7',
-                            category: 'category',
-                            image: null,
-                            price: 49.99,
-                          ),
-                          const ProductCard(
-                            id: 8,
-                            title: 'Product 8',
-                            category: 'category',
-                            image: null,
-                            price: 49.99,
-                          ),
-                          const ProductCard(
-                            id: 9,
-                            title: 'Product 9',
-                            category: 'category',
-                            image: null,
-                            price: 49.99,
-                          ),
+                          GestureDetector(
+                            onTap: widget.onTapSeeMore,
+                            child: AppText(
+                              textColor: textColorPrimary,
+                              text: seeMoreSectionLabelString,
+                            ),
+                          )
                         ],
-                    onScrollChange: _updateScrolling,
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: paddingMediumDimension,
+                  ),
+                  Semantics(
+                    label: 'Lista de productos',
+                    child: SizedBox(
+                      height: size.height * 0.5,
+                      child: ProductList(
+                        aspectHeight: 4,
+                        onTapProductSelected: widget.onTapProductSelected,
+                        productSelected: widget.productSelected,
+                        products: widget.products ??
+                            [
+                              const ProductCard(
+                                id: 1,
+                                title: 'Product 1',
+                                category: 'category',
+                                image: null,
+                                price: 29.99,
+                              ),
+                              const ProductCard(
+                                id: 2,
+                                title: 'Product 2',
+                                category: 'category',
+                                image: null,
+                                price: 49.99,
+                              ),
+                              const ProductCard(
+                                id: 3,
+                                title: 'Product 3',
+                                category: 'category',
+                                image: null,
+                                price: 49.99,
+                              ),
+                              const ProductCard(
+                                id: 4,
+                                title: 'Product 4',
+                                category: 'category',
+                                image: null,
+                                price: 49.99,
+                              ),
+                              const ProductCard(
+                                id: 5,
+                                title: 'Product 5',
+                                category: 'category',
+                                image: null,
+                                price: 49.99,
+                              ),
+                              const ProductCard(
+                                id: 6,
+                                title: 'Product 6',
+                                category: 'category',
+                                image: null,
+                                price: 49.99,
+                              ),
+                              const ProductCard(
+                                id: 7,
+                                title: 'Product 7',
+                                category: 'category',
+                                image: null,
+                                price: 49.99,
+                              ),
+                              const ProductCard(
+                                id: 8,
+                                title: 'Product 8',
+                                category: 'category',
+                                image: null,
+                                price: 49.99,
+                              ),
+                              const ProductCard(
+                                id: 9,
+                                title: 'Product 9',
+                                category: 'category',
+                                image: null,
+                                price: 49.99,
+                              ),
+                            ],
+                        onScrollChange: _updateScrolling,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-          Menu(
-            isScrolling: _isScrolling,
-            hasMenu: (openMenu) {
-              setState(() {
-                _openMenu = openMenu;
-              });
-            },
-            isHome: false,
-            onTapContact: widget.onTapContact,
-            onTapHome: widget.onTapHome,
-            onTapProducts: widget.onTapProducts,
-            onTapSupport: widget.onTapSupport,
+          Semantics(
+            label: 'Menú de navegación',
+            child: Menu(
+              isScrolling: _isScrolling,
+              hasMenu: (openMenu) {
+                setState(() {
+                  _openMenu = openMenu;
+                });
+              },
+              isHome: false,
+              onTapContact: widget.onTapContact,
+              onTapHome: widget.onTapHome,
+              onTapProducts: widget.onTapProducts,
+              onTapSupport: widget.onTapSupport,
+            ),
           ),
           Appbar(
             openMenu: _openMenu,

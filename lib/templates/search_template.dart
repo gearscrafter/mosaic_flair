@@ -32,14 +32,16 @@ class SearchTemplate extends StatefulWidget {
   final VoidCallback? onTapContact;
   final Function(Product? product)? getProduct;
   final VoidCallback? onPressItem;
-  const SearchTemplate(
-      {super.key,
-      this.productCards,
-      this.onTapHome,
-      this.onTapSupport,
-      this.getProduct,
-      this.onTapContact,
-      this.onPressItem});
+
+  const SearchTemplate({
+    super.key,
+    this.productCards,
+    this.onTapHome,
+    this.onTapSupport,
+    this.getProduct,
+    this.onTapContact,
+    this.onPressItem,
+  });
 
   @override
   State<SearchTemplate> createState() => _SearchTemplateState();
@@ -97,17 +99,19 @@ class _SearchTemplateState extends State<SearchTemplate> {
         children: [
           Column(
             children: [
-              const SizedBox(
-                height: 32,
-              ),
+              const SizedBox(height: 32),
               Padding(
                 padding: EdgeInsets.only(
                   left: paddingMediumDimension,
                   right: paddingMediumDimension,
                 ),
-                child: SearchBarM(
-                  controller: _searchController,
-                  onSearch: (value) {},
+                child: Semantics(
+                  label: 'Buscar productos',
+                  hint: 'Ingresa texto para buscar productos',
+                  child: SearchBarM(
+                    controller: _searchController,
+                    onSearch: (value) {},
+                  ),
                 ),
               ),
               Expanded(
@@ -127,15 +131,20 @@ class _SearchTemplateState extends State<SearchTemplate> {
                       return true;
                     },
                     child: ValueListenableBuilder<List<ProductCard>>(
-                        valueListenable: filteredListNotifier,
-                        builder: (context, filteredList, child) {
-                          return ListView.builder(
-                              shrinkWrap: true,
-                              controller: scrollController,
-                              itemCount: filteredList.length,
-                              itemBuilder: (context, index) {
-                                final item = filteredList[index];
-                                return Padding(
+                      valueListenable: filteredListNotifier,
+                      builder: (context, filteredList, child) {
+                        return Semantics(
+                          label: 'Lista de productos filtrados',
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            controller: scrollController,
+                            itemCount: filteredList.length,
+                            itemBuilder: (context, index) {
+                              final item = filteredList[index];
+                              return Semantics(
+                                label: 'Producto ${item.title}',
+                                hint: 'Precio: \$${item.price}',
+                                child: Padding(
                                   padding:
                                       EdgeInsets.all(paddingSmallDimension),
                                   child: TileCard(
@@ -146,18 +155,24 @@ class _SearchTemplateState extends State<SearchTemplate> {
                                     onPressed: () {
                                       if (widget.getProduct != null) {
                                         widget.getProduct!(Product(
-                                            name: item.title,
-                                            description: "",
-                                            image: item.image ?? '',
-                                            price: item.price));
+                                          name: item.title,
+                                          description: "",
+                                          image: item.image ?? '',
+                                          price: item.price,
+                                        ));
                                       }
-
-                                      widget.onPressItem;
+                                      if (widget.onPressItem != null) {
+                                        widget.onPressItem!();
+                                      }
                                     },
                                   ),
-                                );
-                              });
-                        }),
+                                ),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
