@@ -249,9 +249,8 @@ void main() async {
 
 Para mejorar la accesibilidad en la aplicación, el paquete `Mosaic Flair` utiliza la clase `Semantics` de Flutter para proporcionar información adicional sobre los widgets a los usuarios que utilizan tecnologías asistivas como TalkBack y VoiceOver. A continuación, se presentan algunas prácticas recomendadas para asegurar que los componentes sean accesibles:
 
-- **Descripción Semántica:** Asegúrate de que todos los elementos interactivos (como botones y campos de texto) tengan descripciones semánticas apropiadas. Usa el widget `Semantics` para agregar etiquetas descriptivas y propiedades relevantes.
 
-**Ejemplo de Uso de Semantics:**
+**Ejemplo de uso de Semantics:**
 
 ```dart
 Semantics(
